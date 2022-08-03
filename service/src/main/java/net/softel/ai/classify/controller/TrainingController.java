@@ -29,7 +29,13 @@ public class TrainingController {
     @PostMapping(path="/classifier", produces = "application/json")
     public ResponseEntity<String> trainClassifierAsync(@RequestBody @Valid TrainingSuite suite){ 
          trainService.trainClassifier(suite);
-         return new ResponseEntity<String>("Training in the background", HttpStatus.OK);
+         return new ResponseEntity<String>("Training classifier in the background", HttpStatus.OK);
         }
     
+     @PostMapping(path="/detector", produces = "application/json")
+    public ResponseEntity<String> trainDetectorAsync(@RequestBody @Valid TrainingSuite suite){ 
+         trainService.trainDetector(suite);
+         return new ResponseEntity<String>("Training detector in the background", HttpStatus.OK);
+        }
+
     }
