@@ -44,7 +44,15 @@ Alternatively you can run with gradle, sample command for Linux:
 
 ## Test run 
 
+### Download Sample Pretrained Model
+
+    Download and extract the model zip file (intelModelDir.zip) from the following url: https://drive.google.com/file/d/1QSKiiM5aVpzfpnDsyHPg_EfBUVR_cSLu/view?usp=sharing
+
+    NB: This is a model trained to classify images into any of the following classes:
+        buildings,forest,glacier,mountain,sea,street
+
 ### Predict Classification for image calm_ocean.jpeg
+
 
 ```
 curl --location --request POST 'localhost:8080/classif-ai/predict/classes' \
@@ -65,7 +73,6 @@ curl --location --request POST 'localhost:8080/classif-ai/predict/classes' \
 
 Sample Output
 
-    ```
     [
         {
             "className": "sea",
@@ -88,9 +95,9 @@ Sample Output
             "probability": 1.657191717185924E-8
         }
     ]
-```
 
 ### Predict the best class for the same image calm_ocean.jpeg
+
 
 ```
 curl --location --request POST 'localhost:8080/classif-ai/predict/best' \
@@ -101,8 +108,7 @@ curl --location --request POST 'localhost:8080/classif-ai/predict/best' \
     "classification": "buildings,forest,glacier,mountain,sea,street",
     "batchSize": 32,
     "modelName": "intelModel",
-    "modelDirectory": "/Users/zeguru/Downloads/MachineLearning/Models/intelModelDir",
-    "imagePath":"/Users/zeguru/Downloads/MachineLearning/Datasets/IntelChallenge/testing/calm_ocean.jpeg",
+    "modelDirectory": "/Users/zeguru/Downloads/MachineLearning/Models/intelModelDir", "imagePath":"/Users/zeguru/Downloads/MachineLearning/Datasets/IntelChallenge/testing/calm_ocean.jpeg",
     "imageHeight": 150,
     "imageWidth": 150,
     "numberOfChannels": 3
@@ -115,5 +121,66 @@ Response:
     class: "sea", probability: 0.99998
 ```
 
+
+## Training a classification model
+
+### Step 1 :: Problem statement
+
+    What do you want to solve using image classification DL model ?
+
+        Step 1: Define Problem.
+        Step 2: Prepare Data.
+        Step 3: Evaluate Models.
+        Step 4: Finalize Model.
+
+### Step 2 :: Prepare your dataset
+
+
+    (Link) [https://bugfender.com/blog/how-to-gather-data-for-machine-learning%EF%BB%BF/]
+
+    Collect and organize your images into the following structure :
+
+        Training
+            Used to train the model and must be in a subfolder named `training`
+            This should comprise approximately 70% of the dataset. This is just a rule of thumb
+
+        Validating
+            Used to validate the model during training and must be in a subfolder named `validation`
+            This should comprise approximately 20% of the dataset. This is just a rule of thumb
+
+        Testing (optional)
+            This contains data the model has never seen (ie, during training) and is very useful when evaluating your model(s) 
+
+
+    NB: You can download a ready to use and free training dataset from:
+
+        Kaggle
+        Amazon
+        UCI Machine Learning Repository
+        Google’s Datasets Search Engine
+        Microsoft
+        Lionbridge AI
+        Dataset for this tutorial: https://drive.google.com/drive/folders/1fLI97l4ir44M70MOCTCaVCchUdsiK_-h?usp=sharing
+
+
+### Step 3 :: Run the trainer
+
+    ```
+    curl --location --request POST 'localhost:8080/classif-ai/train/classifier' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+        "title": "Intel Challenge",
+        "neuralNetwork": "RESNET_50",
+        "classification": "buildings,forest,glacier,mountain,sea,street",
+        "batchSize": 32,
+        "epochs": 20,
+        "modelName": "intelModel",
+        "modelOutputDir": "/Users/zeguru/Download/MachineLearning/Models/intelModelDir",
+        "trainingDataset":"/Users/zeguru/Pictures/MachineLearning/Datasets/IntelChallenge",
+        "imageHeight": 150,
+        "imageWidth": 150,
+        "numberOfChannels": 3
+        }'
+    ```
 
 ## Go change the world
