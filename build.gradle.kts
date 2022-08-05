@@ -7,7 +7,16 @@ plugins {
     id ("com.google.cloud.tools.jib") version "3.1.1" apply false
     kotlin("jvm") version "1.5.20" apply false
     kotlin("plugin.spring") version "1.5.20" apply false
+    id "org.sonarqube" version "3.4.0.2513"
     
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "Software-Elegance_classif-ai"
+    property "sonar.organization", "software-elegance"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
 }
 
 repositories {
