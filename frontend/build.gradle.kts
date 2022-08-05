@@ -21,9 +21,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation(project(":djl-common"))
+	implementation(project(":common"))
 	implementation("com.amazonaws:aws-java-sdk-s3:1.12.169") // TODO: this was not resolved through transitive dependency on djl-sping-boot-common
-	implementation(project(":djl-model"))
+	implementation(project(":model"))
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
