@@ -93,13 +93,27 @@ import ai.djl.modality.cv.transform.Resize;
 
 import net.softel.ai.classify.dto.PredictSuite;
 import net.softel.ai.classify.enums.NNet;
+import net.softel.ai.classify.common.S3ImageDownloader;
+import org.springframework.core.io.InputStreamResource;
+// import org.springframework.core.io.Resource;
+import java.io.File;
+import java.io.OutputStream;
+import java.io.FileOutputStream;
 
+import javax.annotation.Resource;
 
 @Service("predictService")
 public class PredictService implements IPredict {
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getName());
     
+
+    // @Resource
+    // private ImageFactory imageFactory;
+
+    @Autowired
+	private S3ImageDownloader downloader;
+
     //@Async
     public String predictClass(PredictSuite predictSuite){
         log.info("\nPredicting..." + predictSuite.getTitle() + "******************\n\n");
@@ -127,9 +141,19 @@ public class PredictService implements IPredict {
             String imagePath = predictSuite.getImagePath();
 
             log.info("Predicting {} ...", imagePath);
-            Path imageFile = Paths.get(imagePath);
 
-            Image img = ImageFactory.getInstance().fromFile(imageFile);
+            Image img = null;
+            if(predictSuite.getImageSource().equals("S3")){
+                img = ImageFactory.getInstance().fromInputStream(downloader.downloadStream(imagePath));
+                }
+            else if(predictSuite.getImageSource().equals("URL")){
+                img = ImageFactory.getInstance().fromUrl(imagePath);
+                }
+            else{
+                Path imageFile = Paths.get(imagePath);
+                img = ImageFactory.getInstance().fromFile(imageFile);
+                }
+            
 
             final int outputSize = predictSuite.getClassification().split(",").length;
 

@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Classif-AI Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link media="all" rel="stylesheet" type="text/css" href="/style.css"/>
+</head>
+<script>
+  function myFunction(row) {
+    var cell = row.getElementsByTagName("td")[0];
+    document.getElementById("image-view").style="display: block;"
+    document.getElementById("inbox-src").src="/image-classification/images/" + cell.innerHTML;
+    document.getElementById("outbox-src").src="/image-classification/images/outbox/" + cell.innerHTML.replace("inbox/", "") + ".png";
+    document.getElementById("response-area").value = "No API results"
+  }
+
+</script>
+<body style="padding-left: 1cm;">
+
+
+<div id="new-detection-form" style="display: block;">
+    <h2>Upload any photo to test classification </h2>
+    <h2>Demo model has been trained to identify buildings, forest, glacier, mountain, sea and streets </h2>
+
+    <form th:object="${imageClassificationForm}" th:action="@{/image-classification/inbox}" method="post"
+          enctype="multipart/form-data">
+        <input type="file" name="file"/>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+<div id="image-view" th:style="*{originalFile != null}? 'display: block;' : 'display: none;'">
+    <textarea id="response-area" class="code" th:text="*{results}?: 'no API results'" cols="60" rows="8"/>
+</div>
+
+</body>
+</html>
