@@ -12,11 +12,12 @@
  */
 package net.softel.ai.classify.controller
 
-import com.aws.samples.djl.spring.common.S3ImageDownloader
-import com.aws.samples.djl.spring.common.S3ImageUploader
-import com.aws.samples.djldemoweb.backend.ObjectDetectionClient
-import com.aws.samples.djldemoweb.form.ObjectDetectionForm
+
 import com.fasterxml.jackson.databind.ObjectMapper
+import net.softel.ai.classify.backend.ObjectDetectionClient
+import net.softel.ai.classify.common.S3ImageDownloader
+import net.softel.ai.classify.common.S3ImageUploader
+import net.softel.ai.classify.form.ObjectDetectionForm
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.core.io.InputStreamResource
@@ -30,7 +31,8 @@ import java.time.Duration
 @Controller
 class ObjectDetectionController(private val uploader: S3ImageUploader,
                                 private val downloader: S3ImageDownloader,
-                                private val apiClient: ObjectDetectionClient) {
+                                private val apiClient: ObjectDetectionClient
+) {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(ObjectDetectionController::class.java)

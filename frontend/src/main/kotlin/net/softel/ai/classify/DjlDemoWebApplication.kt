@@ -12,7 +12,7 @@
  */
 package net.softel.ai.classify
 
-import com.aws.samples.djl.spring.common.AmazonClientConfiguration
+import net.softel.ai.classify.common.AmazonClientConfiguration
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
