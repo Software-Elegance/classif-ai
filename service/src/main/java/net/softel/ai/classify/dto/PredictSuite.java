@@ -62,6 +62,10 @@ public class PredictSuite{
     @Size(min = 5, max = 200)
     String imagePath;
 
+    @NotNull
+    @Size(min = 5, max = 200)
+    String imageSource;
+
     @Min(32)
     @Max(512)
     Integer imageHeight;
