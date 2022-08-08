@@ -1,6 +1,5 @@
 
-import java.io.*;
-import kotlin.script.experimental.api.ScriptCompilationConfiguration.Default.properties
+import java.io.*
 
 plugins {
     java
