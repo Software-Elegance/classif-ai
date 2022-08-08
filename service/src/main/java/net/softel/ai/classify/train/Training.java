@@ -1,3 +1,6 @@
+/**
+    All trainers must implement this intrefacce
+ */
 package net.softel.ai.classify.train;
 
 import net.softel.ai.classify.dto.TrainingSuite;

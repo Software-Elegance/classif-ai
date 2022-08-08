@@ -57,14 +57,11 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableScheduling
 @SpringBootApplication
 @Import(AmazonClientConfiguration.class)
-public class DjlSpringBootApplication {
-
-    private static final Logger logger = LoggerFactory.getLogger(DjlSpringBootApplication.class);
+public class ClassifySpringBootApplication {
 
     public static void main(String[] args) {
 
-        logger.info("Starting... args = {}");
-        SpringApplication.run(DjlSpringBootApplication.class, args);
+        SpringApplication.run(ClassifySpringBootApplication.class, args);
 
         }
 }

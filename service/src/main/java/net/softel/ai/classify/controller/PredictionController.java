@@ -30,13 +30,11 @@ public class PredictionController {
 
     @PostMapping(path="/classes", produces = "application/json")
     public ResponseEntity<String> predictClasses(@RequestBody @Valid PredictSuite suite){ 
-         //predictService.predictClass(suite);
          return new ResponseEntity<String>(predictService.predictClass(suite), HttpStatus.OK);
         }
     
     @PostMapping(path="/best", produces = "application/json")
     public ResponseEntity<String> predictBest(@RequestBody @Valid PredictSuite suite){ 
-         //predictService.predictClass(suite);
          return new ResponseEntity<String>(predictService.predictBest(suite), HttpStatus.OK);
         }
 

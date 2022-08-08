@@ -9,6 +9,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import net.softel.ai.classify.train.Training;
 
+import net.softel.ai.classify.util.TrainingUtils;
+
 import java.util.Random;
 import java.util.List;
 import java.util.Arrays;
@@ -21,7 +23,6 @@ import ai.djl.basicmodelzoo.basic.Mlp;
 import ai.djl.engine.Engine;
 import ai.djl.Device;
 
-// import net.softel.ai.classify.util.Arguments;
 import ai.djl.metric.Metrics;
 import ai.djl.ndarray.types.Shape;
 import ai.djl.nn.Block;
@@ -58,10 +59,8 @@ import ai.djl.repository.SimpleRepository;
 import ai.djl.basicmodelzoo.cv.classification.ResNetV1;
 import ai.djl.training.optimizer.Sgd;
 
-
 import net.softel.ai.classify.dto.TrainingSuite;
 import net.softel.ai.classify.enums.NNet;
-
 
 import ai.djl.basicmodelzoo.cv.object_detection.ssd.SingleShotDetection;
 
@@ -114,8 +113,8 @@ public class ImageClassifierTrainer implements Training {
                 RandomAccessDataset validateSet = null;
 
                 try{
-                    trainingSet = getDataset(Dataset.Usage.TRAIN, trainingSuite);
-                    validateSet = getDataset(Dataset.Usage.TEST, trainingSuite);
+                    trainingSet = TrainingUtils.getDataset(Dataset.Usage.TRAIN, trainingSuite);
+                    validateSet = TrainingUtils.getDataset(Dataset.Usage.TEST, trainingSuite);
 
                     DefaultTrainingConfig config = setupTrainingConfig(trainingSuite);
 
@@ -167,53 +166,7 @@ public class ImageClassifierTrainer implements Training {
         }
 
 
-    private RandomAccessDataset getDataset(Dataset.Usage usage,TrainingSuite trainingSuite) throws IOException {
-
-        log.info("Getting training dataset");
-        Random rand = new Random();
-        float brightness = rand.nextFloat();
-        float contrast = rand.nextFloat();
-        float saturation= rand.nextFloat();
-        float hue = rand.nextFloat();
-
-        String datasetRoot = "";
-        if(usage.equals(Dataset.Usage.TRAIN)){
-            datasetRoot = trainingSuite.getTrainingDataset() + "/training/";
-            }
-        else{
-            datasetRoot = trainingSuite.getTrainingDataset() + "/validation/";
-            }
-
-        log.info("loading dataset {}", datasetRoot);
-
-
-        ImageFolder dataset = ImageFolder.builder()
-            .setRepositoryPath(Paths.get(datasetRoot)) // set root of image folder
-            .setSampling(trainingSuite.getBatchSize(), true) // random sampling; don't process the data in order
-            .optMaxDepth(2) // set the max depth of the sub folders
-            .addTransform(new RandomColorJitter(brightness, contrast, saturation, hue))
-            .addTransform(new RandomFlipLeftRight())
-            .addTransform(new RandomFlipTopBottom())            // .addTransform(new ToTensor())       //Convert to  an N-Dimensional Array ? (tensor ?)
-            .optPipeline(
-                new Pipeline()
-                    .add(new Resize(trainingSuite.getImageWidth(), trainingSuite.getImageHeight()))
-                    .add(new ToTensor())
-                )
-            .build();
-
-            try{
-                // to get the synset or label names
-                List<String> synset = dataset.getSynset();
-                log.info("Synset: " + synset);
-                }
-            catch(TranslateException te) {
-                log.info(te.getMessage());
-                }
-        
-
-            return dataset;
-
-            }
+    
 
 
 }
