@@ -6,6 +6,7 @@ import net.softel.ai.classify.dto.TrainingSuite;
 
 public interface ITrain {
     public void trainClassifier(TrainingSuite suite);
+    public void trainDetector(TrainingSuite suite);
     }
 
 

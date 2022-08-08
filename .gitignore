@@ -38,9 +38,9 @@ out/
 
 ##Others
 .github
-gradle/
+# gradle/
 docs/
-gradlew
-gradlew.bat
+# gradlew
+# gradlew.bat
 *.hprof
 *.hprof.*
