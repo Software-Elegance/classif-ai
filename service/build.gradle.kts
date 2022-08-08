@@ -40,12 +40,11 @@ dependencies {
     implementation("ai.djl:model-zoo:0.17.0")
     implementation("ai.djl:basicdataset:0.17.0")
 
-    compileOnly("commons-cli:commons-cli:1.4")
+    compileOnly("commons-cli:commons-cli:1.5.0")
 
     implementation(project(":common"))
     implementation(project(":model"))
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-
 
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
