@@ -18,21 +18,6 @@ import net.softel.ai.classify.common.AmazonClientConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
-// import com.aws.samples.djlspringboot.util.inference.SentimentAnalysis;
-// import com.aws.samples.djlspringboot.util.inference.ObjectDetectionWithTensorflowSavedModel;
-// import com.aws.samples.djlspringboot.util.inference.KichukuObjectDetection;
-// import com.aws.samples.djlspringboot.util.train.TrainMnist;
-// import com.aws.samples.djlspringboot.util.train.TrainContainerDamage;
-// import com.aws.samples.djlspringboot.util.train.container.MLPTrainer;
-import net.softel.ai.classify.train.ResNetTrainer;
-// import com.aws.samples.djlspringboot.util.inference.ImageClassification;
-// import com.aws.samples.djlspringboot.util.inference.ContainerDamageDetection;
-// import com.aws.samples.djlspringboot.util.inference.container.MLPDamageDetection;
-import net.softel.ai.classify.inference.ResNetDamageDetection;
-
-// import com.aws.samples.djlspringboot.util.preprocess.GrayScale;
-import ai.djl.modality.Classifications;
-import ai.djl.modality.cv.output.DetectedObjects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
