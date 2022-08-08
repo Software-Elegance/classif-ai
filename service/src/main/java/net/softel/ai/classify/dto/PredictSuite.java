@@ -1,7 +1,5 @@
 package net.softel.ai.classify.dto;
 
-
-
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -44,7 +42,7 @@ public class PredictSuite{
     String imagePath;
 
     @NotNull
-    @Size(min = 5, max = 200)
+    @Size(min = 5, max = 50)
     String imageSource;
 
     @Min(32)

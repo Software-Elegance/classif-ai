@@ -44,3 +44,4 @@ docs/
 # gradlew.bat
 *.hprof
 *.hprof.*
+*.log

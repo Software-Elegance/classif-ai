@@ -31,6 +31,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-webflux:2.7.2")
     implementation("org.springdoc:springdoc-openapi-ui:1.6.9")
+    implementation("org.springdoc:springdoc-openapi-webflux-ui:1.6.9")
 
     // implementation("ai.djl.spring:djl-spring-boot-starter-autoconfigure:${djlStarterVersion}")
     implementation("ai.djl.spring:djl-spring-boot-starter-pytorch-auto:0.15")
