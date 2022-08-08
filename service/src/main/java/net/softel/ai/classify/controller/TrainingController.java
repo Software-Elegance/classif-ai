@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 // import io.swagger.v3.oas.annotations.Operation;
 // import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import net.softel.ai.classify.train.Training;
 
 import net.softel.ai.classify.service.ITrain;
 import net.softel.ai.classify.dto.TrainingSuite;
@@ -26,16 +28,25 @@ public class TrainingController {
     @Autowired
     ITrain trainService;
 
+    @Autowired
+    @Qualifier("imageClassifierTrainer")
+    Training imageClassifierTrainer;
+
+
+    //@Autowired
+    //@Qualifier("imageClassifierTrainer")
+    //Training detectorTrainer;
+
     @PostMapping(path="/classifier", produces = "application/json")
     public ResponseEntity<String> trainClassifierAsync(@RequestBody @Valid TrainingSuite suite){ 
-         trainService.trainClassifier(suite);
+         trainService.runTraining(imageClassifierTrainer, suite);
          return new ResponseEntity<String>("Training classifier in the background", HttpStatus.OK);
         }
     
-     @PostMapping(path="/detector", produces = "application/json")
-    public ResponseEntity<String> trainDetectorAsync(@RequestBody @Valid TrainingSuite suite){ 
-         trainService.trainDetector(suite);
-         return new ResponseEntity<String>("Training detector in the background", HttpStatus.OK);
-        }
+    //  @PostMapping(path="/detector", produces = "application/json")
+    // public ResponseEntity<String> trainDetectorAsync(@RequestBody @Valid TrainingSuite suite){ 
+    //      trainService.trainDetector(suite);
+    //      return new ResponseEntity<String>("Training detector in the background", HttpStatus.OK);
+    //     }
 
     }

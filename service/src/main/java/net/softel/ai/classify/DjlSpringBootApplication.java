@@ -22,11 +22,11 @@ import org.springframework.context.annotation.Import;
 // import com.aws.samples.djlspringboot.util.train.TrainMnist;
 // import com.aws.samples.djlspringboot.util.train.TrainContainerDamage;
 // import com.aws.samples.djlspringboot.util.train.container.MLPTrainer;
-import net.softel.ai.classify.train.ResNetTrainer;
+// import net.softel.ai.classify.train.ResNetTrainer;
 // import com.aws.samples.djlspringboot.util.inference.ImageClassification;
 // import com.aws.samples.djlspringboot.util.inference.ContainerDamageDetection;
 // import com.aws.samples.djlspringboot.util.inference.container.MLPDamageDetection;
-import net.softel.ai.classify.inference.ResNetDamageDetection;
+// import net.softel.ai.classify.inference.ResNetDamageDetection;
 
 // import com.aws.samples.djlspringboot.util.preprocess.GrayScale;
 import ai.djl.modality.Classifications;
@@ -65,84 +65,6 @@ public class DjlSpringBootApplication {
 
         logger.info("Starting... args = {}");
         SpringApplication.run(DjlSpringBootApplication.class, args);
-
-        //try{
-
-        // 1. PREPARATION Preprocess. 
-            //a. convert to grayscale
-            // String filePath = "/Users/zeguru/Pictures/Containers/RAW images Basic classification/dent/";
-            // File path = new File(filePath);
-            // File [] files = path.listFiles();
-            // for (int i = 0; i < files.length; i++){
-            //     if (files[i].isFile()){ //this line weeds out other directories/folders
-            //         //System.out.println(files[i]);
-            //         GrayScale.convertToGrayScale(filePath, files[i].getName());
-            //         }
-            //     else{ 
-            //         System.out.println("Not a file... skipping");
-            //         }
-            // }
-
-
-        // 2. TRAINING 
-            // 1. Mnist
-            // logger.info("Training Mnist...");
-            // TrainMnist.runExample(args);
-
-            // 2. Container Damage :: Image folder
-            //logger.info("\n\n*************Training Container Damage...******************\n\n");
-            // MLPTrainer.trainMlp("build/models/mlpContainerModel");
-            //ResNetTrainer.trainResNet("build/models/resNetModel");
-
-
-        // 3. INFERENCE
-            //2. container Damage
-            // logger.info("\n\n*************Predicting container damage...******************\n\n");
-            // // Classifications classifications = ContainerDamageDetection.predict("burnt_closeup.jpeg");
-            // // logger.info("{}", classifications);
-
-            // String testDir = "/Users/zeguru/Pictures/Containers/Dataset/testing/hole/";
-            // File testPath = new File(testDir);
-            // File [] testFiles = testPath.listFiles();
-            // for (int i = 0; i < testFiles.length; i++){
-            //     if (testFiles[i].isFile()){ //this line weeds out other directories/folders
-            //         //Classifications classifications = MLPDamageDetection.predict("build/models/mlpContainerModel",testDir, testFiles[i].getName());
-            //         Classifications classifications = ResNetDamageDetection.predict("build/models/resNetContainerModel",testDir, testFiles[i].getName());
-            //         logger.info("{}", classifications);
-            //         }
-            //     else{ 
-            //         System.out.println("Not a file... skipping");
-            //         }
-            // }
-
-            // Classifications classifications = MLPDamageDetection.predict("build/models/mlpContainerModel","burnt_closeup.jpeg");
-            // logger.info("{}", classifications);
-
-            // Classifications classifications = ImageClassification.predict();
-            // logger.info("{}", classifications);
-
-            // Classifications classifications = SentimentAnalysis.predict();
-            // logger.info(classifications.toString());
-
-            // DetectedObjects detection = ObjectDetectionWithTensorflowSavedModel.predict();
-            // logger.info("{}", detection);
-
-            // DetectedObjects detection = KichukuObjectDetection.predict();
-            // logger.info("{}", detection);
-
-
-
-
-        //     }
-        // catch(IOException ioe) {
-        //     System.out.println(ioe.getMessage());
-        //     }
-        // catch(TranslateException te) {
-        //     System.out.println(te.getMessage());
-        //     }
-        // catch(ModelException me) {
-        //     System.out.println(me.getMessage());
-        //     }
 
         }
 }
