@@ -107,14 +107,9 @@ public class PredictService implements IPredict {
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getName());
     
-
-    // @Resource
-    // private ImageFactory imageFactory;
-
     @Autowired
 	private S3ImageDownloader downloader;
 
-    //@Async
     public String predictClass(PredictSuite predictSuite){
         log.info("\nPredicting..." + predictSuite.getTitle() + "******************\n\n");
         Classifications classifications = predictClassification(predictSuite);
@@ -154,7 +149,6 @@ public class PredictService implements IPredict {
                 img = ImageFactory.getInstance().fromFile(imageFile);
                 }
             
-
             final int outputSize = predictSuite.getClassification().split(",").length;
 
             String modelName = predictSuite.getModelName();
@@ -165,14 +159,13 @@ public class PredictService implements IPredict {
                 if(predictSuite.getNeuralNetwork().equals("RESNET_50")){
                     neuralNet = ResNetV1.builder()
                         .setImageShape(new Shape(predictSuite.getBatchSize(), predictSuite.getNumberOfChannels(), predictSuite.getImageHeight(), predictSuite.getImageWidth()))
-                        .setNumLayers(50)       //default was 50 !
+                        .setNumLayers(50)      
                         .setOutSize(outputSize)
                         .build();
                     }
 
                 model.setBlock(neuralNet);
 
-                // Assume you have run TrainContainerDamage.java example, and saved model in build/containerModel folder.
                 Path modelDir = Paths.get(modelLocation);
                 model.load(modelDir);
 

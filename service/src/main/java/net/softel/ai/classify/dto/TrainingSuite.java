@@ -2,13 +2,9 @@ package net.softel.ai.classify.dto;
 
 import ai.djl.engine.Engine;
 
-
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
-
-
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.Min;
@@ -17,12 +13,11 @@ import javax.validation.constraints.Max;
 @Data
 @Builder
 @ToString
-// @Schema(name = "trainingSuite", description = "Training Params")
 public class TrainingSuite{
 
     @NotNull
     @Size(min = 5, max = 100)
-    String title;       //for logging purposes
+    String title;       
 
     @NotNull
     @Size(min = 3, max = 50)
