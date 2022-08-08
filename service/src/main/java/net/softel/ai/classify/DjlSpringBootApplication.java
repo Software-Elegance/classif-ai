@@ -12,6 +12,8 @@
  */
 package net.softel.ai.classify;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import net.softel.ai.classify.common.AmazonClientConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -35,21 +37,6 @@ import ai.djl.modality.cv.output.DetectedObjects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ai.djl.Application;
-import ai.djl.Device;
-import ai.djl.MalformedModelException;
-import ai.djl.ModelException;
-import ai.djl.inference.Predictor;
-import ai.djl.modality.Classifications;
-import ai.djl.repository.zoo.Criteria;
-import ai.djl.repository.zoo.ModelNotFoundException;
-import ai.djl.repository.zoo.ZooModel;
-import ai.djl.training.util.ProgressBar;
-import ai.djl.translate.TranslateException;
-import java.io.IOException;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.EnableAsync;
 
@@ -63,7 +50,7 @@ public class DjlSpringBootApplication {
 
     public static void main(String[] args) {
 
-        logger.info("Starting... args = {}");
+        logger.info("Starting... args = {}", (Object) args);
         SpringApplication.run(DjlSpringBootApplication.class, args);
 
         //try{
