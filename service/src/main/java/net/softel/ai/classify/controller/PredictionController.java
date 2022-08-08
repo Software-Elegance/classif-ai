@@ -3,6 +3,8 @@ package net.softel.ai.classify.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,4 +40,24 @@ public class PredictionController {
          return new ResponseEntity<String>(predictService.predictBest(suite), HttpStatus.OK);
         }
 
+    @GetMapping(path="/classes/s3", produces = "application/json")
+    public ResponseEntity<String> predictClasses(@RequestParam("file") final String filePath ){ 
+
+        PredictSuite suite = PredictSuite.builder()
+            .imagePath(filePath)
+            .imageSource("S3")
+            .title("Testting at ...." + System.currentTimeMillis())
+            .neuralNetwork("RESNET_50")
+            .classification("buildings,forest,glacier,mountain,sea,street")
+            .modelName("intelModel")
+            .modelDirectory("/Users/zeguru/Downloads/MachineLearning/Models/intelModelDir")
+            .batchSize(32)
+            .numberOfChannels(3)
+            .imageHeight(150)
+            .imageWidth(150)
+    
+            .build();
+
+        return new ResponseEntity<String>(predictService.predictBest(suite), HttpStatus.OK);
+        }
     }
