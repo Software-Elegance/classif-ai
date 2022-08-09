@@ -19,7 +19,7 @@ import javax.validation.constraints.Max;
 public class TrainingSuite{
 
     @NotNull
-    @Size(min = 5, max = 100)
+    @Size(min = 5, max = 150)
     @Schema(name = "title", description = "Title of this training", example = "Footwear classification")
     String title;       
 
@@ -39,7 +39,7 @@ public class TrainingSuite{
     Integer batchSize;
 
     @Min(1)
-    @Max(50)
+    @Max(200)
     @Schema(name = "epochs", description = "Number of iterations", example = "10")
     Integer epochs;
 
@@ -53,7 +53,7 @@ public class TrainingSuite{
 
     @NotNull
     @Size(min = 5, max = 200)
-    @Schema(name = "modelOutputDir", description = "Where to save the generated model", example = "/home/zeguru/Downloads/Models/myModelDir")
+    @Schema(name = "modelOutputDir", description = "Where to save the generated model", example = "myModelDir")
     String modelOutputDir;
 
     @NotNull
