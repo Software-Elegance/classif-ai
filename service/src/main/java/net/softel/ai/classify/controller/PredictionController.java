@@ -23,7 +23,7 @@ import javax.validation.Valid;
 @Slf4j
 @RestController
 @RequestMapping("/predict")
-@Tag(name = "Prediction", description = "Prediction controller")
+@Tag(name = "Inference", description = "Inference controller")
 public class PredictionController {
 
     @Autowired
