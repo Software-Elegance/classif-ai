@@ -45,3 +45,5 @@ docs/
 *.hprof
 *.hprof.*
 *.log
+
+*/*.log
