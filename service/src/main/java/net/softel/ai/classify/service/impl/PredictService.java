@@ -149,7 +149,7 @@ public class PredictService implements IPredict {
                 img = ImageFactory.getInstance().fromFile(imageFile);
                 }
             
-            final int outputSize = predictSuite.getClassification().split(",").length;
+            final int outputSize = predictSuite.getClasses().split(",").length;
 
             String modelName = predictSuite.getModelName();
             try (Model model = Model.newInstance(modelName)) {
@@ -158,7 +158,7 @@ public class PredictService implements IPredict {
 
                 if(predictSuite.getNeuralNetwork().equals("RESNET_50")){
                     neuralNet = ResNetV1.builder()
-                        .setImageShape(new Shape(predictSuite.getBatchSize(), predictSuite.getNumberOfChannels(), predictSuite.getImageHeight(), predictSuite.getImageWidth()))
+                        .setImageShape(new Shape(predictSuite.getBatchSize(), 3, predictSuite.getImageHeight(), predictSuite.getImageWidth()))
                         .setNumLayers(50)      
                         .setOutSize(outputSize)
                         .build();
@@ -169,7 +169,7 @@ public class PredictService implements IPredict {
                 Path modelDir = Paths.get(modelLocation);
                 model.load(modelDir);
 
-                String[] classification = predictSuite.getClassification().split(",");
+                String[] classification = predictSuite.getClasses().split(",");
                 List<String> classes = IntStream
                     .range(0, outputSize)
                     .mapToObj(i -> classification[i])

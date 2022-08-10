@@ -151,7 +151,7 @@ public class ObjectDetectorTrainer implements Training {
 
                 //Shape inputShape = new Shape(arguments.getBatchSize(), 3, 256, 256);
                 //Shape inputShape = new Shape(1, 3, 256, 256);
-                Shape inputShape = new Shape(trainingSuite.getBatchSize(), trainingSuite.getNumberOfChannels(), trainingSuite.getImageHeight(), trainingSuite.getImageWidth());          //ResNet shape
+                Shape inputShape = new Shape(trainingSuite.getBatchSize(), 3, trainingSuite.getImageHeight(), trainingSuite.getImageWidth());          //ResNet shape
 
                 trainer.initialize(inputShape);
 
@@ -175,7 +175,7 @@ public class ObjectDetectorTrainer implements Training {
 
     public static Block getSsdTrainBlock(TrainingSuite trainingSuite) {
             
-            final int outPutSize = trainingSuite.getClassification().split(",").length;
+            final int outPutSize = trainingSuite.getClasses().split(",").length;
 
             int[] numFilters = {16, 32, 64};        //need more clarification on filters...
             SequentialBlock baseBlock = new SequentialBlock();
