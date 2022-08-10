@@ -116,6 +116,9 @@ sonarqube {
         property("sonar.links.issue", "https://github.com/Software-Elegance/classif-ai/issues")
         property("sonar.coverage.jacoco.xmlReportPaths", "build/jacoco/test/jacocoTestReport.xml")
         property("sonar.exclusions", "**/build/**/*")
+        property("sonar.exclusions", "**/config/**/*")
+        property("sonar.exclusions", "**/models/**/*")
+        property("sonar.exclusions", "**/ClassifySpringBootApplication.java")
     }
 }
 
