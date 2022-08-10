@@ -12,7 +12,6 @@
  */
 package net.softel.ai.classify.backend
 
-import net.softel.ai.classify.model.InferenceResponse
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
