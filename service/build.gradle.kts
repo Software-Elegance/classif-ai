@@ -5,7 +5,7 @@ plugins {
     id ("com.google.cloud.tools.jib") apply true
     id("org.springframework.boot")
     id ("io.freefair.lombok") version "6.4.3"
-
+    id ("com.gorylenko.gradle-git-properties") version "2.4.1"
 }
 
 repositories {
@@ -46,6 +46,7 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":model"))
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("pl.project13.maven:git-commit-id-plugin:4.9.10")
 
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
