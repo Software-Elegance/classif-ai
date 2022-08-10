@@ -160,7 +160,7 @@ public class ImageClassifierTrainer implements Training {
                 });
         return new DefaultTrainingConfig(Loss.softmaxCrossEntropyLoss())
                 .addEvaluator(new Accuracy())
-                .optDevices(Engine.getInstance().getDevices(trainingSuite.getMaxGpus()))
+                //.optDevices(Engine.getInstance().getDevices(trainingSuite.getMaxGpus()))
                 .addTrainingListeners(TrainingListener.Defaults.logging(trainingSuite.getModelOutputDir()))
                 .addTrainingListeners(listener);
         }

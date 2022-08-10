@@ -30,6 +30,14 @@
 </div>
 <div id="image-view" th:style="*{originalFile != null}? 'display: block;' : 'display: none;'">
     <textarea id="response-area" class="code" th:text="*{results}?: 'no API results'" cols="60" rows="8"/>
+
+    <p>
+      <img id="inbox-src"
+           th:src="@{*{originalFile == null}? '' : ${'/object-detection/images/inbox/' + originalFile}}"
+           title="Original File"
+           width="500">
+  </p>
+  
 </div>
 
 </body>
