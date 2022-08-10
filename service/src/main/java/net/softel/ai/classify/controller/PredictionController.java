@@ -47,11 +47,10 @@ public class PredictionController {
             .imageSource("S3")
             .title("Testting at ...." + System.currentTimeMillis())
             .neuralNetwork("RESNET_50")
-            .classification("buildings,forest,glacier,mountain,sea,street")
+            .classes("buildings,forest,glacier,mountain,sea,street")
             .modelName("intelModel")
-            .modelDirectory("/Users/zeguru/Downloads/MachineLearning/Models/intelModelDir")
+            .modelDirectory("models/intelModelDir")
             .batchSize(32)
-            .numberOfChannels(3)
             .imageHeight(150)
             .imageWidth(150)
     

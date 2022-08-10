@@ -69,11 +69,12 @@ curl --location --request POST 'localhost:8080/classif-ai/predict/classes' \
     "classification": "buildings,forest,glacier,mountain,sea,street",
     "batchSize": 32,
     "modelName": "intelModel",
-    "modelDirectory": "/Users/zeguru/Downloads/MachineLearning/Models/intelModelDir",
+    "modelDirectory": "models/intelModelDir",
     "imagePath":"/Users/zeguru/Downloads/MachineLearning/Datasets/IntelChallenge/testing/calm_ocean.jpeg",
     "imageHeight": 150,
     "imageWidth": 150,
-    "numberOfChannels": 3
+    "imageSource":"LOCAL"
+
     }'
 ```
 
@@ -114,10 +115,12 @@ curl --location --request POST 'localhost:8080/classif-ai/predict/best' \
     "classification": "buildings,forest,glacier,mountain,sea,street",
     "batchSize": 32,
     "modelName": "intelModel",
-    "modelDirectory": "/Users/zeguru/Downloads/MachineLearning/Models/intelModelDir", "imagePath":"/Users/zeguru/Downloads/MachineLearning/Datasets/IntelChallenge/testing/calm_ocean.jpeg",
+    "modelDirectory": "models/intelModelDir", 
+    "imagePath":"/Users/zeguru/Downloads/MachineLearning/Datasets/IntelChallenge/testing/calm_ocean.jpeg",
     "imageHeight": 150,
     "imageWidth": 150,
-    "numberOfChannels": 3
+    "imageSource":"LOCAL"
+
     }'
 ```
 
@@ -180,12 +183,11 @@ Response:
         "classification": "buildings,forest,glacier,mountain,sea,street",
         "batchSize": 32,
         "epochs": 20,
-        "modelName": "intelModel",
-        "modelOutputDir": "/Users/zeguru/Download/MachineLearning/Models/intelModelDir",
+        "modelName": "myModel",
+        "modelOutputDir": "models/myModelDir",
         "trainingDataset":"/Users/zeguru/Pictures/MachineLearning/Datasets/IntelChallenge",
         "imageHeight": 150,
-        "imageWidth": 150,
-        "numberOfChannels": 3
+        "imageWidth": 150
         }'
     ```
 
