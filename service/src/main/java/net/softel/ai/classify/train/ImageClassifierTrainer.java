@@ -92,14 +92,14 @@ public class ImageClassifierTrainer implements Training {
 
         log.info("Training using : {}", trainingSuite.toString());
 
-        final int outPutSize = trainingSuite.getClassification().split(",").length;
+        final int outPutSize = trainingSuite.getClasses().split(",").length;
 
         log.info("Build the network block...");
         Block neuralNet;
         if(trainingSuite.getNeuralNetwork().equals("RESNET_50")){
 
             neuralNet = ResNetV1.builder()
-                .setImageShape(new Shape(trainingSuite.getBatchSize(), trainingSuite.getNumberOfChannels(), trainingSuite.getImageHeight(), trainingSuite.getImageWidth()))
+                .setImageShape(new Shape(trainingSuite.getBatchSize(), 3, trainingSuite.getImageHeight(), trainingSuite.getImageWidth()))
                 .setNumLayers(50)       
                 .setOutSize(outPutSize)
                 .build();
@@ -121,7 +121,7 @@ public class ImageClassifierTrainer implements Training {
                     try (Trainer trainer = model.newTrainer(config)) {
                         log.info("Changing the world...");
                         trainer.setMetrics(new Metrics());
-                        Shape inputShape = new Shape(trainingSuite.getBatchSize(), trainingSuite.getNumberOfChannels(), trainingSuite.getImageHeight(), trainingSuite.getImageWidth());          //ResNet shape
+                        Shape inputShape = new Shape(trainingSuite.getBatchSize(), 3, trainingSuite.getImageHeight(), trainingSuite.getImageWidth());          //ResNet shape
                         trainer.initialize(inputShape);
                         EasyTrain.fit(trainer, trainingSuite.getEpochs(), trainingSet, validateSet);
                         return trainer.getTrainingResult();
