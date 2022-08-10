@@ -19,40 +19,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Import;
-// import com.aws.samples.djlspringboot.util.inference.SentimentAnalysis;
-// import com.aws.samples.djlspringboot.util.inference.ObjectDetectionWithTensorflowSavedModel;
-// import com.aws.samples.djlspringboot.util.inference.KichukuObjectDetection;
-// import com.aws.samples.djlspringboot.util.train.TrainMnist;
-// import com.aws.samples.djlspringboot.util.train.TrainContainerDamage;
-// import com.aws.samples.djlspringboot.util.train.container.MLPTrainer;
-// import net.softel.ai.classify.train.ResNetTrainer;
-// import com.aws.samples.djlspringboot.util.inference.ImageClassification;
-// import com.aws.samples.djlspringboot.util.inference.ContainerDamageDetection;
-// import com.aws.samples.djlspringboot.util.inference.container.MLPDamageDetection;
-// import net.softel.ai.classify.inference.ResNetDamageDetection;
-
-// import com.aws.samples.djlspringboot.util.preprocess.GrayScale;
-import ai.djl.modality.Classifications;
-import ai.djl.modality.cv.output.DetectedObjects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ai.djl.Application;
-import ai.djl.Device;
-import ai.djl.MalformedModelException;
-import ai.djl.ModelException;
-import ai.djl.inference.Predictor;
-import ai.djl.modality.Classifications;
-import ai.djl.repository.zoo.Criteria;
-import ai.djl.repository.zoo.ModelNotFoundException;
-import ai.djl.repository.zoo.ZooModel;
-import ai.djl.training.util.ProgressBar;
-import ai.djl.translate.TranslateException;
-import java.io.IOException;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
 import java.net.InetAddress;
 
 import org.springframework.core.env.Environment;

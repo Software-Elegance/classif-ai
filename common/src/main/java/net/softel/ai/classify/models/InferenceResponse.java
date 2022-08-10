@@ -10,23 +10,31 @@
  * OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package net.softel.ai.classify.model;
+package net.softel.ai.classify.models;
 
+import java.util.List;
 import lombok.Getter;
+import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
+
 
 @Getter
-public class InferredObject {
+@Setter
+public class InferenceResponse {
 
-    private String objectClass;
+    private String outputReference;
 
-    private Double probability;
+    private List<InferredObject> inferredObjects;
 
-    public InferredObject(){}
+    /**
+     * Deserialization constructor
+     */
+    public InferenceResponse(){}
 
-    public InferredObject(String objectClass, Double probability) {
-        this.objectClass = objectClass;
-        this.probability = probability;
+    public InferenceResponse(@NotNull List<InferredObject> inferredObjects,
+                             String outputReference) {
+        this.inferredObjects = inferredObjects;
+        this.outputReference = outputReference;
     }
-
 
 }
