@@ -15,6 +15,7 @@ plugins {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
+    implementation("javax.xml.bind:jaxb-api:2.3.1")
 }
 
 //tasks.test {
