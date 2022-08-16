@@ -4,29 +4,12 @@
     <title>Classif-AI Demo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta charset="utf-8"/>
-    <link rel="canonical" href="https://preview.keenthemes.com/metronic8"/>
     <link rel="shortcut icon" href="/assets/media/svg/brand-logos/tower.svg"/>
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
-    <!--end::Fonts-->
-    <!--begin::Vendor Stylesheets(used by this page)-->
-    <link href="/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css"/>
-    <!--end::Vendor Stylesheets-->
-    <!--begin::Global Stylesheets Bundle(used by all pages)-->
-    <link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
+
     <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
     <!--end::Global Stylesheets Bundle-->
-    <!--Begin::Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-            var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&amp;l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-5FS8GGP');</script>
-    <!--End::Google Tag Manager -->
 </head>
 <script>
     function myFunction(row) {
@@ -54,15 +37,7 @@
         }
         document.documentElement.setAttribute("data-theme", themeMode);
     }</script>
-<!--end::Theme mode setup on page load-->
-<!--Begin::Google Tag Manager (noscript) -->
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FS8GGP" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe>
-</noscript>
-<!--End::Google Tag Manager (noscript) -->
-<!--begin::Main-->
-<!--begin::Root-->
+
 <div class="d-flex flex-column flex-root">
     <!--begin::Page-->
     <div class="page d-flex flex-row flex-column-fluid">
@@ -251,17 +226,17 @@
                 <!--begin::Container-->
                 <div id="kt_toolbar_container" class="container-xxl py-5">
                     <!--begin::Row-->
-                    <div class="row gy-0 gx-10">
+                    <div class="row">
                         <div class="col-xl-8">
                             <!--begin::Engage widget 2-->
-                            <div class="card card-xl-stretch bg-body border-0 mb-5 mb-xl-0">
+                            <div class="card bg-body border-0 mb-5 mb-xl-0">
                                 <!--begin::Body-->
                                 <div class="card-body d-flex flex-column flex-lg-row flex-stack p-lg-15">
                                     <!--begin::Info-->
                                     <div class="d-flex flex-column justify-content-center align-items-center align-items-lg-start me-10 text-center text-lg-start">
                                         <!--begin::Title-->
                                         <h3 class="fs-2hx line-height-lg mb-5">
-                                            <span class="fw-bold">Test classification</span>
+                                            <span class="fw-bold">Image Classification</span>
                                         </h3>
                                         <!--end::Title-->
                                         <div class="fs-4 text-muted mb-7">
@@ -416,21 +391,39 @@
                         </div>
 
                         <div class="col-xl-4">
-                            <!--begin::Mixed Widget 16-->
-                            <div class="card card-xl-stretch bg-body border-0">
+
+                            <div class="card bg-body border-0 mb-5 mb-xl-0">
                                 <!--begin::Body-->
-                                <div class="card-body pt-5 mb-xl-9 position-relative">
-                                    <!--begin::Heading-->
-                                    <div class="d-flex flex-stack">
+                                <div class="card-body d-flex flex-column flex-lg-row flex-stack p-lg-15">
+                                    <!--begin::Info-->
+                                    <div class="d-flex flex-column justify-content-center align-items-center align-items-lg-start me-10 text-center text-lg-start">
                                         <!--begin::Title-->
                                         <h3 class="fs-2hx line-height-lg mb-5">
-                                            <span class="fw-bold">Accuracy</span>
-                                            <br/>
+                                            <span class="fw-bold">Model Results</span>
                                         </h3>
+
+                                        <!--begin::Number-->
+                                        <div class="d-flex align-items-center">
+                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+                                            <span class="svg-icon svg-icon-3 svg-icon-primary me-2">
+																	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																		<rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor"></rect>
+																		<path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor"></path>
+																	</svg>
+																</span>
+                                            <!--end::Svg Icon-->
+                                            <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="60" data-kt-countup-prefix="%" data-kt-initialized="1">
+                                                <#if accuracyCheck??>${results[0].probability * 100}%<#else>0%</#if>
+                                            </div>
+                                        </div>
+                                        <!--end::Number-->
+                                        <!--begin::Label-->
+                                        <div class="fw-semibold fs-6 text-gray-400">Accuracy</div>
+                                        <!--end::Label-->
                                         <!--end::Title-->
-                                        <div class="d-flex flex-center mb-5 mb-xxl-0 text-center position-absolute bottom-0 start-50 translate-middle-x w-100 mb-10">
+                                        <div class="fs-4 text-muted mb-7">
                                             <div class="d-flex align-items-center mb-2">
-                                                <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">${results[0].className}</a>
+                                                <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">${(results[0].className)! "Not Rendered"}</a>
                                                 <a href="#">
                                                     <!--begin::Svg Icon | path: icons/duotune/general/gen026.svg-->
                                                     <span class="svg-icon svg-icon-1 svg-icon-primary">
@@ -442,48 +435,23 @@
                                                     <!--end::Svg Icon-->
                                                 </a>
                                             </div>
-                                            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                                <!--begin::Number-->
-                                                <div class="d-flex align-items-center">
-                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                                    <span class="svg-icon svg-icon-3 svg-icon-primary me-2">
-																	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																		<rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor"></rect>
-																		<path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor"></path>
-																	</svg>
-																</span>
-                                                    <!--end::Svg Icon-->
-                                                    <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="60" data-kt-countup-prefix="%" data-kt-initialized="1">${results[0].probability * 100}%</div>
-                                                </div>
-                                                <!--end::Number-->
-                                                <!--begin::Label-->
-                                                <div class="fw-semibold fs-6 text-gray-400">Accuracy</div>
-                                                <!--end::Label-->
-                                            </div>
                                         </div>
 
                                     </div>
-                                    <!--end::Heading-->
                                 </div>
-                                <!--end::Body-->
                             </div>
-                            <!--end::Mixed Widget 16-->
                         </div>
-
-                        <!--begin::Separator-->
-                        <div class="separator"></div>
-                        <!--end::Separator-->
 
                         <div class="col-xl-12">
                             <!--begin::Engage widget 2-->
-                            <div class="card card-xl-stretch bg-body border-0 mb-5 mb-xl-0">
+                            <div class="card bg-body border-0 mb-5 mb-xl-0">
                                 <!--begin::Body-->
                                 <div class="card-body d-flex flex-column flex-lg-row flex-stack p-lg-15">
                                     <!--begin::Info-->
                                     <div class="d-flex flex-column justify-content-center align-items-center align-items-lg-start me-10 text-center text-lg-start">
                                         <!--begin::Title-->
                                         <h5 class="fs-2hx line-height-lg mb-5">
-                                            <span class="fw-bold">Image Summary</span>
+                                            <span class="fw-bold">Tested Image</span>
                                             <br/>
                                         </h5>
                                         <div id="image-view" style="display: block;">
@@ -491,7 +459,7 @@
 
                                             <p>
                                                 <img id="inbox-src"
-                                                     src="${'/object-detection/images/inbox/' + originalFile!''}"
+                                                     src="${'/object-detection/images/inbox/' + (originalFile)!''}" alt="/assets/media/svg/avatars/blank.svg"
                                                      title="Original File"
                                                      width="500">
                                             </p>
@@ -530,100 +498,5 @@
     <!--end::Page-->
 </div>
 
-<script>var hostUrl = "assets/index.html";</script>
-<!--begin::Global Javascript Bundle(used by all pages)-->
-<script src="/assets/plugins/global/plugins.bundle.js"></script>
-<script src="/assets/js/scripts.bundle.js"></script>
-<!--end::Global Javascript Bundle-->
-<!--begin::Vendors Javascript(used by this page)-->
-<script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
-<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
-<!--end::Vendors Javascript-->
-<!--begin::Custom Javascript(used by this page)-->
-<script src="/assets/js/widgets.bundle.js"></script>
-<script src="/assets/js/custom/widgets.js"></script>
-<script src="/assets/js/custom/apps/chat/chat.js"></script>
-<script src="/assets/js/custom/intro.js"></script>
-<script src="/assets/js/custom/utilities/modals/create-campaign.js"></script>
-<script src="/assets/js/custom/utilities/modals/users-search.js"></script>
-<script>
-
-    const initMixedWidget16 = function(test) {
-        if(test !== undefined){
-            let id = document.getElementById('idVal').value;
-            console.log(id)
-            id = document.getElementById(id);
-            console.log(id)
-
-            if (!id) {
-                return;
-            }
-            const value = Math.round(document.getElementById('probability').value * 100);
-            const name = document.getElementById('className').value;
-            const height = 260;
-
-            const options = {
-                labels: [name],
-                series: [value],
-                chart: {
-                    fontFamily: 'inherit',
-                    height: height,
-                    type: 'radialBar',
-                    offsetY: 0
-                },
-                plotOptions: {
-                    radialBar: {
-                        startAngle: -90,
-                        endAngle: 90,
-
-                        hollow: {
-                            margin: 0,
-                            size: "70%"
-                        },
-                        dataLabels: {
-                            showOn: "always",
-                            name: {
-                                show: true,
-                                fontSize: "13px",
-                                fontWeight: "700",
-                                offsetY: -5,
-                                color: KTUtil.getCssVariableValue('--kt-gray-500')
-                            },
-                            value: {
-                                color: KTUtil.getCssVariableValue('--kt-gray-700'),
-                                fontSize: "30px",
-                                fontWeight: "700",
-                                offsetY: -40,
-                                show: true
-                            }
-                        },
-                        track: {
-                            background: KTUtil.getCssVariableValue('--kt-primary-light'),
-                            strokeWidth: '100%'
-                        }
-                    }
-                },
-                colors: [KTUtil.getCssVariableValue('--kt-primary')],
-                stroke: {
-                    lineCap: "round",
-                }
-            };
-
-            const chart = new ApexCharts(id, options);
-            chart.render();
-        }
-    }
-</script>
 </body>
 </html>
