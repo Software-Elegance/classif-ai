@@ -56,6 +56,6 @@ public class PredictionController {
     
             .build();
 
-        return new ResponseEntity<>(predictService.predictBest(suite), HttpStatus.OK);
+        return new ResponseEntity<>(predictService.predictClass(suite), HttpStatus.OK);
         }
     }

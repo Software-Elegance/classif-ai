@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <title>Classif-AI Demo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

@@ -13,10 +13,11 @@
 package net.softel.ai.classify.controller
 
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import com.google.gson.Gson
 import net.softel.ai.classify.backend.ImageClassificationClient
 import net.softel.ai.classify.common.S3ImageDownloader
 import net.softel.ai.classify.common.S3ImageUploader
+import net.softel.ai.classify.dto.ClassificationResponse
 import net.softel.ai.classify.form.ImageClassificationForm
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -25,7 +26,9 @@ import org.springframework.core.io.Resource
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
+import java.lang.reflect.Type
 import java.time.Duration
+import java.util.*
 
 
 @Controller
@@ -58,10 +61,9 @@ class ImageClassificationController(private val uploader: S3ImageUploader,
         val fileName = form.file?.originalFilename ?: ""
         uploader.upload(form.file?.inputStream, form.file?.size ?:0, fileName)
         val results = apiClient.classifyS3(fileName).block(Duration.ofSeconds(30))
-        val jsonResults = ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(results)
-        LOG.info("Image classification results: {} ", jsonResults)
+        val response: Array<ClassificationResponse> = Gson().fromJson(results, Array<ClassificationResponse>::class.java)
         model.addAttribute("files", downloader.listFolder("inbox"))
-        model.addAttribute("results", jsonResults)
+        model.addAttribute("results", response.toList())
         model.addAttribute("originalFile", form.file?.originalFilename)
         // model.addAttribute("resultFile", form.file?.originalFilename.plus(".png"))
         return "image-classification-files"
