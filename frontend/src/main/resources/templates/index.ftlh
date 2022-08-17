@@ -11,6 +11,8 @@
 
     <a class="blue animate" href="image-classification/inbox">Image Classification</a>
     <br/>
+    <a class="blue animate" href="video.html" >Video Engine</a>
+    <br/>
     <a class="blue animate" href="object-detection/inbox">Object Detection - not yet implemented</a>
 
 
