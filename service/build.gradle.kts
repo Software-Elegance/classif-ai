@@ -42,6 +42,7 @@ dependencies {
     implementation("pl.project13.maven:git-commit-id-plugin:4.9.10")
     implementation("javax.xml.bind:jaxb-api:2.3.1")
 
+    implementation("com.github.kokorin.jaffree:jaffree:2022.06.03")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
