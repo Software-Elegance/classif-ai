@@ -1,7 +1,7 @@
 
 package net.softel.ai.classify.controller;
 
-import net.softel.ai.classify.service.VideoStreamingService;
+import net.softel.ai.classify.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +15,8 @@ import net.softel.ai.classify.dto.SummarizeVideo;
 import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.RequestBody;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @RequestMapping("/predict")
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class VideoController {
 
     @Autowired
-    private VideoStreamingService service;
+    private VideoService service;
 
     @GetMapping(value = "/{title}", produces = "video/mp4")
     public Mono<Resource> getVideo(@PathVariable String title, @RequestHeader("Range") String range) {
