@@ -29,6 +29,7 @@ import java.util.stream.Collectors;
 import net.softel.ai.classify.dto.PredictSuite;
 import net.softel.ai.classify.service.IPredict;
 import net.softel.ai.classify.dto.SummarizeVideo;
+import java.math.BigDecimal;
 
 
 @Service("videoService")
@@ -79,11 +80,10 @@ public class VideoService implements IVideo {
         String title = summary.getTitle();
 
         int stepInSeconds = summary.getStepInSeconds(); //           every x seconds
-        int videoDurationInSeconds = 13;    //Length of the video. TODO use ffprobe (via jeffery library)
+        Float videoDurationInSeconds = new Float("0");    //Length of the video. TODO use ffprobe (via jeffery library)
 
         String framesDir = "frames/samplevideo/";    //needs to be dynamic
         System.out.println("framesDir=" + framesDir);
-
 
         VideoSummary ex = VideoSummary.builder()
                 .title(title)
@@ -98,6 +98,10 @@ public class VideoService implements IVideo {
         catch (IOException e){
             return ResponseEntity.ok(ex);
             }
+
+
+        videoDurationInSeconds = Common.getVideoDuration(summary.getFilePath());
+        System.out.println("videoDurationInSeconds = " + videoDurationInSeconds);
 
         for(int i = 0; i < videoDurationInSeconds ; i += stepInSeconds) {
 

@@ -44,6 +44,11 @@ import java.io.FileInputStream;
 import org.apache.commons.codec.binary.Base64;
 import java.io.File;
 
+import com.github.kokorin.jaffree.ffprobe.FFprobe;
+import com.github.kokorin.jaffree.ffprobe.FFprobeResult;
+import com.github.kokorin.jaffree.ffprobe.Stream;
+import java.math.BigDecimal;
+
 public class Common {
 
     private static Logger log = LoggerFactory.getLogger(Common.class);
@@ -61,4 +66,27 @@ public class Common {
             
         }
 
+
+    public static Float getVideoDuration(String pathToVideo) {
+
+        Float duration = new Float("0");
+
+        FFprobeResult result = FFprobe.atPath()
+                .setShowStreams(true)
+                .setInput(pathToVideo)
+                .execute();
+
+        //ffprobe -i vid.mp4 -v quiet -show_entries format=duration -hide_banner -of default=noprint_wrappers=1:nokey=1
+
+        for (Stream stream : result.getStreams()) {
+            System.out.println(
+                    "Stream #" + stream.getIndex()
+                    + " type: " + stream.getCodecType()
+                    + " duration: " + stream.getDuration() + " seconds"
+                    );
+                duration = stream.getDuration();
+                }
+
+        return duration;
+        }
 }
