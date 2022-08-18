@@ -41,7 +41,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("pl.project13.maven:git-commit-id-plugin:4.9.10")
     implementation("javax.xml.bind:jaxb-api:2.3.1")
-
+    implementation("commons-codec:commons-codec:1.5")
     implementation("com.github.kokorin.jaffree:jaffree:2022.06.03")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {

@@ -33,8 +33,9 @@ public class RTSPController {
     public ResponseEntity<StreamingResponseBody> livestream() {
 
 
-        String rtspUrl = "rtsp://demo:demo@ipvmdemo.dyndns.org:5541/onvif-media/media.amp?profile=profile_1_h264&sessiontimeout=60&streamtype=unicast";
+        // String rtspUrl = "rtsp://demo:demo@ipvmdemo.dyndns.org:5541/onvif-media/media.amp?profile=profile_1_h264&sessiontimeout=60&streamtype=unicast";
         // String rtspUrl = "rtsp://ipcam.stream:8554/bars";
+        String rtspUrl = "rtsp://rtsp.stream/movie";
         return service.livestream(rtspUrl);
         // return ResponseEntity.ok()
         //         .contentType(MediaType.APPLICATION_OCTET_STREAM)

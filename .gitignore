@@ -50,3 +50,7 @@ docs/
 **/.vscode/
 **/*.jar
 **/*.DS_Store
+
+#Generated photos
+/frames/
+**/*.jpeg

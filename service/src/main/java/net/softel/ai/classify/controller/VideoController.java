@@ -10,22 +10,28 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 import org.springframework.http.ResponseEntity;
+import net.softel.ai.classify.dto.response.VideoSummary;
+import net.softel.ai.classify.dto.SummarizeVideo;
+import org.springframework.web.bind.annotation.PostMapping;
+import javax.validation.Valid;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-public class VideoStreamingController {
+@RequestMapping("/predict")
+@Tag(name = "Inference", description = "Inference controller")
+public class VideoController {
 
     @Autowired
     private VideoStreamingService service;
 
-    @GetMapping(value = "video/{title}", produces = "video/mp4")
+    @GetMapping(value = "/{title}", produces = "video/mp4")
     public Mono<Resource> getVideo(@PathVariable String title, @RequestHeader("Range") String range) {
           return service.getVideo(title);
         }
-
     
-    @GetMapping(value = "summarize/{title}", produces = "application/json")
-    public ResponseEntity<String> summarizeVideo(@PathVariable String title) {
-          return service.summarizeVideo(title);
+    @PostMapping(path="/summarize", produces = "application/json")
+    public ResponseEntity<VideoSummary> summarize(@RequestBody @Valid SummarizeVideo summary) throws Exception {
+          return service.summarizeVideo(summary);
         }
 
 }

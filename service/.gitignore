@@ -37,3 +37,8 @@ build/
 
 hs_err_pid*
 *.log
+
+
+#Generated photos
+/frames/
+**/*.jpeg
