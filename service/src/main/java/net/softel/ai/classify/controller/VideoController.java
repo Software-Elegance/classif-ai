@@ -19,8 +19,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-@RequestMapping("/predict")
-@Tag(name = "Inference", description = "Inference controller")
+@RequestMapping("/video")
+@Tag(name = "Video", description = "Video controller")
 public class VideoController {
 
     @Autowired
