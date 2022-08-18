@@ -13,7 +13,7 @@ import org.springframework.http.MediaType;
 import lombok.extern.slf4j.Slf4j;
 
 
-import net.softel.ai.classify.service.VideoStreamingService;
+import net.softel.ai.classify.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.github.kokorin.jaffree.StreamType;
 import com.github.kokorin.jaffree.ffmpeg.FFmpeg;
@@ -25,7 +25,7 @@ import com.github.kokorin.jaffree.ffmpeg.PipeOutput;
 public class RTSPController {
 
     @Autowired
-    private VideoStreamingService service;
+    private VideoService service;
 
     @GetMapping(value = "/live.mp4")
     @ResponseBody
