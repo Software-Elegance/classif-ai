@@ -32,9 +32,6 @@ out/
 /nbdist/
 /.nb-gradle/
 
-### VS Code ###
-.vscode/
-
 
 ##Others
 .github
@@ -47,3 +44,9 @@ docs/
 *.log
 
 */*.log
+
+
+# ### VS Code ###
+**/.vscode/
+**/*.jar
+**/*.DS_Store
