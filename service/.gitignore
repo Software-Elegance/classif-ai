@@ -28,8 +28,17 @@ target/
 /.nb-gradle/
 build/
 /docs/
-### VS Code ###
-.vscode/
+
+
+# ### VS Code ###
+**/.vscode/
+**/*.jar
+**/*.DS_Store
 
 hs_err_pid*
 *.log
+
+
+#Generated photos
+/frames/
+**/*.jpeg
