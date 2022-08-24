@@ -32,10 +32,21 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux:2.7.2")
     implementation("org.springdoc:springdoc-openapi-ui:1.6.9")
     implementation("org.springdoc:springdoc-openapi-webflux-ui:1.6.9")
+
+    // implementation("ai.djl.spring:djl-spring-boot-starter-mxnet-${inferredClassifier}:0.11-SNAPSHOT")
+
     implementation("ai.djl.spring:djl-spring-boot-starter-pytorch-auto:0.15")
-    implementation("ai.djl:api:0.17.0")
-    implementation("ai.djl:model-zoo:0.17.0")
-    implementation("ai.djl:basicdataset:0.17.0")
+    implementation("ai.djl.spring:djl-spring-boot-starter-mxnet-auto:0.15")
+    implementation("ai.djl.spring:djl-spring-boot-starter-tensorflow-auto:0.15")
+
+    implementation("ai.djl:api:0.18.0")
+    implementation("ai.djl:model-zoo:0.18.0")
+
+    implementation("ai.djl.mxnet:mxnet-model-zoo:0.18.0")
+    implementation("ai.djl.pytorch:pytorch-model-zoo:0.18.0")
+    implementation("ai.djl.tensorflow:tensorflow-model-zoo:0.18.0")
+
+    implementation("ai.djl:basicdataset:0.18.0")
     compileOnly("commons-cli:commons-cli:1.5.0")
     implementation(project(":common"))
     implementation("org.springframework.boot:spring-boot-starter-actuator")
