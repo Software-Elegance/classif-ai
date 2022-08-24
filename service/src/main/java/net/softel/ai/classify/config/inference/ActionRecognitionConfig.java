@@ -10,7 +10,7 @@
  * OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package net.softel.ai.classify.config;
+package net.softel.ai.classify.config.inference;
 
 import ai.djl.Application;
 import ai.djl.training.util.ProgressBar;
@@ -25,60 +25,62 @@ import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.function.Supplier;
 
+import ai.djl.modality.Classifications;
+
 @Configuration
-public class InferenceConfig {
+public class ActionRecognitionConfig {
 
-    @Bean
-    public ImageFactory imageFactory() {
-        return ImageFactory.getInstance();
+   
+    @Bean(name="actionRecognitionCriteria")
+    public Criteria<Image, Classifications> actionRecognitionCriteria() {
+
+        return  Criteria.builder()
+            .optApplication(Application.CV.ACTION_RECOGNITION)
+            .setTypes(Image.class, Classifications.class)
+            .optFilter("backbone", "inceptionv3")
+            .optFilter("dataset", "ucf101")
+            .optEngine("MXNet")
+            .optProgress(new ProgressBar())
+            .build();
+
         }
 
-    @Bean
-    public Criteria<Image, DetectedObjects> criteria() {
+    @Bean(name="actionRecognitionModel")
+    public ZooModel<Image, Classifications> actionRecognitionModel(
+        @Qualifier("actionRecognitionCriteria") 
+        Criteria<Image, Classifications> criteria
+        )throws MalformedModelException, ModelNotFoundException, IOException {
 
-        return Criteria.builder()
-                .setTypes(Image.class, DetectedObjects.class)
-                .optApplication(Application.CV.OBJECT_DETECTION)
-
-                .optArtifactId("ssd")
-                .optProgress(new ProgressBar())
-
-                .build();
-        }
-
-
-    @Bean
-    public ZooModel<Image, DetectedObjects> model(
-            @Qualifier("criteria") Criteria<Image, DetectedObjects> criteria)
-            throws MalformedModelException, ModelNotFoundException, IOException {
         return ModelZoo.loadModel(criteria);
-    }
+        }
+
 
     /**
      * Scoped proxy is one way to have a predictor configured and closed.
      * @param model object for which predictor is expected to be returned
      * @return predictor object that can be used for inference
      */
-    @Bean(destroyMethod = "close")
+    @Bean(name="actionRecognitionPredictor", destroyMethod = "close")
     @Scope(value = "prototype", proxyMode = ScopedProxyMode.INTERFACES)
-    public Predictor<Image, DetectedObjects> predictor(ZooModel<Image, DetectedObjects> model) {
-        return model.newPredictor();
-    }
+    public Predictor<Image, Classifications> actionRecognitionPredictor(
+        @Qualifier("actionRecognitionModel")
+        ZooModel<Image, Classifications> model) {
+            return model.newPredictor();
+            }
 
-    /**
-     * Inject with @Resource or autowired. Only safe to be used in the try with resources.
-     * @param model object for which predictor is expected to be returned
-     * @return supplier of predictor for thread-safe inference
-     */
-    @Bean
-    public Supplier<Predictor<Image, DetectedObjects>> predictorProvider(ZooModel<Image, DetectedObjects> model) {
-        return model::newPredictor;
-    }
+    @Bean("actionRecognitionPredictorProvider")
+    public Supplier<Predictor<Image, Classifications>> actionRecognitionPredictorProvider(
+        @Qualifier("actionRecognitionModel")
+        ZooModel<Image, Classifications> model) {
+            return model::newPredictor;
+            }
 }
