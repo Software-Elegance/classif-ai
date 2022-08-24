@@ -44,7 +44,6 @@ public class InferenceConfig {
     @Bean
     public Criteria<Image, DetectedObjects> criteria() {
 
-
         return Criteria.builder()
                 .setTypes(Image.class, DetectedObjects.class)
                 .optApplication(Application.CV.OBJECT_DETECTION)
@@ -53,8 +52,7 @@ public class InferenceConfig {
                 .optProgress(new ProgressBar())
 
                 .build();
-    }
-
+        }
 
 
     @Bean
