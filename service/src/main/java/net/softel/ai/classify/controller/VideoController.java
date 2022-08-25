@@ -1,7 +1,7 @@
 
 package net.softel.ai.classify.controller;
 
-import net.softel.ai.classify.service.VideoService;
+import net.softel.ai.classify.service.IVideo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class VideoController {
 
     @Autowired
-    private VideoService service;
+    private IVideo service;
 
     @GetMapping(value = "/{title}", produces = "video/mp4")
     public Mono<Resource> getVideo(@PathVariable String title, @RequestHeader("Range") String range) {
@@ -32,7 +32,7 @@ public class VideoController {
         }
     
     @PostMapping(path="/summarize", produces = "application/json")
-    public ResponseEntity<VideoSummary> summarize(@RequestBody @Valid SummarizeVideo summary) throws Exception {
+    public ResponseEntity<VideoSummary> summarize(@RequestBody @Valid SummarizeVideo summary) {
           return service.summarizeVideo(summary);
         }
 

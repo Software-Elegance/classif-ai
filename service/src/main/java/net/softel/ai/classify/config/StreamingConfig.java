@@ -1,6 +1,6 @@
 package net.softel.ai.classify.config;
 
-import net.softel.ai.classify.service.VideoService;
+import net.softel.ai.classify.service.IVideo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono;
 public class StreamingConfig {
 
     @Autowired
-    private VideoService service;
+    private IVideo service;
 
     @Bean
     public RouterFunction<ServerResponse> router(){

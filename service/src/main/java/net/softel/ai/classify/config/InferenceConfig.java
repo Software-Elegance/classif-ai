@@ -29,7 +29,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.function.Supplier;
 
@@ -44,7 +43,6 @@ public class InferenceConfig {
     @Bean
     public Criteria<Image, DetectedObjects> criteria() {
 
-
         return Criteria.builder()
                 .setTypes(Image.class, DetectedObjects.class)
                 .optApplication(Application.CV.OBJECT_DETECTION)
@@ -53,8 +51,7 @@ public class InferenceConfig {
                 .optProgress(new ProgressBar())
 
                 .build();
-    }
-
+        }
 
 
     @Bean
