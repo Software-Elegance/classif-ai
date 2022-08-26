@@ -25,4 +25,14 @@ class IndexController {
     fun index(): String {
         return "index"
     }
+
+    @RequestMapping("/video.ftlh")
+    fun video(): String {
+        return "video"
+    }
+
+    @RequestMapping("/rtsp.ftlh")
+    fun rtsp(): String {
+        return "rtsp"
+    }
 }
