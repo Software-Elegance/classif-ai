@@ -202,7 +202,9 @@
                     <div class="col-md-8">
                         <!--begin::Engage widget 6-->
                         <div class="card bg-body border-0 mb-10 mb-xl-0 p-md-10">
-                            <h2>Do not watch your CCTV. Let it tell you what's happening</h2>
+                            <h2>Do not watch your CCTV !!!</h2>
+
+                            <strong>Let it tell you what's happening</strong>
                             <!--begin::Body-->
                             <div class="card-body d-flex flex-column mt-10  p-lg-0">
 
@@ -222,11 +224,12 @@
                     <div class="col-md-4">
                         <!--begin::Engage widget 6-->
                         <div class="card bg-body border-0 mb-10 mb-xl-0 p-md-10">
-                            <h2>CCTV Results</h2>
+                            <h2>AI Insights</h2>
                             <!--begin::Body-->
                             <div class="card-body d-flex flex-column mt-10  p-lg-0">
                                 <!--begin::Body-->
                                 results !!! :-)
+                                <img src="/assets/images/corridor.jpeg" alt="logo" height="100" width="170">
                                 <!--end::Body-->
                             </div>
                         </div>
