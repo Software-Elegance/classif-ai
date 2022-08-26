@@ -1,5 +1,5 @@
 /*
- * Pose estimation
+ * Pose estimation. Not in use yet
  */
 package net.softel.ai.classify.config.inference;
 
