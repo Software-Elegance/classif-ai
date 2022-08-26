@@ -55,14 +55,14 @@ class ObjectDetectionController(private val uploader: S3ImageUploader,
         if(form.file?.originalFilename == null) {
             return "object-detection-inbox"
         }
-        val fileName = form.file?.originalFilename ?: ""
+        val fileName = "detect-" + form.file?.originalFilename ?: ""
         uploader.upload(form.file?.inputStream, form.file?.size ?:0, fileName)
         val results = apiClient.detect(fileName, true).block(Duration.ofSeconds(30))
         val jsonResults = ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(results)
         LOG.info("Object detection results: {} ", jsonResults)
         model.addAttribute("files", downloader.listFolder("inbox"))
         model.addAttribute("results", jsonResults)
-        model.addAttribute("originalFile", form.file?.originalFilename)
+        model.addAttribute("originalFile", fileName)
         model.addAttribute("resultFile", form.file?.originalFilename.plus(".png"))
         return "object-detection-files"
     }

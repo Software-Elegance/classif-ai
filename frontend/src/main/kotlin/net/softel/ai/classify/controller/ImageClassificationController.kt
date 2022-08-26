@@ -59,7 +59,7 @@ class ImageClassificationController(private val uploader: S3ImageUploader,
             return "image-classification-inbox"
         }
         var accuracyCheck = false
-        val fileName = form.file?.originalFilename ?: ""
+        val fileName = "class-" + form.file?.originalFilename ?: ""
         uploader.upload(form.file?.inputStream, form.file?.size ?:0, fileName)
         val results = apiClient.classifyS3(fileName).block(Duration.ofSeconds(30))
         val response: Array<ClassificationResponse> = Gson().fromJson(results, Array<ClassificationResponse>::class.java)
@@ -69,7 +69,7 @@ class ImageClassificationController(private val uploader: S3ImageUploader,
         model.addAttribute("files", downloader.listFolder("inbox"))
         model.addAttribute("results", response.toList())
         model.addAttribute("accuracyCheck", accuracyCheck)
-        model.addAttribute("originalFile", form.file?.originalFilename)
+        model.addAttribute("originalFile", fileName)
         return "image-classification-files"
     }
 
