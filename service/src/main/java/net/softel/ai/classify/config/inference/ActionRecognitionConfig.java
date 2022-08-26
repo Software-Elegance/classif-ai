@@ -5,6 +5,7 @@
  * 3) Human-Human Interaction 
  * 4) Playing Musical Instruments 
  * 5) Sports.
+ * Not in use yet
  */
 package net.softel.ai.classify.config.inference;
 

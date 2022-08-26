@@ -41,11 +41,12 @@ public class ObjectDetectionConfig {
             .setTypes(Image.class, DetectedObjects.class)
             .optApplication(Application.CV.OBJECT_DETECTION)
 
-            .optArtifactId("ssd")
+            .optArtifactId("ssd")   //yolo
             .optProgress(new ProgressBar())
 
             .build();
         }
+
 
     @Primary
     @Bean(name="model")
