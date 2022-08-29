@@ -34,7 +34,7 @@ out/
 
 
 ##Others
-.github
+# .github
 # gradle/
 docs/
 # gradlew
