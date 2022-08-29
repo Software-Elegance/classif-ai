@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
 
     <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
-
-    <title>IP Camera Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"></link>
+    <title>Live IP Camera</title>
 </head>
 <body>
 <div class="d-flex flex-column flex-root">
@@ -202,7 +202,8 @@
                     <div class="col-md-8">
                         <!--begin::Engage widget 6-->
                         <div class="card bg-body border-0 mb-10 mb-xl-0 p-md-10">
-                            <h2>Do not watch your CCTV. Let it tell you what's happening</h2>
+                            <h2>Do not watch your CCTV !!!</h2>
+                            <strong>Let it tell you what's happening. <i class="fas fa-hand-point-right"></i></strong> 
                             <!--begin::Body-->
                             <div class="card-body d-flex flex-column mt-10  p-lg-0">
 
@@ -222,15 +223,25 @@
                     <div class="col-md-4">
                         <!--begin::Engage widget 6-->
                         <div class="card bg-body border-0 mb-10 mb-xl-0 p-md-10">
-                            <h2>CCTV Results</h2>
+                            <h2>AI Insights</h2>
                             <!--begin::Body-->
+                            
                             <div class="card-body d-flex flex-column mt-10  p-lg-0">
                                 <!--begin::Body-->
-                                results !!! :-)
+                                <img src="/assets/images/person_holding_monitor.png" alt="logo" width="100%" height="auto">
                                 <!--end::Body-->
                             </div>
                         </div>
                         <!--end::Engage widget 6-->
+
+                        <div class="card bg-body border-0 mb-10 mb-xl-0 p-md-10">
+                            <h2>The story...</h2>
+                            <div class="card-body d-flex flex-column mt-10  p-lg-0">
+                                <strong>22:45:33 </strong>Person enters using stairs<br />
+                                <strong>23:02:09 </strong>Person at 5th floor corridor<br />
+                                <strong>23:05:05 </strong>Grown up male holding electronig device approaching Camera 5/1<br />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
