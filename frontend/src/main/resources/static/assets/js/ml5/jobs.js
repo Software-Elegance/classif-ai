@@ -17,10 +17,12 @@ class Job {
         this.detector = detector;
         let update = this.update.bind(this);
         let log = this.log.bind(this);
+
         //start a thread
         this.worker = new Worker(this.file);
         this.worker.onmessage = update;
         this.worker.onerror = log;
+        
         let gotDetections = this.gotDetections.bind(this);
         this.detector.detect(video, gotDetections);
     }
