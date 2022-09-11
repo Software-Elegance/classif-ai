@@ -17,9 +17,9 @@ function setup() {
   video.hide();
   // // Models available are 'cocossd', 'yolo'
   let jobList = [
-    new Job("Anomaly Detector", "assets/js/ml5/workers/anomally-worker.js", "abnormalEvents","cocossd"),
-    new Job("Incidents", "assets/js/ml5/workers/incidents-worker.js", "allIncidents", "cocossd"),
-    new Job("Weapons", "assets/js/ml5/workers/weapons-worker.js", "weaponEvents", "cocossd"),
+    new Job("All detections ", "assets/js/ml5/workers/incidents-worker.js", "allIncidents", "cocossd"),
+    new Job("Persons Detector", "assets/js/ml5/workers/persons-worker.js", "personEvents","cocossd"),
+    new Job("Weapons detector", "assets/js/ml5/workers/weapons-worker.js", "weaponEvents", "cocossd"),
     ];
   jobList.forEach((jb, i) => {
         console.log("Starting..." + jb.name);
