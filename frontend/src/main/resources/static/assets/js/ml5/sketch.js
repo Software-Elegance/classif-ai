@@ -17,14 +17,17 @@ function setup() {
   video.hide();
   // // Models available are 'cocossd', 'yolo'
   let jobList = [
-    new Job("Anomaly Detector", "assets/js/ml5/workers/anomally-worker.js", "abnormalEvents","cocossd"),
-    new Job("Incidents", "assets/js/ml5/workers//incidents-worker.js", "allIncidents", "cocossd"),
+    new Job("All detections ", "assets/js/ml5/workers/incidents-worker.js", "allIncidents", "cocossd"),
+    new Job("Persons Detector", "assets/js/ml5/workers/persons-worker.js", "personEvents","cocossd"),
+    new Job("Weapons detector", "assets/js/ml5/workers/weapons-worker.js", "weaponEvents", "cocossd"),
     ];
   jobList.forEach((jb, i) => {
         console.log("Starting..." + jb.name);
         let modelReady = jb.modelReady.bind(jb);
+
+        //TODO: add ability to call backend api for detection using custom models
         let det = ml5.objectDetector(jb.model, modelReady);
-          jb.start(det);
+        jb.start(det);
       }
   );
 }
