@@ -254,7 +254,7 @@
                             <!--begin::Body-->
                             <div class="card-body d-flex flex-column mt-10  p-lg-0">
                                 <div id="anomaly-logs">
-                                    <textarea id="abnormalEvents" rows="10" cols="40"></textarea>
+                                    <textarea id="personEvents" rows="10" cols="40"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -268,7 +268,7 @@
                             <!--begin::Body-->
                             <div class="card-body d-flex flex-column mt-10  p-lg-0">
                                 <div id="weapon-logs">
-                                    <textarea id="weapon" rows="10" cols="40">Weapon</textarea>
+                                    <textarea id="weaponEvents" rows="10" cols="40">Weapon</textarea>
                                 </div>
                             </div>
                         </div>
