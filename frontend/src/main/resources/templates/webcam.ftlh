@@ -1,0 +1,53 @@
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Webcam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js" type="text/javascript"></script> -->
+    
+    <script src="assets/js/ml5/p5.min.js"></script>
+    <script src="assets/js/ml5/ml5.min.js" type="text/javascript"></script>
+
+  </head>
+
+
+  <body>
+    <h1>Live Feed</h1>
+    
+    <script>
+      var anomalyDetector;
+      var detector;
+      let video;
+
+      let detections = [];
+      let anomalies = [];
+    </script>
+    <script src="assets/js/ml5/jobs.js"></script>
+    <script src="assets/js/ml5/sketch.js"></script>
+
+    <p><span id="modelStatus">Loading Model</span></p>
+
+    <div id="sketch-container">
+
+    </div>
+
+    <p>Label: <span id="label">...</span>  Confidence: <span id="confidence">...</span></p>
+
+    <div id="incident-logs">
+      <textarea id="allIncidents" rows="10" cols="80">All Incidents</textarea>
+    </div>
+
+    <div id="anomaly-logs">
+      <textarea id="abnormalEvents" rows="10" cols="80">Anomalies</textarea>
+    </div>
+
+    <div id="weapon-logs">
+      <textarea id="weapon" rows="10" cols="80">Weapon</textarea>
+    </div>
+
+  </body>
+</html>
