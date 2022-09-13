@@ -48,7 +48,6 @@ class Job {
         if (error) {
             console.error(error);
         }
-        //anomalies = results;
         detections = results;       //global variable. required by draw()
         results.forEach((det, i) => {
                 //update ui
