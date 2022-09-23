@@ -18,7 +18,8 @@ onmessage = (event) => {
     let msg = event.data;
 
     let now = new Date().toLocaleString('en-US').split(',')[1];
-    
+    let incidentId = prevTime + " - " + now + " "  + prevLabel
+
     if(prevLabel === msg.payload.label){
         console.log('...');
         }
@@ -26,11 +27,10 @@ onmessage = (event) => {
         if(['knife', 'fork', 'spoon', 'bottle', 'gun', 'scissors'].includes(msg.payload.label)){
             console.log('Found suspected weapon ... ' + msg.payload.label);
 
-            incidents += "\n " + prevTime + " - " + now + " " + prevLabel ;
+            incidents =  "<div>" + incidentId + "</div>";
 
             let output = new Message("weapons", incidents, null);
             postMessage(output);
-            // postMessage(incidents);
 
             prevTime = now;
             prevLabel = msg.payload.label;

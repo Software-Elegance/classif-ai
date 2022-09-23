@@ -6,7 +6,7 @@ All incidents, anomalies, weapons
 TODO: Accommodate multiple detections 
 === */
 
-let fr = 2; //starting FPS
+let fr = 5; //starting FPS
 
 function setup() {
 
@@ -22,9 +22,9 @@ function setup() {
   video.hide();
   // // Models available are 'cocossd', 'yolo'
   let jobList = [
-    new Job("All detections ", "assets/js/ml5/workers/incidents-worker.js", "allIncidents", "cocossd"),
-    new Job("Persons Detector", "assets/js/ml5/workers/persons-worker.js", "personEvents","cocossd"),
-    new Job("Weapons detector", "assets/js/ml5/workers/weapons-worker.js", "weaponEvents", "cocossd"),
+    new Job("All detections ", "assets/js/ml5/workers/incidents-worker.js", "incident-logs", "cocossd"),
+    new Job("Persons Detector", "assets/js/ml5/workers/persons-worker.js", "person-logs","cocossd"),
+    new Job("Weapons detector", "assets/js/ml5/workers/weapons-worker.js", "weapon-logs", "cocossd"),
     ];
   jobList.forEach((jb, i) => {
         console.log("Starting..." + jb.name);

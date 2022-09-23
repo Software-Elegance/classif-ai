@@ -17,13 +17,14 @@ onmessage = (event) => {
     let msg = event.data;
 
     let now = new Date().toLocaleString('en-US').split(',')[1];
+    let incidentId = prevTime + " - " + now + " "  + prevLabel
 
     if(prevLabel === msg.payload.label){
         console.log('...');
         }
     else{
         console.log('Received detection from main script ');
-        incidents += "\n " + prevTime + " - " +  now + " " + prevLabel;
+        incidents =  "<div>" + incidentId + "</div>";
 
         let output = new Message("incident_log", incidents, null);
         postMessage(output);

@@ -7,7 +7,7 @@ class Message {
         }
     }
 
-let incidents = "All Person detections";
+let incidents = "<div>All Person detections</div>";
 let prevLabel = "";
 let prevTime = new Date().toLocaleString('en-US').split(',')[1];
 
@@ -17,24 +17,23 @@ onmessage = (event) => {
 
     let now = new Date().toLocaleString('en-US').split(',')[1];
 
-    let incidentId = + prevTime + " - " + now + " "  + prevLabel
+    let incidentId = prevTime + " - " + now + " "  + prevLabel
     if(msg.payload.label === 'person'){
         console.log('NOOP. Person detected on main script');
+        //would be nice if we can create a video of the saved frames ....
+
         }
     else{
 
-        // incidents +=  "\n " + prevTime + " - " + now + " "  + prevLabel + "<img src="+ msg.message +" alt=" + prevTime + " - " + now + " "  + prevLabel + " />";
-        incidents +=  "\n " + incidentId + "<img src=\"\" alt=" + incidentId + " />";
+        incidents =  "<div>" + incidentId + "</div>";
 
         console.log("incidents = " + incidents);
-        // incidents += "\n " + incidentId;
 
         //would be nice if we can create a video of the saved frames ....
 
         let output = new Message("persons", incidents, null);
         postMessage(output);
 
-        //postMessage(incidents);
         prevTime = now;
         prevLabel = "person";
         }

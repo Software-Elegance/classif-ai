@@ -22,7 +22,6 @@ onmessage = (event) => {
         incidents += "\n " + prevTime + " - " + new Date().toLocaleString('en-US') + " " + prevLabel;
         let output = new Message("anomalies", incidents, null);
         postMessage(output);
-        // postMessage(incidents);
         prevTime = new Date().toLocaleString('en-US');
         prevLabel = msg.payload.label;
     }

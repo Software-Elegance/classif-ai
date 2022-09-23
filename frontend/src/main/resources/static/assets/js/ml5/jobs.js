@@ -11,6 +11,7 @@ class Job {
 
     modelReady() {
         select("#modelStatus").html(this.name + " Ready !");
+
     }
 
     start(detector) {
@@ -30,8 +31,10 @@ class Job {
     //update ui
     update(event) {
             let msg = event.data;
-            document.getElementById(this.elementName).innerHTML = msg.message;
+            document.getElementById(this.elementName).insertAdjacentHTML('beforeEnd', msg.message);
 
+            // var myDiv = document.getElementById("divId");
+            // myDiv.innerHTML = "Content To Show";
             //grab the frame
             //send to localstorage, s3 or rest api
 
@@ -68,7 +71,7 @@ class Job {
 
                 this.worker.postMessage(msg);
 
-                storeItem(det.label + "-" + msg.timestamp, shot);
+                //storeItem(det.label + "-" + msg.timestamp, shot);
 
             }
         );
