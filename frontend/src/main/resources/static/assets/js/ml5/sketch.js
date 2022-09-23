@@ -6,9 +6,12 @@ All incidents, anomalies, weapons
 TODO: Accommodate multiple detections 
 === */
 
-let fr = 5; //starting FPS
+let fr = 2; //starting FPS
 
 function setup() {
+
+  clearStorage();
+
   let canvas = createCanvas(640, 480);
   canvas.parent("sketch-container");
   canvas.id('mycanvas');

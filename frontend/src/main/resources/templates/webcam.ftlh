@@ -232,6 +232,14 @@
                                 <div id="sketch-container">
                                 </div>
                             </div>
+
+                            <div>
+                                <p>Hidden incident image</p>
+                                <img id="incidentImage" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUA
+                                    AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
+                                        9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+                            </div>
+
                             <p>
                                 <strong>Label: <span id="label">...</span> </strong>
                                 <strong>Confidence: <span id="confidence">...</span></strong>

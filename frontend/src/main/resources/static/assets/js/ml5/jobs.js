@@ -31,6 +31,11 @@ class Job {
     update(event) {
             let msg = event.data;
             document.getElementById(this.elementName).innerHTML = msg.message;
+
+            //grab the frame
+            //send to localstorage, s3 or rest api
+
+  
     }
 
     //error logs
@@ -55,22 +60,19 @@ class Job {
                 document.getElementById("label").innerHTML = det.label;
                 document.getElementById("confidence").innerHTML = det.confidence;
 
-                let msg = new Message("jobname", "message", det);
+                console.log("grabbing frame");
+                let cv = document.getElementById('mycanvas')
+                let shot    = cv.toDataURL('image/png')
 
-                //this.worker.postMessage(det);
+                let msg = new Message("jobname", shot, det);
+
                 this.worker.postMessage(msg);
 
-                // if(det.label === 'person'){
-                //     console.log("pushing perrson to local storage");
-                //     const cv = document.getElementById('mycanvas')
-                //     const shot    = cv.toDataURL('image/png')
-                //     console.log("shot => " + shot);
-                //     //storeItem('xpos', posX);      //save in local storage
-                //     }
-                
+                storeItem(det.label + "-" + msg.timestamp, shot);
 
             }
         );
+
         this.detector.detect(video, gotDetections);
     }
 }

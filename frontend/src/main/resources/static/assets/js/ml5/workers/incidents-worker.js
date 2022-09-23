@@ -24,9 +24,9 @@ onmessage = (event) => {
     else{
         console.log('Received detection from main script ');
         incidents += "\n " + prevTime + " - " +  now + " " + prevLabel;
-        let output = new Message("incident log", incidents, null);
+
+        let output = new Message("incident_log", incidents, null);
         postMessage(output);
-        // postMessage(incidents);
 
         prevTime = now;
         prevLabel = msg.payload.label;
