@@ -12,6 +12,23 @@ class Job {
     modelReady() {
         select("#modelStatus").html(this.name + " Ready !");
 
+        //testing GET
+        // let url = 'http://localhost:8080/classif-ai/crud/detection/1';
+        // fetch(url)
+        //     .then((response) => {
+        //         return response.json();
+        //         })
+        //     .then((data) => {
+        //         let det = data;
+        //         console.log(JSON.stringify(det));
+        //         })
+        //     .catch((error) => {
+        //         console.log(error);
+        //         });
+
+        //testing POST
+        
+
     }
 
     start(detector) {
@@ -28,18 +45,41 @@ class Job {
         this.detector.detect(video, gotDetections);
     }
 
-    //update ui
+    //listen to messages from workers
     update(event) {
             let msg = event.data;
             document.getElementById(this.elementName).insertAdjacentHTML('beforeEnd', msg.message);
 
-            // var myDiv = document.getElementById("divId");
-            // myDiv.innerHTML = "Content To Show";
-            //grab the frame
-            //send to localstorage, s3 or rest api
+            //Save incident
+            let url = "http://localhost:8080/classif-ai/crud/detection/add"
+            let payload = {
+                label: msg.title,
+                incidentId: msg.id,
+                jobName: this.name,
+                base64: msg.payload
+                }
 
-  
-    }
+            let options = {
+                method: 'POST',
+                body: JSON.stringify(payload),
+                headers: new Headers({
+                    'Content-Type': 'application/json; charset=UTF-8'
+                    })
+                }
+
+            fetch(url,options)
+                .then((response) => {
+                    return response.json();
+                    })
+                .then((data) => {
+                    let det = data;
+                    console.log(JSON.stringify(det));
+                    })
+                .catch((error) => {
+                    console.log(error);
+                    });
+              
+        }
 
     //error logs
     log(event) {
@@ -63,15 +103,11 @@ class Job {
                 document.getElementById("label").innerHTML = det.label;
                 document.getElementById("confidence").innerHTML = det.confidence;
 
-                console.log("grabbing frame");
                 let cv = document.getElementById('mycanvas')
                 let shot    = cv.toDataURL('image/png')
-
-                let msg = new Message("jobname", shot, det);
+                let msg = new Message(1, this.name, shot, det);
 
                 this.worker.postMessage(msg);
-
-                //storeItem(det.label + "-" + msg.timestamp, shot);
 
             }
         );
