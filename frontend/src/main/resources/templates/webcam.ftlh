@@ -13,15 +13,20 @@
     <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"/>
     <script>
+
+        //these have to be here so that js workers and the main thread are able to use them
         let anomalyDetector;
         let detector;
         let video;
         let detections = [];
         let anomalies = [];
+
     </script>
 
     <script src="assets/js/ml5/p5.min.js"></script>
     <script src="assets/js/ml5/ml5.min.js" type="text/javascript"></script>
+
+    <script src="assets/js/ml5/valueobjects.js"></script>
 
     <script src="assets/js/ml5/jobs.js"></script>
     <script src="assets/js/ml5/sketch.js"></script>
@@ -214,63 +219,65 @@
             <div class="container bg-gray-200">
                 <div class="row g-5 g-xl-10 mb-5 mt-10 mb-xl-10">
                     <!--begin::Col-->
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <!--begin::Engage widget 6-->
                         <div class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow: hidden;">
 
                             <h1>Live Feed</h1>
                             <p><span id="modelStatus">Loading Model</span></p>
                             <!--begin::Body-->
-                            <div class="card-body d-flex flex-column mt-10  p-lg-0">
-                                <div id="sketch-container">
-                                </div>
+                            <div id="sketch-container" class="card-body d-flex flex-column mt-10  p-lg-0">
                             </div>
                             <p>
-                                <strong>Label: <span id="label">...</span> </strong>
-                                <strong>Confidence: <span id="confidence">...</span></strong>
+                                <strong>Detected: </strong><span id="label">...</span> 
+                                <strong>Confidence: </strong><span id="confidence">...</span>
                             </p>
                         </div>
                         <!--end::Engage widget 6-->
                     </div>
+
+                    <div class="col-md-4">
+                        <!--begin::Engage widget 6-->
+                        <div id="snapshot" class="card  bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow-y: scroll; height:500px;">
+                            <h2>Snapshot</h2>    
+
+                            <img src="/assets/images/person_holding_monitor.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">4:29:46 PM</h5>
+                                <p class="card-text">Some narrative here.</p>
+                                <a href="#" class="btn btn-primary">More insights</a>
+                            </div>
+
+                        </div>
+                        <!--end::Engage widget 6-->
+                    </div>
+            </div>
+            <div class="row g-5 g-xl-10 mb-5 mt-10 mb-xl-10">
+
                     <!--end::Col-->
                     <div class="col-md-4">
                         <!--begin::Engage widget 6-->
-                        <div class="card  bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow: hidden;">
+                        <div id="incident-logs" class="card  bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow-y: scroll; height:500px;">
                             <h2>All Incidents</h2>
-                            <!--begin::Body-->
-                            <div class="card-body d-flex flex-column mt-10  p-lg-0">
-                                <div id="incident-logs">
-                                    <textarea id="allIncidents" rows="10" cols="40"></textarea>
-                                </div>
-                            </div>
+                            
                         </div>
                         <!--end::Engage widget 6-->
                     </div>
 
                     <div class="col-md-4">
                         <!--begin::Engage widget 6-->
-                        <div class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow: hidden;">
-                            <h2>Person</h2>
-                            <!--begin::Body-->
-                            <div class="card-body d-flex flex-column mt-10  p-lg-0">
-                                <div id="anomaly-logs">
-                                    <textarea id="personEvents" rows="10" cols="40"></textarea>
-                                </div>
-                            </div>
+                        <div id="person-logs" class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow-y: scroll; height:500px;">
+                            <h2>Persons</h2>
+                            
                         </div>
                         <!--end::Engage widget 6-->
                     </div>
 
                     <div class="col-md-4">
                         <!--begin::Engage widget 6-->
-                        <div class="card bg-body border-0 mb-10 mb-xl-0 p-md-10">
-                            <h2>Weapon</h2>
-                            <!--begin::Body-->
-                            <div class="card-body d-flex flex-column mt-10  p-lg-0">
-                                <div id="weapon-logs">
-                                    <textarea id="weaponEvents" rows="10" cols="40">Weapon</textarea>
-                                </div>
-                            </div>
+                        <div id="weapon-logs" class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow-y: scroll; height:500px;">
+                            <h2>Weapons</h2>
+                                
                         </div>
                         <!--end::Engage widget 6-->
                     </div>

@@ -11,6 +11,7 @@ class Job {
 
     modelReady() {
         select("#modelStatus").html(this.name + " Ready !");
+
     }
 
     start(detector) {
@@ -29,7 +30,15 @@ class Job {
 
     //update ui
     update(event) {
-            document.getElementById(this.elementName).innerHTML = event.data;
+            let msg = event.data;
+            document.getElementById(this.elementName).insertAdjacentHTML('beforeEnd', msg.message);
+
+            // var myDiv = document.getElementById("divId");
+            // myDiv.innerHTML = "Content To Show";
+            //grab the frame
+            //send to localstorage, s3 or rest api
+
+  
     }
 
     //error logs
@@ -53,9 +62,20 @@ class Job {
                 //update ui
                 document.getElementById("label").innerHTML = det.label;
                 document.getElementById("confidence").innerHTML = det.confidence;
-                this.worker.postMessage(det);
+
+                console.log("grabbing frame");
+                let cv = document.getElementById('mycanvas')
+                let shot    = cv.toDataURL('image/png')
+
+                let msg = new Message("jobname", shot, det);
+
+                this.worker.postMessage(msg);
+
+                //storeItem(det.label + "-" + msg.timestamp, shot);
+
             }
         );
+
         this.detector.detect(video, gotDetections);
     }
 }
