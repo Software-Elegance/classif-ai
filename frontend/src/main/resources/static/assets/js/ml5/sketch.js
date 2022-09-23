@@ -11,6 +11,8 @@ let fr = 5; //starting FPS
 function setup() {
   let canvas = createCanvas(640, 480);
   canvas.parent("sketch-container");
+  canvas.id('mycanvas');
+
   frameRate(fr);
   video = createCapture(VIDEO);
   video.size(640, 480);
@@ -45,6 +47,7 @@ function draw() {
     fill(255);
     textSize(24);
     text(object.label, object.x + 10, object.y + 24);
+
 
 
   }

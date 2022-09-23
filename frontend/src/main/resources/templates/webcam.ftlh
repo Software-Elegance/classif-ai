@@ -13,15 +13,22 @@
     <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"/>
     <script>
+
+        //these have to be here so that js workers and the main thread are able to use them
         let anomalyDetector;
         let detector;
         let video;
         let detections = [];
         let anomalies = [];
+
+
+
     </script>
 
     <script src="assets/js/ml5/p5.min.js"></script>
     <script src="assets/js/ml5/ml5.min.js" type="text/javascript"></script>
+
+    <script src="assets/js/ml5/valueobjects.js"></script>
 
     <script src="assets/js/ml5/jobs.js"></script>
     <script src="assets/js/ml5/sketch.js"></script>

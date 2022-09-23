@@ -29,7 +29,8 @@ class Job {
 
     //update ui
     update(event) {
-            document.getElementById(this.elementName).innerHTML = event.data;
+            let msg = event.data;
+            document.getElementById(this.elementName).innerHTML = msg.message;
     }
 
     //error logs
@@ -53,7 +54,21 @@ class Job {
                 //update ui
                 document.getElementById("label").innerHTML = det.label;
                 document.getElementById("confidence").innerHTML = det.confidence;
-                this.worker.postMessage(det);
+
+                let msg = new Message("jobname", "message", det);
+
+                //this.worker.postMessage(det);
+                this.worker.postMessage(msg);
+
+                // if(det.label === 'person'){
+                //     console.log("pushing perrson to local storage");
+                //     const cv = document.getElementById('mycanvas')
+                //     const shot    = cv.toDataURL('image/png')
+                //     console.log("shot => " + shot);
+                //     //storeItem('xpos', posX);      //save in local storage
+                //     }
+                
+
             }
         );
         this.detector.detect(video, gotDetections);
