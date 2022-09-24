@@ -55,6 +55,9 @@ dependencies {
     implementation("commons-codec:commons-codec:1.5")
     implementation("com.github.kokorin.jaffree:jaffree:2022.06.03")
 
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtimeOnly("com.h2database:h2")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }

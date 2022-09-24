@@ -1,13 +1,14 @@
-
 class Message {
-    constructor(title, message, payload) {
+
+    constructor(id, title, message, payload) {
+        this.id = id;
         this.title = title;
         this.message = message;
         this.payload = payload;
-        this.timestamp = new Date().toLocaleString('en-US').split(',')[1];
+        this.timestamp = new Date().toLocaleString('en-US');
         }
+    
     }
-
 
 let incidents = "Weapons";
 let prevLabel = "";
@@ -18,7 +19,7 @@ onmessage = (event) => {
     let msg = event.data;
 
     let now = new Date().toLocaleString('en-US').split(',')[1];
-    let incidentId = prevTime + " - " + now + " "  + prevLabel
+    let incidentLabel = prevTime + " - " + now + " "  + prevLabel
 
     if(prevLabel === msg.payload.label){
         console.log('...');
@@ -27,9 +28,10 @@ onmessage = (event) => {
         if(['knife', 'fork', 'spoon', 'bottle', 'gun', 'scissors'].includes(msg.payload.label)){
             console.log('Found suspected weapon ... ' + msg.payload.label);
 
-            incidents =  "<div>" + incidentId + "</div>";
+            let id = msg.payload.label + "-" +new Date().getTime();
+            incidents =  "<div>" + incidentLabel + "</div>";
 
-            let output = new Message("weapons", incidents, null);
+            let output = new Message(id, msg.payload.label, incidents, msg.message);
             postMessage(output);
 
             prevTime = now;

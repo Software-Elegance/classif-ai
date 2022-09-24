@@ -21,6 +21,7 @@
         let detections = [];
         let anomalies = [];
 
+
     </script>
 
     <script src="assets/js/ml5/p5.min.js"></script>
@@ -224,11 +225,11 @@
                         <div class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow: hidden;">
 
                             <h1>Live Feed</h1>
-                            <p><span id="modelStatus">Loading Model</span></p>
                             <!--begin::Body-->
                             <div id="sketch-container" class="card-body d-flex flex-column mt-10  p-lg-0">
                             </div>
                             <p>
+                                <p><span id="modelStatus">Loading Model</span></p>
                                 <strong>Detected: </strong><span id="label">...</span> 
                                 <strong>Confidence: </strong><span id="confidence">...</span>
                             </p>
@@ -244,7 +245,7 @@
                             <img src="/assets/images/person_holding_monitor.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">4:29:46 PM</h5>
-                                <p class="card-text">Some narrative here.</p>
+                                <p class="card-text">Loading narrative ...</p>
                                 <a href="#" class="btn btn-primary">More insights</a>
                             </div>
 
