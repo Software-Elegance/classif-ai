@@ -11,25 +11,7 @@ class Job {
 
     modelReady() {
         select("#modelStatus").html(this.name + " Ready !");
-
-        //testing GET
-        // let url = 'http://localhost:8080/classif-ai/crud/detection/1';
-        // fetch(url)
-        //     .then((response) => {
-        //         return response.json();
-        //         })
-        //     .then((data) => {
-        //         let det = data;
-        //         console.log(JSON.stringify(det));
-        //         })
-        //     .catch((error) => {
-        //         console.log(error);
-        //         });
-
-        //testing POST
-        
-
-    }
+        }
 
     start(detector) {
         this.detector = detector;

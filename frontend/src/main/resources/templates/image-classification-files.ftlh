@@ -458,7 +458,7 @@
                                             <#--<input id="response-area" class="form-control bg-transparent ps-13 fs-7 h-40px" value="${results!""}">-->
 
                                             <p>
-                                                <img id="inbox-src"
+                                                <img id="incidentLabel"
                                                      src="${'/object-detection/images/inbox/' + (originalFile)!''}" alt="/assets/media/svg/avatars/blank.svg"
                                                      title="Original File"
                                                      width="500">

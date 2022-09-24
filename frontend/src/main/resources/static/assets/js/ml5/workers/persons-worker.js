@@ -10,6 +10,7 @@ class Message {
     
     }
 
+
 let incidents = "<div>All Person detections</div>";
 let prevLabel = "";
 let prevTime = new Date().toLocaleString('en-US').split(',')[1];
@@ -37,12 +38,9 @@ onmessage = (event) => {
     let delta = Math.abs(topLeft - (prevTopLeftMap.has("person")?prevTopLeftMap.get("person"):0));        
     let timeDelta = Math.abs(new Date().getTime() - (prevTimeMap.has("person")?prevTimeMap.get("person"):0));
 
-    console.log("delta = " + delta);
-
-
     if(msg.payload.label === 'person'){ //this can be set as sensitivity variable for configuration
      
-        if(delta < deltaSensitivity ){
+        if(delta < deltaSensitivity){
             //console.log('NOOP. Small difference, ignoring this detection');
             //would be nice if we can create a video of the saved frames ....
             }
@@ -50,7 +48,7 @@ onmessage = (event) => {
             console.log('Detected movement beyond the threshold. Logging this incident');
 
             let id = msg.payload.label + "-" +new Date().getTime();
-            incidents =  "<div>" + incidentLabel + "</div>";
+            incidents =  "<div onclick='showImage(\"" + id + "\");' onmouseover=\"this.style.color='blue';\" onmouseout=\"this.style.color='black';\">" + incidentLabel + "</div>";
     
             let output = new Message(id, msg.payload.label, incidents, msg.message);
             postMessage(output);

@@ -29,7 +29,9 @@ onmessage = (event) => {
             console.log('Found suspected weapon ... ' + msg.payload.label);
 
             let id = msg.payload.label + "-" +new Date().getTime();
-            incidents =  "<div>" + incidentLabel + "</div>";
+            incidents =  "<div onclick='showImage(\"" + id + "\");' onmouseover=\"this.style.color='blue';\" onmouseout=\"this.style.color='black';\">" + incidentLabel + "</div>";
+
+            //incidents =  "<div>" + incidentLabel + "</div>";
 
             let output = new Message(id, msg.payload.label, incidents, msg.message);
             postMessage(output);

@@ -239,11 +239,11 @@
 
                     <div class="col-md-4">
                         <!--begin::Engage widget 6-->
-                        <div id="snapshot" class="card  bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow-y: scroll; height:500px;">
+                        <div id="snapshot-container" class="card  bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow-y: scroll; height:500px;">
                             <h2>Snapshot</h2>    
 
-                            <img src="/assets/images/person_holding_monitor.png" class="card-img-top" alt="...">
-                            <div class="card-body">
+                            <img id="snapshot" src="/assets/images/person_holding_monitor.png" class="card-img-top" alt="...">
+                            <div id="snapshot-narrative" class="card-body">
                                 <h5 class="card-title">4:29:46 PM</h5>
                                 <p class="card-text">Loading narrative ...</p>
                                 <a href="#" class="btn btn-primary">More insights</a>
@@ -291,6 +291,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/ml5/utils.js"></script>
 
 
 </body>

@@ -6,7 +6,7 @@ All incidents, anomalies, weapons
 TODO: Accommodate multiple detections 
 === */
 
-let fr = 30; //starting FPS
+let fr = 10; //starting FPS
 
 function setup() {
 
