@@ -3,7 +3,6 @@ package net.softel.ai.classify.entity.jpa;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.Column;

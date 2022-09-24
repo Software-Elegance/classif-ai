@@ -28,7 +28,7 @@ onmessage = (event) => {
     let msg = event.data;
 
     let now = new Date().toLocaleString('en-US').split(',')[1];
-    let incidentLabel = prevTime + " - " + now + " "  + prevLabel
+    let incidentLabel = prevTime + " - " + now + " "  + msg.payload.label
 
   
     let topLeft = msg.payload.x * msg.payload.y;
@@ -45,8 +45,8 @@ onmessage = (event) => {
     else{
         console.log('Detected deltas beyond the threshold. Logging this incident');
 
-        let id = msg.payload.label + "-" +new Date().getTime();
-        incidents =  "<div>" + incidentLabel + "</div>";
+        let id = msg.payload.label + "-" + new Date().getTime();
+        incidents =  "<div onclick='showImage(\"" + id + "\");' onmouseover=\"this.style.color='blue';\" onmouseout=\"this.style.color='black';\">" + incidentLabel + "</div>";
 
         let output = new Message(id, msg.payload.label, incidents, msg.message);
         postMessage(output);
