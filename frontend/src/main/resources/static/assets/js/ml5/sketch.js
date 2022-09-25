@@ -6,11 +6,16 @@ All incidents, anomalies, weapons
 TODO: Accommodate multiple detections 
 === */
 
+var w = window.innerWidth;
+var h = window.innerHeight;
+
 let fr = 10; //starting FPS
 let jobList = [];
+
 function setup() {
 
-  let canvas = createCanvas(640, 480);
+  console.log("window w =" + w + " h= " + h);
+  let canvas = createCanvas(640, 480);  //4:3
   canvas.parent("sketch-container");
   canvas.id('mycanvas');
 
@@ -20,9 +25,11 @@ function setup() {
   video.hide();
   // // Models available are 'cocossd', 'yolo'
   jobList = [
-    new Job("All detections ", "assets/js/ml5/workers/incidents-worker.js", "incident-logs", "cocossd"),
+    new Job("All detections", "assets/js/ml5/workers/incidents-worker.js", "incident-logs", "cocossd"),
     new Job("Persons Detector", "assets/js/ml5/workers/persons-worker.js", "person-logs","cocossd"),
-    new Job("Weapons detector", "assets/js/ml5/workers/weapons-worker.js", "weapon-logs", "cocossd"),
+    // new Job("Weapons detector", "assets/js/ml5/workers/weapons-worker.js", "weapon-logs", "cocossd"),
+    new Job("Anomally detector", "assets/js/ml5/workers/anomally-worker.js", "anomally-logs", "cocossd"),
+
     ];
   jobList.forEach((jb, i) => {
         console.log("Starting..." + jb.name);
@@ -68,4 +75,9 @@ function draw() {
     text(object.label, object.x + 10, object.y + 24);
     }
 }
+
+
+// function windowResized() {
+//   resizeCanvas(windowWidth, windowHeight);
+// }
 
