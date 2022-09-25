@@ -10,8 +10,6 @@ let fr = 10; //starting FPS
 let jobList = [];
 function setup() {
 
-  clearStorage();
-
   let canvas = createCanvas(640, 480);
   canvas.parent("sketch-container");
   canvas.id('mycanvas');
@@ -37,13 +35,26 @@ function setup() {
   );
 }
 
-function stopAll(){
-  jobList.forEach((jb, i) => {
-    jb.stop();
-    });
+function stopStartAll(){
+
+  if(detections.length == 0){//already stopped
+    console.log("Calling setup")
+    setup();
+    }
+  else{
+    console.log("stopping detection engines...");
+    jobList.forEach((jb, i) => {
+      jb.stop();
+      });
+    detections.splice(0,detections.length);
+    select("#modelStatus").html("Stopped !");
+    }
+
+  return false;   //do not follow href
   }
 
 function draw() {
+  //if stopped return;
   image(video, 0, 0);
   for (let i = 0; i < detections.length; i++) {
     let object = detections[i];
@@ -55,7 +66,6 @@ function draw() {
     fill(255);
     textSize(24);
     text(object.label, object.x + 10, object.y + 24);
-
-  }
+    }
 }
 

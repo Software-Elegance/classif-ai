@@ -41,7 +41,7 @@
         <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
             <!--begin::Header-->
             <div id="kt_header" class="header" data-kt-sticky="true" data-kt-sticky-name="header"
-                 data-kt-sticky-offset="{default: '200px', lg: '300px'}">
+                 data-kt-sticky-offset="{default: '100px', lg: '200px'}">
                 <!--begin::Container-->
                 <div class="container-xxl d-flex flex-grow-1 flex-stack">
                     <!--begin::Header Logo-->
@@ -229,10 +229,12 @@
                             <div id="sketch-container" class="card-body d-flex flex-column mt-10  p-lg-0">
                             </div>
                             <p>
-                                <p><span id="modelStatus">Loading Model</span></p>
+                                <p><span id="modelStatus">Loading... </span></p>
                                 <strong>Detected: </strong><span id="label">...</span> 
                                 <strong>Confidence: </strong><span id="confidence">...</span>
                             </p>
+                            <a href="#" class="btn btn-primary" onclick="return stopStartAll();">Start / Stop</a>
+
                         </div>
                         <!--end::Engage widget 6-->
                     </div>

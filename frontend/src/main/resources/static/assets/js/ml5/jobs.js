@@ -6,16 +6,22 @@ class Job {
         this.elementName = ell;
         this.model = model;
         this.cv = document.getElementById('mycanvas');
+        this.isRunning = false;
 
         //bind methods to the class to avoid losing `this`
         let modelReady = this.modelReady.bind(this);
     }
 
     modelReady() {
-        select("#modelStatus").html(this.name + " Ready !");
+        //select("#modelStatus").html(this.name + " Ready !");
+
+        document.getElementById("modelStatus").insertAdjacentHTML('beforeEnd', this.name + " Ready !");
+
         }
 
     start(detector) {
+        this.isRunning = true;
+
         this.detector = detector;
         let update = this.update.bind(this);
         let log = this.log.bind(this);
@@ -27,6 +33,7 @@ class Job {
         
         let gotDetections = this.gotDetections.bind(this);
         this.detector.detect(video, gotDetections);
+
     }
 
     //listen to messages from workers
@@ -77,10 +84,17 @@ class Job {
     //stop when necessary
     stop() {
         this.worker.terminate();
+        this.isRunning = false;
+        // this.detector = null;
     }
 
 
     gotDetections(error, results) {
+
+        if(!this.isRunning){
+            return;
+            }
+
         let gotDetections = this.gotDetections.bind(this);
         if (error) {
             console.error(error);

@@ -15,7 +15,7 @@ let incidents = "All incidents";
 let prevLabel = "";
 let prevTime = new Date().toLocaleString('en-US').split(',')[1];
 let deltaSensitivity = 8000;     //sensitivity to movement (change in topleft)
-let timeSensitivityMilliSeconds = 1 * 1000;        //seconds 
+let timeSensitivityMilliSeconds = 0.5 * 1000;        //seconds 
 
 let prevTopLeftMap = new Map();//movement config as map of label and delta
 let prevTimeMap = new Map();
@@ -35,14 +35,8 @@ onmessage = (event) => {
     let delta = Math.abs(topLeft - (prevTopLeftMap.has(msg.payload.label)?prevTopLeftMap.get(msg.payload.label):0));        
     let timeDelta = Math.abs(new Date().getTime() - (prevTimeMap.has(msg.payload.label)?prevTimeMap.get(msg.payload.label):0));
 
-    if(delta < deltaSensitivity || timeDelta < timeSensitivityMilliSeconds){
-        //console.log('...');
-        // console.log("timeDelta = " + timeDelta);
-
-        //console.log('NOOP. Small difference, ignoring this detection');
-        //would be nice if we can create a video of the saved frames ....
-        }
-    else{
+    //if there's movement and not too soon
+    if(delta > deltaSensitivity && timeDelta > timeSensitivityMilliSeconds){
         console.log('Detected deltas beyond the threshold. Logging this incident');
 
         let id = msg.payload.label + "-" + new Date().getTime();
