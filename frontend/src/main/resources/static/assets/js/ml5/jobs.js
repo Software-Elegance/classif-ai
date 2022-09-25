@@ -5,6 +5,8 @@ class Job {
         this.name = jobName;
         this.elementName = ell;
         this.model = model;
+        this.cv = document.getElementById('mycanvas');
+
         //bind methods to the class to avoid losing `this`
         let modelReady = this.modelReady.bind(this);
     }
@@ -34,6 +36,7 @@ class Job {
 
             //Save incident
             let url = "http://localhost:8080/classif-ai/crud/detection/add"
+
             let payload = {
                 label: msg.title,
                 incidentId: msg.id,
@@ -49,17 +52,19 @@ class Job {
                     })
                 }
 
-            fetch(url,options)
-                .then((response) => {
-                    return response.json();
-                    })
-                .then((data) => {
-                    let det = data;
-                    console.log(JSON.stringify(det));
-                    })
-                .catch((error) => {
-                    console.log(error);
-                    });
+            apiPostRequest(url, options);
+            
+            // fetch(url,options)
+            //     .then((response) => {
+            //         return response.json();
+            //         })
+            //     .then((data) => {
+            //         let det = data;
+            //         console.log(JSON.stringify(det));
+            //         })
+            //     .catch((error) => {
+            //         console.log(error);
+            //         });
               
         }
 
@@ -74,21 +79,23 @@ class Job {
         this.worker.terminate();
     }
 
+
     gotDetections(error, results) {
         let gotDetections = this.gotDetections.bind(this);
         if (error) {
             console.error(error);
-        }
+            }
         detections = results;       //global variable. required by draw()
         results.forEach((det, i) => {
                 //update ui
                 document.getElementById("label").innerHTML = det.label;
                 document.getElementById("confidence").innerHTML = det.confidence;
 
-                let cv = document.getElementById('mycanvas')
-                let shot    = cv.toDataURL('image/png')
-                let msg = new Message(1, this.name, shot, det);
+                // let cv = document.getElementById('mycanvas')
+                var quality = 0.5;
+                let shot    = this.cv.toDataURL('image/jpeg',quality);   //'image/jpeg' vs image/png
 
+                let msg = new Message(1, this.name, shot, det);
                 this.worker.postMessage(msg);
 
             }

@@ -7,7 +7,7 @@ TODO: Accommodate multiple detections
 === */
 
 let fr = 10; //starting FPS
-
+let jobList = [];
 function setup() {
 
   clearStorage();
@@ -21,7 +21,7 @@ function setup() {
   video.size(640, 480);
   video.hide();
   // // Models available are 'cocossd', 'yolo'
-  let jobList = [
+  jobList = [
     new Job("All detections ", "assets/js/ml5/workers/incidents-worker.js", "incident-logs", "cocossd"),
     new Job("Persons Detector", "assets/js/ml5/workers/persons-worker.js", "person-logs","cocossd"),
     new Job("Weapons detector", "assets/js/ml5/workers/weapons-worker.js", "weapon-logs", "cocossd"),
@@ -37,6 +37,11 @@ function setup() {
   );
 }
 
+function stopAll(){
+  jobList.forEach((jb, i) => {
+    jb.stop();
+    });
+  }
 
 function draw() {
   image(video, 0, 0);
@@ -50,8 +55,6 @@ function draw() {
     fill(255);
     textSize(24);
     text(object.label, object.x + 10, object.y + 24);
-
-
 
   }
 }
