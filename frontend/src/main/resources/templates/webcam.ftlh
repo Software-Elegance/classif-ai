@@ -32,6 +32,12 @@
     <script src="assets/js/ml5/jobs.js"></script>
     <script src="assets/js/ml5/sketch.js"></script>
 
+    <style>
+        #sketch-container {
+            width: 100% important !;
+          }
+    </style>
+
 </head>
 <body>
 <div class="d-flex flex-column flex-root">
@@ -218,30 +224,28 @@
             </div>
             <!--end: Header --->
             <div class="container bg-gray-200">
-                <div class="row g-5 g-xl-10 mb-5 mt-10 mb-xl-10">
+                <div class="row g-5 g-xl-10 mb-0 mt-0 mb-xl-10">
                     <!--begin::Col-->
                     <div class="col-md-8">
                         <!--begin::Engage widget 6-->
                         <div class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow: hidden;">
+                            <strong><span id="modelStatus">Live Feed... </span></strong>
 
-                            <h1>Live Feed</h1>
                             <!--begin::Body-->
                             <div id="sketch-container" class="card-body d-flex flex-column mt-10  p-lg-0">
                             </div>
-                            <p>
-                                <p><span id="modelStatus">Loading... </span></p>
+                            <div style="float:left;">
                                 <strong>Detected: </strong><span id="label">...</span> 
                                 <strong>Confidence: </strong><span id="confidence">...</span>
-                            </p>
-                            <a href="#" class="btn btn-primary" onclick="return stopStartAll();">Start / Stop</a>
-
+                            </div>
+                            <a href="#" class="btn btn-primary btn-sm" style="font-size: 0.8em;" onclick="return stopStartAll();">Stop / Start</a>
                         </div>
                         <!--end::Engage widget 6-->
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4" >
                         <!--begin::Engage widget 6-->
-                        <div id="snapshot-container" class="card  bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow-y: scroll; height:500px;">
+                        <div id="snapshot-container" class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow: hidden;">
                             <h2>Snapshot</h2>    
 
                             <img id="snapshot" src="/assets/images/person_holding_monitor.png" class="card-img-top" alt="...">
@@ -255,7 +259,7 @@
                         <!--end::Engage widget 6-->
                     </div>
             </div>
-            <div class="row g-5 g-xl-10 mb-5 mt-10 mb-xl-10">
+            <div class="row g-5 g-xl-10 mb-0 mt-0 mb-xl-10">
 
                     <!--end::Col-->
                     <div class="col-md-4">
@@ -278,8 +282,8 @@
 
                     <div class="col-md-4">
                         <!--begin::Engage widget 6-->
-                        <div id="weapon-logs" class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow-y: scroll; height:500px;">
-                            <h2>Weapons</h2>
+                        <div id="anomally-logs" class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow-y: scroll; height:500px;">
+                            <h2>Anomalies</h2>
                                 
                         </div>
                         <!--end::Engage widget 6-->
@@ -294,7 +298,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/ml5/utils.js"></script>
-
+<script>
+    var canvas = document.getElementById('sketch-container');
+    var heightRatio = 4/3;
+    canvas.height = canvas.width * heightRatio;
+</script>
 
 </body>
 </html>

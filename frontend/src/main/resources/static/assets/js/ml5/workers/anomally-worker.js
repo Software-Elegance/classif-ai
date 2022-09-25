@@ -12,22 +12,32 @@ class Message {
 
 let incidents = "Anomaly";
 let prevLabel = "";
-let prevTime = new Date().toLocaleString('en-US');
-let prevTopLeft = 0;
+let prevTime = new Date().toLocaleString('en-US').split(',')[1];
 
 onmessage = (event) => {
+
     let msg = event.data;
 
-    console.log('Received anomaly from main script ');
-    console.log(msg);
-    if (prevLabel === msg.payload.label) {
-        console.log('...');
-    } else {
-        incidents += "\n " + prevTime + " - " + new Date().toLocaleString('en-US') + " " + prevLabel;
-        let output = new Message("anomalies", incidents, null);
-        postMessage(output);
-        prevTime = new Date().toLocaleString('en-US');
-        prevLabel = msg.payload.label;
-    }
+    let now = new Date().toLocaleString('en-US').split(',')[1];
+    let incidentLabel = prevTime + " - " + now + " "  + prevLabel
 
+    if(prevLabel === msg.payload.label){
+        console.log('...');
+        }
+    else{
+        if(['knife', 'fork', 'spoon', 'bottle', 'gun', 'scissors'].includes(msg.payload.label)){
+            console.log('Found an anomaly ... ' + msg.payload.label);
+
+            let id = msg.payload.label + "-" +new Date().getTime();
+            incidents =  "<div onclick='showImage(\"" + id + "\");' onmouseover=\"this.style.color='blue';\" onmouseout=\"this.style.color='black';\">" + incidentLabel + "</div>";
+
+            let output = new Message(id, msg.payload.label, incidents, msg.message);
+            postMessage(output);
+
+            prevTime = now;
+            prevLabel = msg.payload.label;
+            }
+    }
+           
 }
+
