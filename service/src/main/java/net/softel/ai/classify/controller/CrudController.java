@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import net.softel.ai.classify.entity.jpa.Detection;
 import net.softel.ai.classify.repository.jpa.DetectionRepository;
 
+import net.softel.ai.classify.entity.jpa.Pose;
+import net.softel.ai.classify.repository.jpa.PoseRepository;
+
 import java.util.Optional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -29,7 +32,11 @@ public class CrudController {
 
     @Autowired
     private DetectionRepository detectionRepository;
+    
+    @Autowired
+    private PoseRepository poseRepository;
 
+    //a. detection
     @GetMapping(path="/detection/{id}")
 	  public @ResponseBody Detection getDetection(@PathVariable Long id) {
       return detectionRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Detection", "id", id));
@@ -41,8 +48,29 @@ public class CrudController {
       }
       
     @PostMapping(path="/detection/add")
-		public Result<String> addDetection (@RequestBody Detection dt){
-			detectionRepository.save(dt);
+		public Result<String> addDetection (@RequestBody Detection obj){
+			detectionRepository.save(obj);
 			return ResultFactory.getSuccessResult("OK");
 			}
+
+    //b. pose estimation
+    @GetMapping(path="/pose/{id}")
+	  public @ResponseBody Pose getPose(@PathVariable Long id) {
+      return poseRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pose", "id", id));
+      }
+    
+    @GetMapping(path="/pose/domain/{incidentId}")
+	  public @ResponseBody Optional<Pose> getPose(@PathVariable String incidentId) {
+      return poseRepository.findByIncidentId(incidentId);
+      }
+      
+    @PostMapping(path="/pose/add")
+		public Result<String> addPose (@RequestBody Pose obj){
+			poseRepository.save(obj);
+			return ResultFactory.getSuccessResult("OK");
+			}
+
+
+    //c. classification
+
 }
