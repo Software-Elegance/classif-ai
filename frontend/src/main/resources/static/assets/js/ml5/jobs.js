@@ -13,18 +13,21 @@ class Job {
     }
 
     modelReady() {
-        //select("#modelStatus").html(this.name + " Ready !");
+        document.getElementById("modelStatus").insertAdjacentHTML('beforeEnd', this.name + " Ready ");
+        }
 
-        document.getElementById("modelStatus").insertAdjacentHTML('beforeEnd', this.name + " Ready !");
-
+    // When the model is loaded
+    poseNetLoaded() {
+        console.log('PoseNet Loaded!' + this.name);
         }
 
     start(detector) {
         this.isRunning = true;
 
         this.detector = detector;
-        let update = this.update.bind(this);
+        let update = this.listen.bind(this);
         let log = this.log.bind(this);
+        let poseNetLoaded = this.poseNetLoaded.bind(this);
 
         //start a thread
         this.worker = new Worker(this.file);
@@ -34,12 +37,37 @@ class Job {
         let gotDetections = this.gotDetections.bind(this);
         this.detector.detect(video, gotDetections);
 
+        this.poseNet = ml5.poseNet(poseNetLoaded);
+
     }
 
     //listen to messages from workers
-    update(event) {
+    listen(event) {
+
             let msg = event.data;
             document.getElementById(this.elementName).insertAdjacentHTML('beforeEnd', msg.message);
+
+
+            if(msg.title === 'person'){     //estimate pose only if persons are involved
+
+                let pNet = this.poseNet;
+
+                loadImage(msg.payload, function (newImage) {
+                    console.log("Estimating pose");
+                    pNet.multiPose(newImage)
+                        .then( (results) => {
+                            console.log(results);
+                            //Save poses
+                            })
+                        .catch( (err) => {
+                            console.error("promise error " + err);
+                            return err;
+                            });
+                    });
+            }
+            
+
+          
 
             //Save incident
             let url = "http://localhost:8080/classif-ai/crud/detection/add"
@@ -61,18 +89,6 @@ class Job {
 
             apiPostRequest(url, options);
             
-            // fetch(url,options)
-            //     .then((response) => {
-            //         return response.json();
-            //         })
-            //     .then((data) => {
-            //         let det = data;
-            //         console.log(JSON.stringify(det));
-            //         })
-            //     .catch((error) => {
-            //         console.log(error);
-            //         });
-              
         }
 
     //error logs
@@ -85,7 +101,6 @@ class Job {
     stop() {
         this.worker.terminate();
         this.isRunning = false;
-        // this.detector = null;
     }
 
 

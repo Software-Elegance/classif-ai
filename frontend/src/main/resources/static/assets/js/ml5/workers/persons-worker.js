@@ -33,15 +33,18 @@ onmessage = (event) => {
     let now = new Date().toLocaleString('en-US').split(',')[1];
     let incidentLabel = prevTime + " - " + now + " "  + prevLabel;
     let topLeft = msg.payload.x * msg.payload.y;
-    //let delta = Math.abs(topLeft - prevTopLeft); 
+
+    //we can crop the person and run it through posenet to estimate the pose.... 
+    //let cropped = copy(sx, sy, sw, sh, dx, dy, dw, dh)
+
 
     let delta = Math.abs(topLeft - (prevTopLeftMap.has("person")?prevTopLeftMap.get("person"):0));        
     let timeDelta = Math.abs(new Date().getTime() - (prevTimeMap.has("person")?prevTimeMap.get("person"):0));
 
-    if(msg.payload.label === 'person'){ //this can be set as sensitivity variable for configuration
+    if(msg.payload.label === 'person'){ 
      
         //if there's movement and not too soon
-        if(delta > deltaSensitivity && timeDelta > timeSensitivityMilliSeconds){    
+        if(delta > deltaSensitivity && timeDelta > timeSensitivityMilliSeconds){    //these can be set as sensitivity variable for configuration
             console.log('Detected movement beyond the threshold. Logging this incident');
 
             let id = msg.payload.label + "-" +new Date().getTime();
