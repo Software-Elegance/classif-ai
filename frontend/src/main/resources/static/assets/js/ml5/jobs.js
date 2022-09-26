@@ -13,10 +13,7 @@ class Job {
     }
 
     modelReady() {
-        //select("#modelStatus").html(this.name + " Ready !");
-
-        document.getElementById("modelStatus").insertAdjacentHTML('beforeEnd', this.name + " Ready !");
-
+        document.getElementById("modelStatus").insertAdjacentHTML('beforeEnd', this.name + " Ready ");
         }
 
     start(detector) {
@@ -61,18 +58,6 @@ class Job {
 
             apiPostRequest(url, options);
             
-            // fetch(url,options)
-            //     .then((response) => {
-            //         return response.json();
-            //         })
-            //     .then((data) => {
-            //         let det = data;
-            //         console.log(JSON.stringify(det));
-            //         })
-            //     .catch((error) => {
-            //         console.log(error);
-            //         });
-              
         }
 
     //error logs
@@ -85,7 +70,6 @@ class Job {
     stop() {
         this.worker.terminate();
         this.isRunning = false;
-        // this.detector = null;
     }
 
 

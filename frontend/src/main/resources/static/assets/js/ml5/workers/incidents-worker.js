@@ -20,8 +20,8 @@ let timeSensitivityMilliSeconds = 0.2 * 1000;        //seconds
 let prevTopLeftMap = new Map();//movement config as map of label and delta
 let prevTimeMap = new Map();
 
-prevTimeMap.set("person",new Date().getTime());
-prevTopLeftMap.set("person",0);
+prevTimeMap.set("",new Date().getTime());
+prevTopLeftMap.set("",0);
 
 onmessage = (event) => {
 
@@ -36,7 +36,7 @@ onmessage = (event) => {
     let timeDelta = Math.abs(new Date().getTime() - (prevTimeMap.has(msg.payload.label)?prevTimeMap.get(msg.payload.label):0));
 
     //if there's movement and not too soon
-    if(delta > deltaSensitivity && timeDelta > timeSensitivityMilliSeconds){
+    if(delta > deltaSensitivity && timeDelta > timeSensitivityMilliSeconds){//these can be set as sensitivity variable for configuration
         console.log('Detected deltas beyond the threshold. Logging this incident');
 
         let id = msg.payload.label + "-" + new Date().getTime();

@@ -251,7 +251,11 @@
                             <img id="snapshot" src="/assets/images/person_holding_monitor.png" class="card-img-top" alt="...">
                             <div id="snapshot-narrative" class="card-body">
                                 <h5 class="card-title">4:29:46 PM</h5>
-                                <p class="card-text">Loading narrative ...</p>
+                                <p class="card-text">Loading narrative ...
+                                <br/>For human analysis you may review your recordings.
+                                <br/>For machine insights click the next button
+                                </p>
+                                
                                 <a href="#" class="btn btn-primary">More insights</a>
                             </div>
 
@@ -263,30 +267,21 @@
 
                     <!--end::Col-->
                     <div class="col-md-4">
-                        <!--begin::Engage widget 6-->
                         <div id="incident-logs" class="card  bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow-y: scroll; height:500px;">
-                            <h2>All Incidents</h2>
-                            
+                            <h2 class="card-title">All Incidents</h2>
                         </div>
-                        <!--end::Engage widget 6-->
                     </div>
 
                     <div class="col-md-4">
-                        <!--begin::Engage widget 6-->
                         <div id="person-logs" class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow-y: scroll; height:500px;">
-                            <h2>Persons</h2>
-                            
+                            <h2 class="card-title">Persons</h2>
                         </div>
-                        <!--end::Engage widget 6-->
                     </div>
 
                     <div class="col-md-4">
-                        <!--begin::Engage widget 6-->
                         <div id="anomally-logs" class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow-y: scroll; height:500px;">
-                            <h2>Anomalies</h2>
-                                
+                            <h2 class="card-title">Anomalies</h2>
                         </div>
-                        <!--end::Engage widget 6-->
                     </div>
 
                 </div>
