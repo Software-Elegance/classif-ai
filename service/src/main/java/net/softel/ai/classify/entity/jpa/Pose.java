@@ -34,25 +34,30 @@ import com.fasterxml.jackson.annotation.JsonFormat;
   @Index(columnList = "incidentId"),
   @Index(name = "idx_label", columnList = "label")
 })
-public class Detection{
+public class Pose{
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
-    private String label;
-
     @Column(nullable = false, unique = true)
     private String incidentId;      //unique domain identifier ?
 
     @Column(nullable = false)
-    private String jobName;         
+    private String label;
+
+    @Column(nullable = false)
+    private String jobName;     
+
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(nullable = true, columnDefinition="CLOB")
+    private String poses;               //can be reused later to train anomalies/postures from existing data
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
     @Column(nullable = false, columnDefinition="CLOB")
-    private String base64;
+    private String base64;      //we can join the keypoints with lines here or just dots for a start
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     @Column(nullable = false, columnDefinition = "timestamp default CURRENT_TIMESTAMP")

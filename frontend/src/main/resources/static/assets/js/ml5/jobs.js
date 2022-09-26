@@ -47,30 +47,7 @@ class Job {
             let msg = event.data;
             document.getElementById(this.elementName).insertAdjacentHTML('beforeEnd', msg.message);
 
-
-            if(msg.title === 'person'){     //estimate pose only if persons are involved
-
-                let pNet = this.poseNet;
-
-                loadImage(msg.payload, function (newImage) {
-                    console.log("Estimating pose");
-                    pNet.multiPose(newImage)
-                        .then( (results) => {
-                            console.log(results);
-                            //Save poses
-                            })
-                        .catch( (err) => {
-                            console.error("promise error " + err);
-                            return err;
-                            });
-                    });
-            }
-            
-
-          
-
-            //Save incident
-            let url = "http://localhost:8080/classif-ai/crud/detection/add"
+            let baseUrl = "http://localhost:8080/classif-ai/crud";
 
             let payload = {
                 label: msg.title,
@@ -87,7 +64,26 @@ class Job {
                     })
                 }
 
-            apiPostRequest(url, options);
+            if(msg.title === 'person'){     //estimate pose only if persons are involved
+
+                let pNet = this.poseNet;
+
+                loadImage(msg.payload, function (newImage) {
+                    console.log("Estimating pose");
+                    pNet.multiPose(newImage)
+                        .then( (results) => {
+                            let poseObj = JSON.stringify(results);
+                            payload.poses = poseObj;
+                            apiPostRequest(baseUrl + "/pose/add", options);
+                            })
+                        .catch( (err) => {
+                            console.error("promise error " + err);
+                            return err;
+                            });
+                    });
+            }
+            
+            apiPostRequest(baseUrl + "/detection/add", options);
             
         }
 
