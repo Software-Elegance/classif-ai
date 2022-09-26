@@ -252,7 +252,7 @@
                             <div id="snapshot-narrative" class="card-body">
                                 <h5 class="card-title">4:29:46 PM</h5>
                                 <p class="card-text">Loading narrative ...
-                                <br/>For human analysis you may review your recordings.
+                                <br/>For human analysis review your recordings.
                                 <br/>For machine insights click the next button
                                 </p>
                                 

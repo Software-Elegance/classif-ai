@@ -33,7 +33,10 @@ onmessage = (event) => {
     let now = new Date().toLocaleString('en-US').split(',')[1];
     let incidentLabel = prevTime + " - " + now + " "  + prevLabel;
     let topLeft = msg.payload.x * msg.payload.y;
-    //let delta = Math.abs(topLeft - prevTopLeft); 
+
+    //we can crop the person and run it through posenet to estimate the pose.... 
+    //let cropped = copy(sx, sy, sw, sh, dx, dy, dw, dh)
+
 
     let delta = Math.abs(topLeft - (prevTopLeftMap.has("person")?prevTopLeftMap.get("person"):0));        
     let timeDelta = Math.abs(new Date().getTime() - (prevTimeMap.has("person")?prevTimeMap.get("person"):0));
