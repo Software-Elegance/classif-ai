@@ -18,7 +18,7 @@ let prevTopLeft = 0;
 //let prevTopLeftMap = new Map()
 
 let deltaSensitivity = 8000;        //sensitivity to movement (change in topleft)
-let timeSensitivityMilliSeconds = 0.3 * 1000;        //seconds 
+let timeSensitivityMilliSeconds = 0 * 1000;        //seconds 
 
 let prevTopLeftMap = new Map();//movement config as map of label and delta
 let prevTimeMap = new Map();
