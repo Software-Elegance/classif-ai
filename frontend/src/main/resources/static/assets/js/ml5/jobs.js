@@ -68,19 +68,24 @@ class Job {
 
                 let pNet = this.poseNet;
 
-                loadImage(msg.payload, function (newImage) {
-                    console.log("Estimating pose");
-                    pNet.multiPose(newImage)
-                        .then( (results) => {
-                            let poseObj = JSON.stringify(results);
-                            payload.poses = poseObj;
-                            apiPostRequest(baseUrl + "/pose/add", options);
-                            })
-                        .catch( (err) => {
-                            console.error("promise error " + err);
-                            return err;
-                            });
-                    });
+                const poseSaved = async() =>{  
+                    loadImage(msg.payload, function (newImage) {
+                        console.log("Estimating pose");
+                        pNet.multiPose(newImage)
+                            .then( (results) => {
+                                let poseObj = JSON.stringify(results);
+                                payload.poses = poseObj;
+                                apiPostRequest(baseUrl + "/pose/add", options);
+                                })
+                            .catch( (err) => {
+                                console.error("promise error " + err);
+                                return err;
+                                });
+                        });
+                    }
+                    poseSaved().then( (results) => {
+                        console.log("poseSaved..." + results);
+                        });
             }
             
             apiPostRequest(baseUrl + "/detection/add", options);
