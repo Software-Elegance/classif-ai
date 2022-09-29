@@ -47,7 +47,8 @@ class Job {
             let msg = event.data;
             document.getElementById(this.elementName).insertAdjacentHTML('beforeEnd', msg.message);
 
-            let baseUrl = "http://localhost:8080/classif-ai/crud";
+            //let baseUrl = "http://localhost:8080/classif-ai/crud";
+            let baseUrl = "http://" + location.hostname + ":8080/classif-ai/crud";
 
             let payload = {
                 label: msg.title,
