@@ -1,8 +1,15 @@
     function showImage(incidentId) {
         
         //let url = 'http://localhost:8080/classif-ai/crud/detection/domain/' + incidentId;
-        let url = 'http://' + location.hostname + ':8080/classif-ai/crud/detection/domain/' + incidentId;
+        //let url = 'http://' + location.hostname + ':8080/classif-ai/crud/detection/domain/' + incidentId;
+        let url = 'http://localhost/api/crud/detection/domain/' + incidentId;
 
+        if(!['localhost', '127.0.0.1'].includes(location.hostname)){
+            url = 'https://' + location.hostname + '/api/crud/detection/domain/' + incidentId;
+            }
+
+        console.log("url " + url);
+        
         fetch(url)
             .then((response) => {
                 return response.json();

@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="/assets/media/svg/brand-logos/tower.svg"/>
+    <link rel="shortcut icon" href="/classif-ai/assets/media/svg/brand-logos/tower.svg"/>
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
 
-    <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="/classif-ai/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"/>
     <script>
 
@@ -24,13 +24,13 @@
 
     </script>
 
-    <script src="assets/js/ml5/p5.min.js"></script>
-    <script src="assets/js/ml5/ml5.min.js" type="text/javascript"></script>
+    <script src="/classif-ai/assets/js/ml5/p5.min.js"></script>
+    <script src="/classif-ai/assets/js/ml5/ml5.min.js" type="text/javascript"></script>
 
-    <script src="assets/js/ml5/valueobjects.js"></script>
+    <script src="/classif-ai/assets/js/ml5/valueobjects.js"></script>
 
-    <script src="assets/js/ml5/jobs.js"></script>
-    <script src="assets/js/ml5/sketch.js"></script>
+    <script src="/classif-ai/assets/js/ml5/jobs.js"></script>
+    <script src="/classif-ai/assets/js/ml5/sketch.js"></script>
 
     <style>
         #sketch-container {
@@ -70,9 +70,9 @@
                         </div>
                         <!--end::Heaeder menu toggle-->
                         <a href="#">
-                            <img alt="Logo" src="/assets/media/svg/brand-logos/tower.svg"
+                            <img alt="Logo" src="/classif-ai/assets/media/svg/brand-logos/tower.svg"
                                  class="theme-light-show h-20px h-lg-30px"/>
-                            <img alt="Logo" src="/assets/media/svg/brand-logos/tower.svg"
+                            <img alt="Logo" src="/classif-ai/assets/media/svg/brand-logos/tower.svg"
                                  class="theme-dark-show h-20px h-lg-30px"/>
                         </a>
                     </div>
@@ -248,7 +248,7 @@
                         <div id="snapshot-container" class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow: hidden;">
                             <h2>Snapshot</h2>    
 
-                            <img id="snapshot" src="/assets/images/person_holding_monitor.png" class="card-img-top" alt="...">
+                            <img id="snapshot" src="/classif-ai/assets/images/person_holding_monitor.png" class="card-img-top" alt="...">
                             <div id="snapshot-narrative" class="card-body">
                                 <h5 class="card-title">4:29:46 PM</h5>
                                 <p class="card-text">Loading narrative ...

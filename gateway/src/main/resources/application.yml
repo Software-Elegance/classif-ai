@@ -1,0 +1,33 @@
+server:
+  port: 80
+
+spring:
+  servlet:
+    multipart:
+      max-request-size: 4MB
+      max-file-size: 4MB
+  cloud:
+    gateway:
+      routes:
+      - id: frontendProxy
+        uri: http://localhost:8081/classif-ai/
+        predicates:
+        - Path=/classif-ai/**
+        # filters:
+        # - StripPrefix=1
+      - id: backendProxy
+        uri: http://localhost:8080/api/
+        predicates:
+        - Path=/api/**
+        # filters:
+        # - StripPrefix=1
+
+logging:
+  file: cloud-gateway.log
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n'
+  level:
+    root: DEBUG
+    org:
+      springframework:
+        web: DEBUG
