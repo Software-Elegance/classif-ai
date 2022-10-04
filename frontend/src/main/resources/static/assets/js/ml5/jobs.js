@@ -123,21 +123,23 @@ class Job {
         if (error) {
             console.error(error);
             }
-        detections = results;       //global variable. required by draw()
-        results.forEach((det, i) => {
-                //update ui
-                document.getElementById("label").innerHTML = det.label;
-                document.getElementById("confidence").innerHTML = det.confidence;
+        else{
+            detections = results;       //global variable. required by draw()
+            results.forEach((det, i) => {
+                    //update ui
+                    document.getElementById("label").innerHTML = det.label;
+                    document.getElementById("confidence").innerHTML = det.confidence;
+    
+                    // let cv = document.getElementById('mycanvas')
+                    var quality = 0.5;
+                    let shot    = this.cv.toDataURL('image/jpeg',quality);   //'image/jpeg' vs image/png
+    
+                    let msg = new Message(1, this.name, shot, det);
+                    this.worker.postMessage(msg);
+        
+                    });
+                }
 
-                // let cv = document.getElementById('mycanvas')
-                var quality = 0.5;
-                let shot    = this.cv.toDataURL('image/jpeg',quality);   //'image/jpeg' vs image/png
-
-                let msg = new Message(1, this.name, shot, det);
-                this.worker.postMessage(msg);
-
-            }
-        );
 
         this.detector.detect(video, gotDetections);
     }
