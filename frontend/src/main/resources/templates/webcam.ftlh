@@ -5,13 +5,13 @@
     <title>Webcam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link href="/classif-ai/assets/css/bootstrap.min.css">
     <link rel="shortcut icon" href="/classif-ai/assets/media/svg/brand-logos/tower.svg"/>
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
 
     <link href="/classif-ai/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"/>
+    <link rel="stylesheet" href="/classif-ai/assets/css/all.css"/>
     <script>
 
         //these have to be here so that js workers and the main thread are able to use them
@@ -20,7 +20,6 @@
         let video;
         let detections = [];
         let anomalies = [];
-
 
     </script>
 
@@ -290,9 +289,10 @@
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/ml5/utils.js"></script>
+<script src="/classif-ai/assets/js/jquery.min.js"></script>
+<script src="/classif-ai/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/classif-ai/assets/js/ml5/utils.js"></script>
+
 <script>
     var canvas = document.getElementById('sketch-container');
     var heightRatio = 4/3;
