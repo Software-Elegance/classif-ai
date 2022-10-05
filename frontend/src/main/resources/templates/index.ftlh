@@ -238,9 +238,9 @@
                                     <div class="d-flex flex-column justify-content-center align-items-center  text-center text-lg-start">
                                         <!--begin::Title-->
                                         <h1 class="fs-2hx line-height-lg mb-5">
-                                            Deep Learning Engine
+                                            Classif AI Deep Learning
                                         </h1>
-                                        <h5>Demo Examples</h5>
+                                        <h5>R & D</h5>
                                         <ul class="nav row mb-10 mt-20" role="tablist">
                                             <li class="nav-item col-12 col-lg mb-5 mb-lg-0" role="presentation">
                                                 <a class="nav-link btn btn-flex btn-color-gray-400 btn-outline btn-active-primary d-flex flex-grow-1 flex-column flex-center py-5 h-1250px h-lg-175px" data-bs-toggle="tab"

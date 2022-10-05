@@ -3,11 +3,11 @@
 <head>
     <title>Classif-AI Demo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="shortcut icon" href="/assets/media/svg/brand-logos/tower.svg"/>
+    <link rel="shortcut icon" href="/classif-ai/assets/media/svg/brand-logos/tower.svg"/>
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
 
-    <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="/classif-ai/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
 </head>
 <script>
   function myFunction(row) {
@@ -51,9 +51,9 @@
                         </div>
                         <!--end::Heaeder menu toggle-->
                         <a href="#">
-                            <img alt="Logo" src="/assets/media/svg/brand-logos/tower.svg"
+                            <img alt="Logo" src="/classif-ai/assets/media/svg/brand-logos/tower.svg"
                                  class="theme-light-show h-20px h-lg-30px"/>
-                            <img alt="Logo" src="/assets/media/svg/brand-logos/tower.svg"
+                            <img alt="Logo" src="/classif-ai/assets/media/svg/brand-logos/tower.svg"
                                  class="theme-dark-show h-20px h-lg-30px"/>
                         </a>
                     </div>

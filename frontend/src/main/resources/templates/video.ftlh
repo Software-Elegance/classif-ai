@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link href="/classif-ai/assets/css/bootstrap.min.css">
     <link rel="shortcut icon" href="/assets/media/svg/brand-logos/tower.svg"/>
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
 
-    <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="/classif-ai/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
 
     <title>Video Analysis Demo</title>
 </head>
@@ -44,9 +44,9 @@
                         </div>
                         <!--end::Heaeder menu toggle-->
                         <a href="#">
-                            <img alt="Logo" src="/assets/media/svg/brand-logos/tower.svg"
+                            <img alt="Logo" src="/classif-ai/assets/media/svg/brand-logos/tower.svg"
                                  class="theme-light-show h-20px h-lg-30px"/>
-                            <img alt="Logo" src="/assets/media/svg/brand-logos/tower.svg"
+                            <img alt="Logo" src="/classif-ai/assets/media/svg/brand-logos/tower.svg"
                                  class="theme-dark-show h-20px h-lg-30px"/>
                         </a>
                     </div>
@@ -207,7 +207,7 @@
                             <!--begin::Body-->
                             <div class="card-body d-flex flex-column mt-10  p-lg-0">
                                 <!--begin::Body-->
-                                <video src="http://localhost:8080/classif-ai/video/sample_960x540" controls preload="none"></video>
+                                <video src="http://localhost/api/video/sample_960x540" controls preload="none"></video>
                                 <!--end::Body-->
                             </div>
                         </div>
@@ -233,8 +233,8 @@
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" ></script>
+<script src="/classif-ai/assets/js/jquery.min.js"></script>
+<script src="/classif-ai/assets/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

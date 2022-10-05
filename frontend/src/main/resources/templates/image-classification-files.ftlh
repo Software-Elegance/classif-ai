@@ -8,7 +8,7 @@
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
 
-    <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="/classif-ai/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
     <!--end::Global Stylesheets Bundle-->
 </head>
 <script>
@@ -68,9 +68,9 @@
                         </div>
                         <!--end::Heaeder menu toggle-->
                         <a href="#">
-                            <img alt="Logo" src="/assets/media/svg/brand-logos/tower.svg"
+                            <img alt="Logo" src="/classif-ai/assets/media/svg/brand-logos/tower.svg"
                                  class="theme-light-show h-20px h-lg-30px"/>
-                            <img alt="Logo" src="/assets/media/svg/brand-logos/tower.svg"
+                            <img alt="Logo" src="/classif-ai/assets/media/svg/brand-logos/tower.svg"
                                  class="theme-dark-show h-20px h-lg-30px"/>
                         </a>
                     </div>
@@ -459,7 +459,7 @@
 
                                             <p>
                                                 <img id="incidentLabel"
-                                                     src="${'/object-detection/images/inbox/' + (originalFile)!''}" alt="/assets/media/svg/avatars/blank.svg"
+                                                     src="${'/object-detection/images/inbox/' + (originalFile)!''}" alt="/classif-ai/assets/media/svg/avatars/blank.svg"
                                                      title="Original File"
                                                      width="500">
                                             </p>
