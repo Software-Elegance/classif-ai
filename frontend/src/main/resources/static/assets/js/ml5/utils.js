@@ -27,6 +27,8 @@
                 console.log(error);
                 });
 
+        window.location.href = "#snapshot-container";
+
         }
 
 
