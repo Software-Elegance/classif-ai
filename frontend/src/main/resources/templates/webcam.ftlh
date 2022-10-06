@@ -245,7 +245,7 @@
                     <div class="col-md-4" >
                         <!--begin::Engage widget 6-->
                         <div id="snapshot-container" class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow: hidden;">
-                            <h2>Snapshot</h2>    
+                            <h2> Snapshot</h2>    
 
                             <img id="snapshot" src="/classif-ai/assets/images/person_holding_monitor.png" class="card-img-top" alt="...">
                             <div id="snapshot-narrative" class="card-body">
