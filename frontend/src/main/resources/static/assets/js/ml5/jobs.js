@@ -13,7 +13,8 @@ class Job {
     }
 
     modelReady() {
-        document.getElementById("modelStatus").insertAdjacentHTML('beforeEnd', this.name + " Ready ");
+        //document.getElementById("modelStatus").insertAdjacentHTML('beforeEnd', this.name + " Ready ");
+        console.log(this.name + " Ready ");
         }
 
     // When the model is loaded

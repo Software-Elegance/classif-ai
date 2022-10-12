@@ -228,7 +228,7 @@
                     <div class="col-md-8">
                         <!--begin::Engage widget 6-->
                         <div class="card bg-body border-0 mb-10 mb-xl-0 p-md-10" style="overflow: hidden;">
-                            <strong><span id="modelStatus">Live Feed... </span></strong>
+                            <strong><span id="modelStatus">LIVE Feed... </span></strong>
 
                             <!--begin::Body-->
                             <div id="sketch-container" class="card-body d-flex flex-column mt-10  p-lg-0">
