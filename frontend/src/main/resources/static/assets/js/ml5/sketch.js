@@ -9,6 +9,13 @@ TODO: Accommodate multiple detections
 let fr = 10; //starting FPS
 let jobList = [];
 
+
+let webcam = false;
+
+let playing = false;
+let myVideo;
+let myButton;
+
 function setup() {
 
   let canvas = createCanvas(640, 480);  //4:3
@@ -16,10 +23,17 @@ function setup() {
   canvas.id('mycanvas');
 
   frameRate(fr);
-  video = createCapture(VIDEO);
+  if(webcam) {
+    video = createCapture(VIDEO); //webcam
+    }
+  else{
+    video = createVideo("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",vidLoad); //remote mp4
+    //Start playing remote video
+    myButton = createButton('play');
+    myButton.mousePressed(togglePlay);
+    }
   video.size(640, 480);
   video.hide();
-
 
   // // Models available are 'cocossd', 'yolo'
   jobList = [
@@ -33,10 +47,8 @@ function setup() {
         let modelReady = jb.modelReady.bind(jb);
         let poseNetLoaded = jb.poseNetLoaded.bind(jb);
 
-
         //TODO: add ability to call backend api for detection using custom models
         let det = ml5.objectDetector(jb.model, modelReady);
-
 
         jb.start(det);
       }
@@ -68,7 +80,6 @@ function stopStartAll(){
   }
 
 function draw() {
-  //if stopped return;
   image(video, 0, 0);
   for (let i = 0; i < detections.length; i++) {
     let object = detections[i];
@@ -84,7 +95,20 @@ function draw() {
 }
 
 
-// function windowResized() {
-//   resizeCanvas(windowWidth, windowHeight);
-// }
+  //toggle playing of remote video
+  function togglePlay() {
+    if (playing) {
+      video.pause()
+      playing = false;
+    }
+    else {
+      video.play();
+      video.volume(0);
+      playing = true;
+    }
+  }
 
+//on remote video load
+function vidLoad() {
+  console.log("video loaded");
+  }
