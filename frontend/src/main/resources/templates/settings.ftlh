@@ -8,8 +8,14 @@
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
 
-    <link href="/classif-ai/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
-    <!--end::Global Stylesheets Bundle-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="/classif-ai/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/> 
+
+    <!--begin::JS-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!--end::JS Bundle-->
 </head>
 <script>
 
@@ -211,36 +217,116 @@
                             <h5 class="card-title mb-0">Profile Settings</h5>
                          </div>
                          <div class="list-group list-group-flush" role="tablist">
-                            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account" role="tab">
+                            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#camera" role="tab">
+                            Camera
+                            </a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#sensitivity" role="tab">
+                            Sensitivity
+                            </a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account" role="tab">
                             Account
                             </a>
                             <a class="list-group-item list-group-item-action" data-toggle="list" href="#password" role="tab">
                             Password
                             </a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#" role="tab">
-                            Privacy and safety
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#notification" role="tab">
+                            Notifications (SMS, Web, Email)
                             </a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#" role="tab">
-                            Email notifications
-                            </a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#" role="tab">
-                            Web notifications
-                            </a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#" role="tab">
-                            Widgets
-                            </a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#" role="tab">
-                            Your data
-                            </a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#" role="tab">
-                            Delete account
-                            </a>
+            
+   
                          </div>
                       </div>
                    </div>
                    <div class="col-md-7 col-xl-8">
                       <div class="tab-content">
-                         <div class="tab-pane fade show active" id="account" role="tabpanel">
+                        <div class="tab-pane fade" id="sensitivity" role="tabpanel">
+                            <div class="card">
+                               <div class="card-body">
+                                  <h5 class="card-title">Sensitivity</h5>
+                                  <form>
+                                     <div class="form-group">
+                                        <label for="customRange2" class="form-label">Frequency</label>
+                                        <input type="range" class="form-range" min="0" max="30000" step="1000" value="1000" id="customRange2">
+                                        <small><a href="#">Seconds</a></small>
+                                     </div>
+                                  
+                                     <div class="form-group">
+                                        <label for="deltaRange" class="form-label">Movement</label>
+                                        <input type="range" class="form-range" min="1000" max="20000" step="1000" value="8000" id="deltaRange">
+                                        <small><a href="#">Pixels</a></small>
+                                     </div>
+
+                                     <button type="submit" class="btn btn-primary">Save changes</button>
+                                  </form>
+                               </div>
+                            </div>
+                         </div>
+
+                         <div class="tab-pane fade show active" id="camera" role="tabpanel">
+                            <div class="card">
+                               <div class="card-body">
+                                  <h5 class="card-title">Camera Input</h5>
+                                  <form>
+                                     
+                                    <div class="form-group">
+
+                                        <!-- Default inline 1-->
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                                            <label class="custom-control-label" for="defaultInline1">Webcam</label>
+                                        </div>
+
+                                        <!-- Default inline 2-->
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
+                                            <label class="custom-control-label" for="defaultInline2">CCTV</label>
+                                        </div>
+
+                                        <!-- Default inline 3-->
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="defaultInline3" name="inlineDefaultRadiosExample">
+                                            <label class="custom-control-label" for="defaultInline3">Video</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="cctvUrl">CCTV URL</label>
+                                        <input type="text" class="form-control" id="cctvUrl" placeholder="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="videoUrl">Video URL</label>
+                                        <input type="text" class="form-control" id="videoUrl" placeholder="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">
+                                    </div>
+
+                                     <button type="submit" class="btn btn-primary">Save changes</button>
+                                  </form>
+                               </div>
+                            </div>
+                         </div>
+                         
+                         <div class="tab-pane fade" id="notification" role="tabpanel">
+                            <div class="card">
+                               <div class="card-body">
+                                  <h5 class="card-title">Notifications</h5>
+                                  <form>
+                                     
+                                    <div class="form-group">
+                                        <label for="notificationMobile">Mobile Number</label>
+                                        <input type="text" class="form-control" id="notificationMobile" placeholder="254736563163">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="notificationEmail">Email Addrress</label>
+                                        <input type="text" class="form-control" id="notificationEmail" placeholder="mabura.zeguru@gmail.com">
+                                    </div>
+
+                                     <button type="submit" class="btn btn-primary">Save changes</button>
+                                  </form>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="tab-pane fade" id="account" role="tabpanel">
                             <div class="card">
                                <div class="card-header">
                                   <div class="card-actions float-right">
@@ -282,7 +368,7 @@
                                                     <svg class="svg-inline--fa fa-upload fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="upload" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
                                                        <path fill="currentColor" d="M296 384h-80c-13.3 0-24-10.7-24-24V192h-87.7c-17.8 0-26.7-21.5-14.1-34.1L242.3 5.7c7.5-7.5 19.8-7.5 27.3 0l152.2 152.2c12.6 12.6 3.7 34.1-14.1 34.1H320v168c0 13.3-10.7 24-24 24zm216-8v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h136v8c0 30.9 25.1 56 56 56h80c30.9 0 56-25.1 56-56v-8h136c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path>
                                                     </svg>
-                                                    <!-- <i class="fas fa-upload"></i> --> Upload
+                                                    Upload
                                                  </span>
                                               </div>
                                               <small>For best results, use an image at least 128px by 128px in .jpg format</small>
@@ -382,6 +468,8 @@
                                </div>
                             </div>
                          </div>
+
+                         
                       </div>
                    </div>
                 </div>
