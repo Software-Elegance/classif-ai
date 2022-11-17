@@ -88,19 +88,90 @@
     function loadSettings(){
         console.log("load settings from local storage");
 
-        if (localStorage.getItem("sensitivity_time") && localStorage.getItem("sensitivity_movement") && localStorage.getItem("frames_per_second")) {
+        let videoSource;
+        if (localStorage.getItem("sensitivity_time") && localStorage.getItem("sensitivity_movement") && localStorage.getItem("frames_per_second") && localStorage.getItem("video_source")) {
             deltaSensitivity = localStorage.getItem("sensitivity_movement");
             timeSensitivityMilliSeconds = localStorage.getItem("sensitivity_time");
             framesPerSecond = localStorage.getItem("frames_per_second");
+            videoSource = localStorage.getItem("video_source");
             }
           else{
             deltaSensitivity = DEFAULT_SENSITIVITY_MOVEMENT;
             timeSensitivityMilliSeconds = DEFAULT_SENSITIVITY_TIME;
             framesPerSecond = DEFAULT_FRAMES_PER_SECOND;
+            videoSource = DEFAULT_VIDEO;
             }
 
         deltaTimeField.value = timeSensitivityMilliSeconds;
         deltaMovementField.value = deltaSensitivity;
         fpsField.value = framesPerSecond;
-            
+
+        if("webcam" === videoSource){
+            document.getElementById("webcamRadio").checked = true;      //clumsy and inefficient 
+            }
+        }
+
+    function changeVideoSource(el) {
+
+        console.log("changeVideoSource");
+        console.log(el.value);
+
+        localStorage.setItem("video_source",el.value);
+
+        if("webcam" === el.value){
+            console.log("setting up webcam");
+            cctvUrlField.style.display = 'none';
+            cctvUrlLabel.style.display = 'none';
+
+            videoUrlField.style.display = 'none';
+            videoUrlLabel.style.display = 'none';
+            }
+        else if("cctv" === el.value){
+            console.log("setting up cctv");
+            cctvUrlField.style.display = 'block';
+            cctvUrlLabel.style.display = 'block';
+
+            videoUrlField.style.display = 'none';
+            videoUrlLabel.style.display = 'none';
+
+            }
+        else if("video" === el.value){
+            console.log("setting up video");
+            cctvUrlField.style.display = 'none';
+            cctvUrlLabel.style.display = 'none';
+
+            videoUrlField.style.display = 'block';
+            videoUrlLabel.style.display = 'block';
+
+            }
+        }
+
+    function updateVideoSource(){
+        console.log("updating video source");
+
+        if("webcam" === localStorage.getItem("video_source")){
+            localStorage.setItem("video_url","");
+            }
+        else if("cctv" === localStorage.getItem("video_source")){
+            localStorage.setItem("video_url",cctvUrlField.value);
+            }
+        else if("video" === localStorage.getItem("video_source")){
+            localStorage.setItem("video_url",videoUrlField.value);
+            }
+
+        return false;
+        }
+
+    function defaultVideoSource(){
+        console.log("default video source");
+
+        document.getElementById("webcamRadio").checked = true;  
+
+        localStorage.setItem("video_source","webcam");
+        localStorage.setItem("video_url","http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
+
+        videoUrlField.value = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+        cctvUrlField.value = "rtsp://localhost";
+
+        return false;
         }

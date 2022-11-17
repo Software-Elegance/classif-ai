@@ -22,6 +22,7 @@ function setup() {
   canvas.parent("sketch-container");
   canvas.id('mycanvas');
 
+  //1. FRAMERATE
   if(localStorage.getItem("frames_per_second")){
     fr = localStorage.getItem("frames_per_second");
     }
@@ -30,18 +31,32 @@ function setup() {
     }
 
   frameRate(fr);
-  if(webcam) {
-    video = createCapture(VIDEO); //webcam
-    }
+
+  //2. VIDEO INPUT
+  if("webcam" === localStorage.getItem("video_source")){
+      webcam = true;
+      video = createCapture(VIDEO); //webcam
+      }
+  else if("cctv" === localStorage.getItem("video_source")){
+      webcam = false;
+      video = createVideo("rtsp://localhost/video",vidLoad); //remote mp4
+      }
+  else if("video" === localStorage.getItem("video_source")){
+      webcam = false;
+      video = createVideo("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",vidLoad); //remote mp4
+      myButton = createButton('play');
+      myButton.mousePressed(togglePlay);
+      }
   else{
-    video = createVideo("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",vidLoad); //remote mp4
-    //Start playing remote video
-    myButton = createButton('play');
-    myButton.mousePressed(togglePlay);
-    }
+      webcam = true;
+      video = createCapture(VIDEO); //webcam
+      localStorage.setItem("video_source",DEFAULT_VIDEO);
+      }
+
   video.size(640, 480);
   video.hide();
 
+  //3. SENSITIVITY
   let settings = new Map();//movement config as map of label and delta
 
   if (localStorage.getItem("sensitivity_time") && localStorage.getItem("sensitivity_movement") && localStorage.getItem("frames_per_second")) {
@@ -61,8 +76,10 @@ function setup() {
 
   console.log("settings " + settings);
 
-  // // Models available are 'cocossd', 'yolo'
+  //WORKERS aka DETECTORS
+  
   jobList = [
+    // // Models available are 'cocossd', 'yolo'
     new Job("All detections", "assets/js/ml5/workers/incidents-worker.js", "incident-logs", "cocossd", settings),
     new Job("Persons Detector", "assets/js/ml5/workers/persons-worker.js", "person-logs","cocossd",settings),
     new Job("Anomally detector", "assets/js/ml5/workers/anomally-worker.js", "anomally-logs", "cocossd",settings),
@@ -80,9 +97,7 @@ function setup() {
   );
 
   
-
 }
-
 
 
 
@@ -116,8 +131,8 @@ function draw() {
     fill(255);
     textSize(24);
     text(object.label, object.x + 10, object.y + 24);
-    }
-}
+    } 
+  }
 
 
   //toggle playing of remote video

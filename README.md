@@ -53,8 +53,11 @@ a. Run
     ./gradlew :gateway:bootJar
     java -jar gateway/build/libs/gs-gateway-0.1.0.jar
     ```
-# Portal
+# Portal URRL
     http://localhost/classif-ai/
+
+# H2 
+    http://localhost/api/h2-console/
 
 ## Test run 
 

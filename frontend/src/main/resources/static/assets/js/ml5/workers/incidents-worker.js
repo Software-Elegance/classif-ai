@@ -53,7 +53,7 @@ onmessage = (event) => {
         prevTime = now;
         prevLabel = msg.payload.label;
 
-        console.log('Detected deltas beyond the threshold. Logging this incident');
+        //console.log('Detected deltas beyond the threshold. Logging this incident');
 
         }
 

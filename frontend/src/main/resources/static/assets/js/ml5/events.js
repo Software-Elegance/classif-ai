@@ -14,3 +14,9 @@ fpsField.addEventListener("change", () => {
     console.log("fpsField " + fpsField.value)
     sessionStorage.setItem("frames_per_second", fpsField.value);
   });
+
+//   video.addEventListener('loadeddata', function() {
+//     // Video is loaded and can be played
+//     console.log("video element loaded ... ???");
+//  }, false);
+  

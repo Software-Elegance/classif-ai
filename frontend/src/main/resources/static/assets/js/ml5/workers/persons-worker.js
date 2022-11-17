@@ -60,7 +60,7 @@ onmessage = (event) => {
             prevTime = now;
             prevLabel = "person";
     
-            console.log('Detected movement beyond the threshold. Logging this incident');
+            //console.log('Detected movement beyond the threshold. Logging this incident');
 
             }
         prevTimeMap.set("person",new Date().getTime());
