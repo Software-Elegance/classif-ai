@@ -10,7 +10,7 @@ let fr = 10; //starting FPS
 let jobList = [];
 
 
-let webcam = false;
+let webcam = true;
 
 let playing = false;
 let myVideo;
@@ -21,6 +21,13 @@ function setup() {
   let canvas = createCanvas(640, 480);  //4:3
   canvas.parent("sketch-container");
   canvas.id('mycanvas');
+
+  if(localStorage.getItem("frames_per_second")){
+    fr = localStorage.getItem("frames_per_second");
+    }
+  else{
+    fr = DEFAULT_FRAMES_PER_SECOND;
+    }
 
   frameRate(fr);
   if(webcam) {
@@ -35,12 +42,30 @@ function setup() {
   video.size(640, 480);
   video.hide();
 
+  let settings = new Map();//movement config as map of label and delta
+
+  if (localStorage.getItem("sensitivity_time") && localStorage.getItem("sensitivity_movement") && localStorage.getItem("frames_per_second")) {
+    deltaSensitivity = localStorage.getItem("sensitivity_movement");
+    timeSensitivityMilliSeconds = localStorage.getItem("sensitivity_time");
+    framesPerSecond = localStorage.getItem("frames_per_second");
+    }
+  else{
+    deltaSensitivity = DEFAULT_SENSITIVITY_MOVEMENT;
+    timeSensitivityMilliSeconds = DEFAULT_SENSITIVITY_TIME;
+    framesPerSecond = DEFAULT_FRAMES_PER_SECOND;
+    }
+
+  settings.set("sensitivity_time",timeSensitivityMilliSeconds);
+  settings.set("sensitivity_movement",deltaSensitivity);
+  settings.set("frames_per_second",framesPerSecond);    //redundant
+
+  console.log("settings " + settings);
+
   // // Models available are 'cocossd', 'yolo'
   jobList = [
-    new Job("All detections", "assets/js/ml5/workers/incidents-worker.js", "incident-logs", "cocossd"),
-    new Job("Persons Detector", "assets/js/ml5/workers/persons-worker.js", "person-logs","cocossd"),
-    // new Job("Weapons detector", "assets/js/ml5/workers/weapons-worker.js", "weapon-logs", "cocossd"),
-    new Job("Anomally detector", "assets/js/ml5/workers/anomally-worker.js", "anomally-logs", "cocossd"),
+    new Job("All detections", "assets/js/ml5/workers/incidents-worker.js", "incident-logs", "cocossd", settings),
+    new Job("Persons Detector", "assets/js/ml5/workers/persons-worker.js", "person-logs","cocossd",settings),
+    new Job("Anomally detector", "assets/js/ml5/workers/anomally-worker.js", "anomally-logs", "cocossd",settings),
     ];
   jobList.forEach((jb, i) => {
         console.log("Starting..." + jb.name);

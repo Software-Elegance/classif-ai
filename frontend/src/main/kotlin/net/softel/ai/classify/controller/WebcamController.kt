@@ -12,8 +12,5 @@ class WebcamController {
     }
 
 
-    @RequestMapping(*arrayOf("settings.ftlh","settings.html","settings"))
-    fun settings(): String {
-        return "settings"
-    }
+
 }

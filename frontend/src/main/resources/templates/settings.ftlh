@@ -16,12 +16,23 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!--end::JS Bundle-->
+
+    <script>
+
+        //these have to be here so that js workers and the main thread are able to use them
+        let anomalyDetector;
+        let detector;
+        let video;
+        let detections = [];
+        let anomalies = [];
+
+    </script>
+
+
+
 </head>
-<script>
 
-
-</script>
-<body >
+<body onload="loadSettings()">
 
 
 <div class="d-flex flex-column flex-root">
@@ -245,18 +256,26 @@
                                   <h5 class="card-title">Sensitivity</h5>
                                   <form>
                                      <div class="form-group">
-                                        <label for="customRange2" class="form-label">Frequency</label>
-                                        <input type="range" class="form-range" min="0" max="30000" step="1000" value="1000" id="customRange2">
+                                        <label for="deltaTime" class="form-label">Frequency</label>
+                                        <input type="range" class="form-range" min="0" max="30000" step="1000"  id="deltaTime">
                                         <small><a href="#">Seconds</a></small>
                                      </div>
                                   
                                      <div class="form-group">
-                                        <label for="deltaRange" class="form-label">Movement</label>
-                                        <input type="range" class="form-range" min="1000" max="20000" step="1000" value="8000" id="deltaRange">
+                                        <label for="deltaMovement" class="form-label">Movement</label>
+                                        <input type="range" class="form-range" min="0" max="20000" step="1000"  id="deltaMovement">
                                         <small><a href="#">Pixels</a></small>
                                      </div>
 
-                                     <button type="submit" class="btn btn-primary">Save changes</button>
+                                     <div class="form-group">
+                                       <label for="fps" class="form-label">Frames per second</label>
+                                       <input type="range" class="form-range" min="5" max="60" step="5" id="fps">
+                                       <small><a href="#">FPS</a></small>
+                                    </div>
+
+                                     <a href="#" class="btn btn-secondary btn-sm" style="font-size: 0.8em;" onclick="return defaultSensitivity();">Restore Defaults</a>
+                                     <a href="#" class="btn btn-primary btn-sm" style="font-size: 0.8em;" onclick="return updateSensitivity();">Save Changes</a>
+
                                   </form>
                                </div>
                             </div>
@@ -494,6 +513,25 @@
     </div>
     <!--end::Page-->
 </div>
+
+<script>
+
+    const DEFAULT_SENSITIVITY_TIME = 1000;
+    const DEFAULT_SENSITIVITY_MOVEMENT = 1000;
+    const DEFAULT_FRAMES_PER_SECOND = 10;
+
+    let deltaTimeField = document.getElementById("deltaTime");
+    let deltaMovementField = document.getElementById("deltaMovement");    
+    let fpsField = document.getElementById("fps");    
+
+    let deltaSensitivity;   
+    let timeSensitivityMilliSeconds; 
+    let framesPerSecond;
+
+</script>
+
+<script src="/classif-ai/assets/js/ml5/utils.js"></script>
+<script src="/classif-ai/assets/js/ml5/events.js"></script>
 
 </body>
 </html>

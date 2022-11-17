@@ -1,11 +1,12 @@
 class Message {
 
-    constructor(id, title, message, payload) {
+    constructor(id, title, message, payload, settings) {
         this.id = id;
         this.title = title;
         this.message = message;
         this.payload = payload;
         this.timestamp = new Date().toLocaleString('en-US');
+        this.settings = settings;
         }
     
     }
@@ -14,8 +15,10 @@ class Message {
 let incidents = "All incidents";
 let prevLabel = "";
 let prevTime = new Date().toLocaleString('en-US').split(',')[1];
-let deltaSensitivity = 8000;     //sensitivity to movement (change in topleft)
-let timeSensitivityMilliSeconds = 0 * 1000;        //seconds 
+
+// let deltaSensitivity = 8000;     //sensitivity to movement (change in topleft)
+// let timeSensitivityMilliSeconds = 0 * 1000;        //seconds 
+
 
 let prevTopLeftMap = new Map();//movement config as map of label and delta
 let prevTimeMap = new Map();
@@ -27,6 +30,9 @@ onmessage = (event) => {
 
     let msg = event.data;
 
+    let deltaSensitivity = msg.settings.get("sensitivity_movement");
+    let timeSensitivityMilliSeconds = msg.settings.get("sensitivity_time");
+
     let now = new Date().toLocaleString('en-US').split(',')[1];
     let incidentLabel = prevTime + " - " + now + " "  + msg.payload.label
 
@@ -37,7 +43,6 @@ onmessage = (event) => {
 
     //if there's movement and not too soon
     if(delta > deltaSensitivity && timeDelta > timeSensitivityMilliSeconds){//these can be set as sensitivity variable for configuration
-        console.log('Detected deltas beyond the threshold. Logging this incident');
 
         let id = msg.payload.label + "-" + new Date().getTime();
         incidents =  "<div onclick='showImage(\"" + id + "\");' onmouseover=\"this.style.color='blue';\" onmouseout=\"this.style.color='black';\">" + incidentLabel + "</div>";
@@ -47,6 +52,8 @@ onmessage = (event) => {
 
         prevTime = now;
         prevLabel = msg.payload.label;
+
+        console.log('Detected deltas beyond the threshold. Logging this incident');
 
         }
 

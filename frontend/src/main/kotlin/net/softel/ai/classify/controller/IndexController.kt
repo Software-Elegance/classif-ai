@@ -35,4 +35,9 @@ class IndexController {
     fun rtsp(): String {
         return "rtsp"
     }
+
+    @RequestMapping(*arrayOf("settings.ftlh","settings.html","settings"))
+    fun settings(): String {
+        return "settings"
+    }
 }
