@@ -1,11 +1,12 @@
 class Message {
 
-    constructor(id, title, message, payload) {
+    constructor(id, title, message, payload, settings) {
         this.id = id;
         this.title = title;
         this.message = message;
         this.payload = payload;
         this.timestamp = new Date().toLocaleString('en-US');
+        this.settings = settings;
         }
     
     }
@@ -13,8 +14,11 @@ class Message {
 let incidents = "Anomaly";
 let prevLabel = "";
 let prevTime = new Date().toLocaleString('en-US').split(',')[1];
-let deltaSensitivity = 0 * 1000;     //sensitivity to movement (change in topleft)
-let timeSensitivityMilliSeconds = 0 * 1000;        //seconds 
+
+
+// let deltaSensitivity;   // = 0 * 1000;     //sensitivity to movement (change in topleft)
+// let timeSensitivityMilliSeconds; // = 0 * 1000;        //seconds 
+
 
 let prevTopLeftMap = new Map();//movement config as map of label and delta
 let prevTimeMap = new Map();
@@ -25,6 +29,9 @@ prevTopLeftMap.set("",0);
 onmessage = (event) => {
 
     let msg = event.data;
+
+    let deltaSensitivity = msg.settings.get("sensitivity_movement");
+    let timeSensitivityMilliSeconds = msg.settings.get("sensitivity_time");
 
     let now = new Date().toLocaleString('en-US').split(',')[1];
     let incidentLabel = prevTime + " - " + now + " "  + prevLabel

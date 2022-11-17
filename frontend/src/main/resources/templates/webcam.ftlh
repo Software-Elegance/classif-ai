@@ -294,9 +294,23 @@
 <script src="/classif-ai/assets/js/ml5/utils.js"></script>
 
 <script>
+    
     var canvas = document.getElementById('sketch-container');
     var heightRatio = 4/3;
     canvas.height = canvas.width * heightRatio;
+
+    const DEFAULT_SENSITIVITY_TIME = 1000;
+    const DEFAULT_SENSITIVITY_MOVEMENT = 1000;
+    const DEFAULT_FRAMES_PER_SECOND = 10;
+
+    let deltaTimeField = document.getElementById("deltaTime");
+    let deltaMovementField = document.getElementById("deltaMovement");    
+    let fpsField = document.getElementById("fps");    
+
+    let deltaSensitivity;   
+    let timeSensitivityMilliSeconds; 
+    let framesPerSecond;
+
 </script>
 
 </body>

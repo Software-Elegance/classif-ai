@@ -1,12 +1,13 @@
 class Job {
 
-    constructor(jobName, jsFile, ell, model) {
+    constructor(jobName, jsFile, ell, model, settings) {
         this.file = jsFile;
         this.name = jobName;
         this.elementName = ell;
         this.model = model;
         this.cv = document.getElementById('mycanvas');
         this.isRunning = false;
+        this.settings = settings;
 
         //bind methods to the class to avoid losing `this`
         let modelReady = this.modelReady.bind(this);
@@ -48,8 +49,6 @@ class Job {
             let msg = event.data;
             document.getElementById(this.elementName).insertAdjacentHTML('beforeEnd', msg.message);
 
-            //let baseUrl = "http://localhost:8080/classif-ai/crud";
-            //let baseUrl = "http://" + location.hostname + ":8080/classif-ai/crud";
             let baseUrl = "http://localhost/api/crud";
 
             if(!['localhost', '127.0.0.1'].includes(location.hostname)){
@@ -135,7 +134,7 @@ class Job {
                     var quality = 0.5;
                     let shot    = this.cv.toDataURL('image/jpeg',quality);   //'image/jpeg' vs image/png
     
-                    let msg = new Message(1, this.name, shot, det);
+                    let msg = new Message(1, this.name, shot, det, this.settings);
                     this.worker.postMessage(msg);
         
                     });
