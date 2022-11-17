@@ -299,14 +299,21 @@
     var heightRatio = 4/3;
     canvas.height = canvas.width * heightRatio;
 
-    const DEFAULT_SENSITIVITY_TIME = 1000;
-    const DEFAULT_SENSITIVITY_MOVEMENT = 1000;
+    const DEFAULT_SENSITIVITY_TIME = 0;
+    const DEFAULT_SENSITIVITY_MOVEMENT = 8000;
     const DEFAULT_FRAMES_PER_SECOND = 10;
+    const DEFAULT_VIDEO = "webcam";
 
     let deltaTimeField = document.getElementById("deltaTime");
     let deltaMovementField = document.getElementById("deltaMovement");    
     let fpsField = document.getElementById("fps");    
 
+    let cctvUrlField = document.getElementById("cctvUrl");
+    let cctvUrlLabel = document.getElementById("cctvUrlLabel");
+
+    let videoUrlField = document.getElementById("videoUrl");
+    let videoUrlLabel = document.getElementById("videoUrlLabel");
+    
     let deltaSensitivity;   
     let timeSensitivityMilliSeconds; 
     let framesPerSecond;

@@ -256,9 +256,9 @@
                                   <h5 class="card-title">Sensitivity</h5>
                                   <form>
                                      <div class="form-group">
-                                        <label for="deltaTime" class="form-label">Frequency</label>
+                                        <label for="deltaTime" class="form-label">Delay</label>
                                         <input type="range" class="form-range" min="0" max="30000" step="1000"  id="deltaTime">
-                                        <small><a href="#">Seconds</a></small>
+                                        <small><a href="#">Milli Seconds</a></small>
                                      </div>
                                   
                                      <div class="form-group">
@@ -291,35 +291,36 @@
 
                                         <!-- Default inline 1-->
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
-                                            <label class="custom-control-label" for="defaultInline1">Webcam</label>
+                                            <input type="radio" class="custom-control-input" id="webcamRadio" name="videoSource" onchange="changeVideoSource(this);" value="webcam">
+                                            <label class="custom-control-label" for="webcamRadio">Webcam</label>
                                         </div>
 
                                         <!-- Default inline 2-->
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
-                                            <label class="custom-control-label" for="defaultInline2">CCTV</label>
+                                            <input type="radio" class="custom-control-input" id="cctvRadio" name="videoSource" onchange="changeVideoSource(this);" value="cctv">
+                                            <label class="custom-control-label" for="cctvRadio">CCTV</label>
                                         </div>
 
                                         <!-- Default inline 3-->
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" class="custom-control-input" id="defaultInline3" name="inlineDefaultRadiosExample">
-                                            <label class="custom-control-label" for="defaultInline3">Video</label>
+                                            <input type="radio" class="custom-control-input" id="videoRadio" name="videoSource" onchange="changeVideoSource(this);" value="video">
+                                            <label class="custom-control-label" for="videoRadio">Video</label>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="cctvUrl">CCTV URL</label>
-                                        <input type="text" class="form-control" id="cctvUrl" placeholder="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">
+                                        <label for="cctvUrl" id="cctvUrlLabel">CCTV URL</label>
+                                        <input type="text" class="form-control" id="cctvUrl" placeholder="rtsp://demo:demo@ipvmdemo.dyndns.org:5541/onvif-media/media.amp?profile=profile_1_h264&sessiontimeout=60&streamtype=unicast" >
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="videoUrl">Video URL</label>
-                                        <input type="text" class="form-control" id="videoUrl" placeholder="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">
+                                        <label for="videoUrl" id="videoUrlLabel">Video URL</label>
+                                        <input type="text" class="form-control" id="videoUrl" placeholder="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" >
                                     </div>
 
-                                     <button type="submit" class="btn btn-primary">Save changes</button>
-                                  </form>
+                                    <a href="#" class="btn btn-secondary btn-sm" style="font-size: 0.8em;" onclick="return defaultVideoSource();">Restore Defaults</a>
+                                    <a href="#" class="btn btn-primary btn-sm" style="font-size: 0.8em;" onclick="return updateVideoSource();">Save Changes</a>
+                                 </form>
                                </div>
                             </div>
                          </div>
@@ -516,13 +517,20 @@
 
 <script>
 
-    const DEFAULT_SENSITIVITY_TIME = 1000;
-    const DEFAULT_SENSITIVITY_MOVEMENT = 1000;
+    const DEFAULT_SENSITIVITY_TIME = 0;
+    const DEFAULT_SENSITIVITY_MOVEMENT = 8000;
     const DEFAULT_FRAMES_PER_SECOND = 10;
+    const DEFAULT_VIDEO = "webcam";
 
     let deltaTimeField = document.getElementById("deltaTime");
     let deltaMovementField = document.getElementById("deltaMovement");    
-    let fpsField = document.getElementById("fps");    
+    let fpsField = document.getElementById("fps"); 
+   
+    let cctvUrlField = document.getElementById("cctvUrl");
+    let cctvUrlLabel = document.getElementById("cctvUrlLabel");
+
+    let videoUrlField = document.getElementById("videoUrl");
+    let videoUrlLabel = document.getElementById("videoUrlLabel");
 
     let deltaSensitivity;   
     let timeSensitivityMilliSeconds; 

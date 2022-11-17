@@ -55,7 +55,7 @@ class Job {
                 baseUrl = "https://" + location.hostname + "/api/crud";
                 }
 
-            console.log("baseUrl " + baseUrl);
+            //console.log("baseUrl " + baseUrl);
 
             let payload = {
                 label: msg.title,
