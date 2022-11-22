@@ -39,7 +39,8 @@ function setup() {
       }
   else if("cctv" === localStorage.getItem("video_source")){
       webcam = false;
-      video = createVideo("rtsp://localhost/video",vidLoad); //remote mp4
+      //set the feed url
+      video = createVideo("http://localhost/api/rtsp/live.mp4",vidLoad); //remote mp4
       }
   else if("video" === localStorage.getItem("video_source")){
       webcam = false;
@@ -152,3 +153,6 @@ function draw() {
 function vidLoad() {
   console.log("video loaded");
   }
+
+
+

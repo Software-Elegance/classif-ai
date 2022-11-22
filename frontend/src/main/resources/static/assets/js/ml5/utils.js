@@ -154,6 +154,43 @@
             }
         else if("cctv" === localStorage.getItem("video_source")){
             localStorage.setItem("video_url",cctvUrlField.value);
+
+            console.log("posting rtspUrl to backend");
+
+            //update
+
+            fetch('http://localhost/api/rtsp/set/stream',
+                    {
+                        // Adding method type
+                        method: "POST",
+                        
+                        // Adding body or contents to send
+                        body: JSON.stringify({
+                            title: "testing",
+                            rtspUrl: cctvUrlField.value,
+                            frameRate: 0.1
+                        }),
+                        
+                        // Adding headers to the request
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        }
+                    }
+            
+                )
+                .then((response) => {
+                    console.log(response);
+                    //return response.json();
+                    })
+                .then((data) => {
+                    console.log(data);
+                    })
+                .catch((error) => {
+                    console.log(error);
+                });
+
+
+
             }
         else if("video" === localStorage.getItem("video_source")){
             localStorage.setItem("video_url",videoUrlField.value);
