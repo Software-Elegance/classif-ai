@@ -39,11 +39,19 @@ function setup() {
       }
   else if("cctv" === localStorage.getItem("video_source")){
       webcam = false;
-      video = createVideo("rtsp://localhost/video",vidLoad); //remote mp4
+      //set the feed url
+      video = createVideo("http://localhost/api/rtsp/live.mp4",vidLoad); //remote mp4
       }
   else if("video" === localStorage.getItem("video_source")){
       webcam = false;
-      video = createVideo("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",vidLoad); //remote mp4
+
+      let videoUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+      if(localStorage.getItem("video_url")){
+        videoUrl = localStorage.getItem("video_url");
+        }
+      
+      video = createVideo(videoUrl,vidLoad); //remote mp4
+        
       myButton = createButton('play');
       myButton.mousePressed(togglePlay);
       }
@@ -152,3 +160,6 @@ function draw() {
 function vidLoad() {
   console.log("video loaded");
   }
+
+
+
