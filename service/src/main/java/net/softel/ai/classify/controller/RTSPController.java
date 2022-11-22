@@ -36,7 +36,6 @@ public class RTSPController {
             }
         log.info("rtspUrl = {}", rtspUrl);
         return service.liveStream(rtspUrl);
-        //return service.liveStreamFrameOutput(rtspUrl);
         }
 
     @PostMapping(value = "/stream")

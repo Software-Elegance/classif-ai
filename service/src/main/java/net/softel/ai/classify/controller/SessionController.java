@@ -1,10 +1,7 @@
 
 package net.softel.ai.classify.controller;
 
-import java.util.List;
-import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;

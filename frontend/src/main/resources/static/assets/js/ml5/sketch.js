@@ -44,7 +44,14 @@ function setup() {
       }
   else if("video" === localStorage.getItem("video_source")){
       webcam = false;
-      video = createVideo("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",vidLoad); //remote mp4
+
+      let videoUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+      if(localStorage.getItem("video_url")){
+        videoUrl = localStorage.getItem("video_url");
+        }
+      
+      video = createVideo(videoUrl,vidLoad); //remote mp4
+        
       myButton = createButton('play');
       myButton.mousePressed(togglePlay);
       }
