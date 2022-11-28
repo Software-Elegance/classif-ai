@@ -4,6 +4,18 @@
 <html lang="en">
 <head>
     <title>Classif-AI Demo</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />  
+    <link rel="apple-touch-icon" href="images/hello-icon-152.png">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="white"/>  
+    <meta name="apple-mobile-web-app-capable" content="yes">  
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+    <meta name="apple-mobile-web-app-title" content="Sample PWA"> 
+    <meta name="msapplication-TileImage" content="images/hello-icon-144.png">  
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta charset="utf-8"/>
     <link rel="shortcut icon" href="/classif-ai/assets/media/svg/brand-logos/tower.svg"/>
@@ -355,6 +367,8 @@
     </div>
     <!--end::Page-->
 </div>
+
+<script src="/classif-ai/assets/js/main.js"></script>
 
 </body>
 </html>
