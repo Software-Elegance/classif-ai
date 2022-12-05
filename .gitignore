@@ -45,6 +45,9 @@ docs/
 
 */*.log
 
+*/*.png
+*/*.jpeg
+
 
 # ### VS Code ###
 **/.vscode/
