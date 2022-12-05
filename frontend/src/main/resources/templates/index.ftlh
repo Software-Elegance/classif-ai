@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <title>Classif-AI Demo</title>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/classif-ai/assets/manifest.json">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon" />  
     <link rel="apple-touch-icon" href="images/hello-icon-152.png">   

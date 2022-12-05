@@ -1,8 +1,8 @@
 
 var cacheName = 'classif-ai-pwa';
 var filesToCache = [
-  '/',
-  '/classif-ai',
+  //'/',
+  //'/classif-ai',
   // '/index.html',
   // '/simple/index.html',
   // '/simple/css/style.css',
