@@ -88,9 +88,9 @@ function setup() {
   
   jobList = [
     // // Models available are 'cocossd', 'yolo'
-    new Job("All detections", "assets/js/ml5/workers/incidents-worker.js", "incident-logs", "cocossd", settings),
-    new Job("Persons Detector", "assets/js/ml5/workers/persons-worker.js", "person-logs","cocossd",settings),
-    new Job("Anomally detector", "assets/js/ml5/workers/anomally-worker.js", "anomally-logs", "cocossd",settings),
+    new Job("All detections", "/classif-ai/assets/js/ml5/workers/incidents-worker.js", "incident-logs", "cocossd", settings),
+    new Job("Persons Detector", "/classif-ai/assets/js/ml5/workers/persons-worker.js", "person-logs","cocossd",settings),
+    new Job("Anomally detector", "/classif-ai/assets/js/ml5/workers/anomally-worker.js", "anomally-logs", "cocossd",settings),
     ];
   jobList.forEach((jb, i) => {
         console.log("Starting..." + jb.name);
