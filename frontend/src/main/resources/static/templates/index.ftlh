@@ -5,7 +5,6 @@
 <head>
     <title>Classif-AI Demo</title>
     <link rel="manifest" href="/classif-ai/assets/manifest.json">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon" />  
     <link rel="apple-touch-icon" href="images/hello-icon-152.png">   
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -257,7 +256,7 @@
 
                                             <li class="nav-item col-12 col-lg mb-5 mb-lg-0" role="presentation">
                                                 <a class="nav-link btn btn-flex btn-color-gray-400 btn-outline btn-active-primary d-flex flex-grow-1 flex-column flex-center py-5 h-1250px h-lg-175px" data-bs-toggle="tab"
-                                                   href="/classif-ai/webcam" aria-selected="false" tabindex="-1" role="tab">
+                                                   href="/classif-ai/webcam/" aria-selected="false" tabindex="-1" role="tab">
                                                     <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
                                                     <span class="svg-icon svg-icon-3x mb-5 mx-0">
 														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -272,7 +271,7 @@
 
                                             <li class="nav-item col-12 col-lg mb-5 mb-lg-0" role="presentation">
                                                 <a class="nav-link btn btn-flex btn-color-gray-400 btn-outline btn-active-primary d-flex flex-grow-1 flex-column flex-center py-5 h-1250px h-lg-175px" data-bs-toggle="tab"
-                                                   href="/classif-ai/settings" aria-selected="false" tabindex="-1" role="tab">
+                                                   href="/classif-ai/settings/" aria-selected="false" tabindex="-1" role="tab">
                                                     <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
                                                     <span class="svg-icon svg-icon-3x mb-5 mx-0">
 														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
