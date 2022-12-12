@@ -382,7 +382,7 @@
                                         </div>
                                         <div class="col-md-4">
                                            <div class="text-center">
-                                              <img alt="Andrew Jones" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle img-responsive mt-2" width="128" height="128">
+                                              <img alt="Andrew Jones" src="." class="rounded-circle img-responsive mt-2" width="128" height="128">
                                               <div class="mt-2">
                                                  <span class="btn btn-primary">
                                                     <svg class="svg-inline--fa fa-upload fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="upload" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
