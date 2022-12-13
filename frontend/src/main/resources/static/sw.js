@@ -1,5 +1,5 @@
 const VERSION = 'v1';
-const STRATEGY = 'CACHE_FIRST';    //DEFAULT, STALE_WHILE_REVALIDATE,NETWORK_FIRST, CACHE_FIRST, CACHE_ONLY, NETWORK_ONLY
+const STRATEGY = 'STALE_WHILE_REVALIDATE';    //DEFAULT, STALE_WHILE_REVALIDATE,NETWORK_FIRST, CACHE_FIRST, CACHE_ONLY, NETWORK_ONLY
 
 var cacheName = 'classif-ai-pwa';
 var filesToCache = [
@@ -52,6 +52,9 @@ self.addEventListener('install', function(e) {
 
 self.addEventListener('activate', event => {
   log("Activating");
+
+  log("Fetching. Strategy = " + STRATEGY);
+
   event.waitUntil(
     caches.keys().then(cacheNames => Promise.all(
       cacheNames
@@ -61,84 +64,42 @@ self.addEventListener('activate', event => {
   );
   });
    
-  // Stale-While-Revalidate
-  // Cache first, then Network
-  // Network first, then Cache
-  // Cache only
-  // Network only
-
-// //1. Default. Cache first
-// self.addEventListener('fetch', function(e) {
-//   //console.log('Service Worker: Fetching ' + e.request.url);
-//   e.respondWith(
-//     caches.match(e.request)
-//       .then(function(cacheResponse) {
-//         return cacheResponse || fetch(e.request);  
-//         })
-//     );
-// });
-
-
-//2. Net only 
-// self.addEventListener('fetch', function (event) {
-//   event.respondWith(
-//       fetch(event.request).then(function(networkResponse) {
-//           return networkResponse
-//       })
-//   )
-// });
-
-//Network first
-// self.addEventListener('fetch', function(e) {
-//   //console.log('Service Worker: Fetching ' + e.request.url);
-//   e.respondWith(
-//     caches.match(e.request)
-//       .then(function(cacheResponse) {
-//         return fetch(e.request) || cacheResponse;  
-//         })
-//     );
-// });
-
-//2. GLOBAL 
+  
 self.addEventListener('fetch', function(event) {
 
-    log("Fetching. Strategy = " + STRATEGY);
 
     if(STRATEGY === 'STALE_WHILE_REVALIDATE'){
+          //Cache first (may be stale), then (always) update cache via network call
 
-        event.respondWith(async function() {
-            const cache = await caches.open(cacheName);
-            const cachedResponse = await cache.match(event.request);
-            const fetchPromise = fetch(event.request);
-            
-            let networkResponse;
-
-            event.waitUntil(async function () {
-                networkResponse = await fetchPromise;
-                // Update the cache with a newer version
-                if (event.request.method === 'GET' && networkResponse.ok) {
-                  await cache.put(event.request, networkResponse.clone());
-                  }
-              }());
-
-            // The response contains cached data, if available
-            return cachedResponse || networkResponse;
-        }());
+        event.respondWith(caches.open(cacheName).then((cache) => {
+          return cache.match(event.request).then((cachedResponse) => {
+            const fetchedResponse = fetch(event.request).then((networkResponse) => {
+              log("Fetching " + event.request.url);
+              if (event.request.method === 'GET' && networkResponse.ok) {
+                log("Updating cache ...");
+                cache.put(event.request, networkResponse.clone());
+                }
+              return networkResponse;
+            });
+    
+            return cachedResponse || fetchedResponse;
+          });
+        }));
 
       }
     else if (STRATEGY === 'CACHE_FIRST'){   //CACHE_FIRST
-          //Cache first, fall back to network
+          //Cache first, fall back to network in case of a miss
           // Open the cache
           event.respondWith(caches.open(cacheName).then(async (cache) => {
             // Respond with the image from the cache or from the network
             const cachedResponse = await cache.match(event.request);
             return cachedResponse || fetch(event.request).then((fetchedResponse) => {
-              log("making a network call for " + event.request.url);
+              log("Fetching " + event.request.url);
               // Add the network response to the cache for future visits.
               // Note: we need to make a copy of the response to save it in
               // the cache and use the original as the request response.
               if (event.request.method === 'GET' && fetchedResponse.ok) {
-                log("Caching GET request and response");
+                log("Updating cache ...");
                 cache.put(event.request, fetchedResponse.clone());
                 }
 
@@ -148,7 +109,7 @@ self.addEventListener('fetch', function(event) {
           }));
 
       }
-    else{   //DEFAULT... works
+    else{   //DEFAULT... use pre-cached resources, otherwise fetch from network
         event.respondWith(
           caches.match(event.request)
             .then(function(cachedResponse) {
