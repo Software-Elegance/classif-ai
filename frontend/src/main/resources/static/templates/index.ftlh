@@ -34,6 +34,24 @@
     }
 
 </script>
+
+
+<script>
+
+    const DEFAULT_API_BASE_URL = "http://localhost";
+
+    let apiBaseUrl;
+
+    if(localStorage.getItem("api_base_url")){
+        apiBaseUrl = localStorage.getItem("api_base_url");
+        }
+    else{
+        apiBaseUrl = DEFAULT_API_BASE_URL;
+        }
+    console.log("apiBaseUrl: " + apiBaseUrl);
+    
+</script>
+
 <body style="padding-left: 1cm;">
 
 <!--begin::Theme mode setup on page load-->
@@ -321,6 +339,10 @@
 </div>
 
 <script src="/classif-ai/assets/js/main.js"></script>
+
+
+
+
 
 </body>
 </html>

@@ -23,6 +23,22 @@
 
     </script>
 
+    <script>
+
+        const DEFAULT_API_BASE_URL = "http://localhost";
+    
+        let apiBaseUrl;
+    
+        if(localStorage.getItem("api_base_url")){
+            apiBaseUrl = localStorage.getItem("api_base_url");
+            }
+        else{
+            apiBaseUrl = DEFAULT_API_BASE_URL;
+            }
+        console.log("apiBaseUrl: " + apiBaseUrl);
+        
+    </script>
+    
     <script src="/classif-ai/assets/js/ml5/p5.min.js"></script>
     <script src="/classif-ai/assets/js/ml5/ml5.min.js" type="text/javascript"></script>
 
@@ -304,6 +320,7 @@
     const DEFAULT_FRAMES_PER_SECOND = 10;
     const DEFAULT_VIDEO = "webcam";
 
+
     let deltaTimeField = document.getElementById("deltaTime");
     let deltaMovementField = document.getElementById("deltaMovement");    
     let fpsField = document.getElementById("fps");    
@@ -314,9 +331,13 @@
     let videoUrlField = document.getElementById("videoUrl");
     let videoUrlLabel = document.getElementById("videoUrlLabel");
     
+    let apiBaseUrlField = document.getElementById("apiBaseUrl");
+
     let deltaSensitivity;   
     let timeSensitivityMilliSeconds; 
     let framesPerSecond;
+
+
 
 </script>
 

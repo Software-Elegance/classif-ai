@@ -1,3 +1,4 @@
+
 class Job {
 
     constructor(jobName, jsFile, ell, model, settings) {
@@ -49,13 +50,13 @@ class Job {
             let msg = event.data;
             document.getElementById(this.elementName).insertAdjacentHTML('beforeEnd', msg.message);
 
-            let baseUrl = "http://localhost/api/crud";
+            let baseUrl = apiBaseUrl + "/api/crud";
 
             if(!['localhost', '127.0.0.1'].includes(location.hostname)){
                 baseUrl = "https://" + location.hostname + "/api/crud";
                 }
 
-            //console.log("baseUrl " + baseUrl);
+            console.log("baseUrl " + baseUrl);
 
             let payload = {
                 label: msg.title,
