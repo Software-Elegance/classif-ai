@@ -17,6 +17,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!--end::JS Bundle-->
 
+
+    <script>
+
+      const DEFAULT_API_BASE_URL = "http://localhost";
+  
+      let apiBaseUrl;
+  
+      if(localStorage.getItem("api_base_url")){
+          apiBaseUrl = localStorage.getItem("api_base_url");
+          }
+      else{
+          apiBaseUrl = DEFAULT_API_BASE_URL;
+          }
+      console.log("apiBaseUrl: " + apiBaseUrl);
+      
+  </script>
+
     <script>
 
         //these have to be here so that js workers and the main thread are able to use them
@@ -25,6 +42,7 @@
         let video;
         let detections = [];
         let anomalies = [];
+
 
     </script>
 
@@ -228,6 +246,9 @@
                             <h5 class="card-title mb-0">Profile Settings</h5>
                          </div>
                          <div class="list-group list-group-flush" role="tablist">
+                           <a class="list-group-item list-group-item-action" data-toggle="list" href="#system" role="tab">
+                              System
+                           </a>
                             <a class="list-group-item list-group-item-action active" data-toggle="list" href="#camera" role="tab">
                             Camera
                             </a>
@@ -248,8 +269,31 @@
                          </div>
                       </div>
                    </div>
+
+
+
+
                    <div class="col-md-7 col-xl-8">
                       <div class="tab-content">
+
+                        <div class="tab-pane fade show" id="system" role="tabpanel">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h5 class="card-title">System Config</h5>
+                                 <form>
+                                    
+                                   <div class="form-group">
+                                       <label for="apiBaseUrl" id="baseUrlLabel">BASE URL</label>
+                                       <input type="text" class="form-control" id="apiBaseUrl" placeholder="http://localhost" >
+                                   </div>
+      
+                                   <a href="#" class="btn btn-secondary btn-sm" style="font-size: 0.8em;" onclick="return defaultSystemConfig();">Restore Defaults</a>
+                                   <a href="#" class="btn btn-primary btn-sm" style="font-size: 0.8em;" onclick="return updateSystemConfig();">Save Changes</a>
+                                </form>
+                              </div>
+                           </div>
+                        </div>
+                        
                         <div class="tab-pane fade" id="sensitivity" role="tabpanel">
                             <div class="card">
                                <div class="card-body">
@@ -532,9 +576,12 @@
     let videoUrlField = document.getElementById("videoUrl");
     let videoUrlLabel = document.getElementById("videoUrlLabel");
 
+    let apiBaseUrlField = document.getElementById("apiBaseUrl");
+
     let deltaSensitivity;   
     let timeSensitivityMilliSeconds; 
     let framesPerSecond;
+
 
 </script>
 

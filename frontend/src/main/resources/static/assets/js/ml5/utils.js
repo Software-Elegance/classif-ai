@@ -1,12 +1,8 @@
-    // const DEFAULT_SENSITIVITY_TIME = 1000;
-    // const DEFAULT_SENSITIVITY_MOVEMENT = 8000;
 
 
     function showImage(incidentId) {
         
-        //let url = 'http://localhost:8080/classif-ai/crud/detection/domain/' + incidentId;
-        //let url = 'http://' + location.hostname + ':8080/classif-ai/crud/detection/domain/' + incidentId;
-        let url = 'http://localhost/api/crud/detection/domain/' + incidentId;
+        let url = apiBaseUrl + '/api/crud/detection/domain/' + incidentId;
 
         if(!['localhost', '127.0.0.1'].includes(location.hostname)){
             url = 'https://' + location.hostname + '/api/crud/detection/domain/' + incidentId;
@@ -76,7 +72,7 @@
     function updateSensitivity(){
 
         console.log("Persisting sensitivity values. New values will take effect on reload");
-        //Get the values from session storage to local storage
+        //Get the values from session storage (events.js) to local storage
         localStorage.setItem("sensitivity_time",sessionStorage.getItem("sensitivity_time"));
         localStorage.setItem("sensitivity_movement",sessionStorage.getItem("sensitivity_movement"));
         localStorage.setItem("frames_per_second",sessionStorage.getItem("frames_per_second"));
@@ -85,26 +81,32 @@
         }
 
 
+
+
     function loadSettings(){
-        console.log("load settings from local storage");
+
+        console.log("load settings and system config from local storage if present");
 
         let videoSource;
-        if (localStorage.getItem("sensitivity_time") && localStorage.getItem("sensitivity_movement") && localStorage.getItem("frames_per_second") && localStorage.getItem("video_source")) {
+        if (localStorage.getItem("sensitivity_time") && localStorage.getItem("sensitivity_movement") && localStorage.getItem("frames_per_second") && localStorage.getItem("video_source") && localStorage.getItem("api_base_url")) {
             deltaSensitivity = localStorage.getItem("sensitivity_movement");
             timeSensitivityMilliSeconds = localStorage.getItem("sensitivity_time");
             framesPerSecond = localStorage.getItem("frames_per_second");
             videoSource = localStorage.getItem("video_source");
+            apiBaseUrl = localStorage.getItem("api_base_url");
             }
-          else{
+        else{
             deltaSensitivity = DEFAULT_SENSITIVITY_MOVEMENT;
             timeSensitivityMilliSeconds = DEFAULT_SENSITIVITY_TIME;
             framesPerSecond = DEFAULT_FRAMES_PER_SECOND;
             videoSource = DEFAULT_VIDEO;
+            apiBaseUrl = DEFAULT_API_BASE_URL;
             }
 
         deltaTimeField.value = timeSensitivityMilliSeconds;
         deltaMovementField.value = deltaSensitivity;
         fpsField.value = framesPerSecond;
+        apiBaseUrlField.value = apiBaseUrl;
 
         if("webcam" === videoSource){
             document.getElementById("webcamRadio").checked = true;      //clumsy and inefficient 
@@ -159,7 +161,7 @@
 
             //update
 
-            fetch('http://localhost/api/rtsp/set/stream',
+            fetch(apiBaseUrl + '/api/rtsp/set/stream',
                     {
                         // Adding method type
                         method: "POST",
@@ -210,5 +212,23 @@
         videoUrlField.value = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
         cctvUrlField.value = "rtsp://localhost";
 
-        return false;
+        return false;//do not follow href
+        }
+
+
+    function defaultSystemConfig(){
+        console.log("default system config");
+        apiBaseUrlField.value = apiBaseUrl;
+        return false;//do not follow href
+        }
+
+
+    function updateSystemConfig(){
+
+        console.log("Persisting SysConfig values. New values will take after reloading !");
+        //we need to validate url input in future
+        apiBaseUrl = apiBaseUrlField.value;
+        localStorage.setItem("api_base_url",apiBaseUrl);
+
+        return false;   //do not follow href
         }

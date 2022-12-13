@@ -67,7 +67,6 @@ self.addEventListener('activate', event => {
   
 self.addEventListener('fetch', function(event) {
 
-
     if(STRATEGY === 'STALE_WHILE_REVALIDATE'){
           //Cache first (may be stale), then (always) update cache via network call
 
@@ -88,7 +87,7 @@ self.addEventListener('fetch', function(event) {
 
       }
     else if (STRATEGY === 'CACHE_FIRST'){   //CACHE_FIRST
-          //Cache first, fall back to network in case of a miss
+          // Cache first, fall back to network in case of a miss
           // Open the cache
           event.respondWith(caches.open(cacheName).then(async (cache) => {
             // Respond with the image from the cache or from the network
@@ -120,53 +119,6 @@ self.addEventListener('fetch', function(event) {
 
   
 });
-
-
-//2. Stale-While-Revalidate. test 1
-// self.addEventListener('fetch', function (event) {
-//   event.respondWith(
-//       caches.open(cacheName)
-//           .then(function(cache) {
-//               cache.match(event.request)
-//                   .then( function(cacheResponse) {
-//                       fetch(event.request)
-//                           .then(function(networkResponse) {
-//                               cache.put(event.request, networkResponse.clone())
-//                           })
-//                       return cacheResponse || networkResponse
-//                   })
-//           })
-//     )
-// });
-
-
-
-//This one makes it blazing fast but not offline first
-//https://www.geeksforgeeks.org/service-workers-in-javascript/
-// self.addEventListener('fetch", e => {
-//   console.log('Service Worker: Fetching');
-//   e.respondWith(
-//       fetch(e.request)
-//       .then(response => {
-//           // The response is a stream and in order the browser 
-//           // to consume the response and in the same time the 
-//           // cache consuming the response it needs to be 
-//           // cloned in order to have two streams.
-//           const resClone = response.clone();
-//           // Open cache
-//           caches.open(cacheName)
-//               .then(cache => {
-//                   // Add response to cache
-//                   cache.put(e.request, resClone);
-//               });
-//           return response;
-//       }).catch(
-//           err => caches.match(e.request)
-//              .then(response => response)
-//       )
-//   );
-// });
-
 
 
 // each logging line will be prepended with the service worker version
