@@ -218,7 +218,7 @@
 
     function defaultSystemConfig(){
         console.log("default system config");
-        apiBaseUrlField.value = apiBaseUrl;
+        apiBaseUrlField.value = window.location.origin;
         return false;//do not follow href
         }
 

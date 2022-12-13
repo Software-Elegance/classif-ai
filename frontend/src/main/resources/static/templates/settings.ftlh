@@ -20,7 +20,7 @@
 
     <script>
 
-      const DEFAULT_API_BASE_URL = "http://localhost";
+      const DEFAULT_API_BASE_URL = window.location.origin;
   
       let apiBaseUrl;
   
