@@ -40,7 +40,7 @@ function setup() {
   else if("cctv" === localStorage.getItem("video_source")){
       webcam = false;
       //set the feed url
-      video = createVideo("http://localhost/api/rtsp/live.mp4",vidLoad); //remote mp4
+      video = createVideo(apiBaseUrl + "/api/rtsp/live.mp4",vidLoad); //remote mp4
       }
   else if("video" === localStorage.getItem("video_source")){
       webcam = false;
@@ -83,6 +83,9 @@ function setup() {
   settings.set("frames_per_second",framesPerSecond);    //redundant
 
   console.log("settings " + settings);
+
+
+
 
   //WORKERS aka DETECTORS
   
