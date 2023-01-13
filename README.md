@@ -24,6 +24,17 @@ The produced artifacts will have the classifier in the name of the spring boot f
 
 ## Quick Start
 
+# Docker Compose 
+
+a. Get the compose file
+curl https://github.com/Software-Elegance/classif-ai/blob/dev/docker-compose.yml
+
+b. Run via docker compose
+docker compose up OR docker-compose up
+
+c. Open the webapp
+http://localhost/classif-ai
+
 # API backend
     a. Build
     cd classif-ai
@@ -36,6 +47,8 @@ The produced artifacts will have the classifier in the name of the spring boot f
     Alternatively you can run with gradle, sample command for Linux:   
   
     gradlew :service:bootRun -P osclassifier=linux-x86_64
+
+
 
 # Web frontend
 a. Run
