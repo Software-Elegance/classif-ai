@@ -1,0 +1,34 @@
+version: '3.9'
+
+services:
+
+  backend:
+    image: zeguru/classifai-service:0.1
+    container_name: classifai-backend
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  frontend:
+    image: zeguru/classifai-frontend:0.1
+    container_name: classifai-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  nginx:
+    image: zeguru/classifai-nginx:0.4
+    container_name: classifai-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: "bridge"
