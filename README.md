@@ -27,10 +27,10 @@ The produced artifacts will have the classifier in the name of the spring boot f
 # Docker Compose 
 
 a. Get the compose file
-curl https://github.com/Software-Elegance/classif-ai/blob/dev/docker-compose.yml
+curl https://raw.githubusercontent.com/Software-Elegance/classif-ai/dev/docker-compose.yml --output docker-compose.yml
 
 b. Run via docker compose
-docker compose up OR docker-compose up
+`docker compose up` OR `docker-compose up`
 
 c. Open the webapp
 http://localhost/classif-ai
