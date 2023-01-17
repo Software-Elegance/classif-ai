@@ -1,5 +1,8 @@
 version: '3.9'
 
+#x-aws-vpc: "vpc-0013016b1dd63839b"
+#x-aws-loadbalancer: "arn:aws:elasticloadbalancing:eu-west-1:809752095901:loadbalancer/app/apis-services-alb/06c6e35950e47268"
+
 services:
 
   backend:
@@ -19,7 +22,7 @@ services:
       - app-network
 
   nginx:
-    image: zeguru/classifai-nginx:0.4
+    image: zeguru/classifai-nginx:0.6
     container_name: classifai-nginx
     restart: unless-stopped
     ports:
@@ -32,3 +35,14 @@ services:
 networks:
   app-network:
     driver: "bridge"
+
+  
+x-aws-cloudformation:
+  Resources:
+    NginxTCP80TargetGroup:
+      Type: "AWS::ElasticLoadBalancingV2::TargetGroup"
+      Properties:
+        HealthCheckProtocol: HTTP
+        HealthCheckPath: /health
+        Matcher:
+          HttpCode: "200-299"
