@@ -11,8 +11,8 @@ COPY ./nginx.build.conf /etc/nginx/nginx.conf
 
 #Dockerize
 #cd nginx
-#docker build -t zeguru/classifai-nginx:0.4 .
+#docker build -t zeguru/classifai-nginx:0.6 .
 
 #Push
 #docker login
-#docker push zeguru/classifai-nginx:0.4
+#docker push zeguru/classifai-nginx:0.6

@@ -46,6 +46,8 @@ class Job {
 
     //listen to messages from workers
     listen(event) {
+        
+            //TODO: refactor to use queue / event driven
 
             let msg = event.data;
             document.getElementById(this.elementName).insertAdjacentHTML('beforeEnd', msg.message);
