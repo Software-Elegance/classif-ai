@@ -1,4 +1,4 @@
-const VERSION = 'v1';
+const VERSION = 'v1.1';
 const STRATEGY = 'STALE_WHILE_REVALIDATE';    //DEFAULT, STALE_WHILE_REVALIDATE,NETWORK_FIRST, CACHE_FIRST, CACHE_ONLY, NETWORK_ONLY
 
 var cacheName = 'classif-ai-pwa';
@@ -73,9 +73,9 @@ self.addEventListener('fetch', function(event) {
         event.respondWith(caches.open(cacheName).then((cache) => {
           return cache.match(event.request).then((cachedResponse) => {
             const fetchedResponse = fetch(event.request).then((networkResponse) => {
-              log("Fetching " + event.request.url);
+              //log("Fetching " + event.request.url);
               if (event.request.method === 'GET' && networkResponse.ok) {
-                log("Updating cache ...");
+                //log("Updating cache ...");
                 cache.put(event.request, networkResponse.clone());
                 }
               return networkResponse;
@@ -93,12 +93,12 @@ self.addEventListener('fetch', function(event) {
             // Respond with the image from the cache or from the network
             const cachedResponse = await cache.match(event.request);
             return cachedResponse || fetch(event.request).then((fetchedResponse) => {
-              log("Fetching " + event.request.url);
+              //log("Fetching " + event.request.url);
               // Add the network response to the cache for future visits.
               // Note: we need to make a copy of the response to save it in
               // the cache and use the original as the request response.
               if (event.request.method === 'GET' && fetchedResponse.ok) {
-                log("Updating cache ...");
+                //log("Updating cache ...");
                 cache.put(event.request, fetchedResponse.clone());
                 }
 

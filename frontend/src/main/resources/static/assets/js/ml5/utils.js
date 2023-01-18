@@ -17,13 +17,12 @@
             .then((data) => {
                 let det = data;
                 document.getElementById("snapshot").src = det.base64;
-
                 let narrative = "<h5 class=\"card-title\">" + det.createdAt + "</h5><p class=\"card-text\">" + det.label + " ...</p><a href=\"#\" class=\"btn btn-primary\">More insights</a>";
-
                 document.getElementById("snapshot-narrative").innerHTML = narrative;
-
                 })
             .catch((error) => {
+                document.getElementById("snapshot").src = "/classif-ai/assets/images/network-error-icon-8.jpeg";
+                document.getElementById("snapshot-narrative").innerHTML = "<strong>Are you offline?</strong> <br>Check your internet connection or update the BASE_URL in <a style=\"font-weight:bold\" href=\"/classif-ai/settings\">System Settings</a>";
                 console.log(error);
                 });
 
