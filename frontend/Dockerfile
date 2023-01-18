@@ -32,14 +32,14 @@ ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
 #Aftermath
 #========================================
-#Build
+#Fat jar
 #./gradlew frontend:bootJar
 
 #Dockerize
 #cd frontend
-#docker build -t zeguru/classifai-frontend:0.1 .
+#docker build -t zeguru/classifai-frontend:0.4 .
 
 #Push
 #docker login
-#docker push zeguru/classifai-frontend:0.1
+#docker push zeguru/classifai-frontend:0.4
 
