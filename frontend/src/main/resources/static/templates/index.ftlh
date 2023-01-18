@@ -98,7 +98,7 @@
                             <!--end::Svg Icon-->
                         </div>
                         <!--end::Heaeder menu toggle-->
-                        <a href="#">
+                        <a href="/classif-ai/">
                             <img alt="Logo" src="/classif-ai/assets/media/svg/brand-logos/tower.svg"
                                  class="theme-light-show h-20px h-lg-30px"/>
                             <img alt="Logo" src="/classif-ai/assets/media/svg/brand-logos/tower.svg"

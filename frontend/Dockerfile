@@ -37,9 +37,9 @@ ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
 #Dockerize
 #cd frontend
-#docker build -t zeguru/classifai-frontend:0.4 .
+#docker build -t zeguru/classifai-frontend:0.5 .
 
 #Push
 #docker login
-#docker push zeguru/classifai-frontend:0.4
+#docker push zeguru/classifai-frontend:0.5
 

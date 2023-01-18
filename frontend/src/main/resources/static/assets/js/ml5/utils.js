@@ -22,7 +22,7 @@
                 })
             .catch((error) => {
                 document.getElementById("snapshot").src = "/classif-ai/assets/images/network-error-icon-8.jpeg";
-                document.getElementById("snapshot-narrative").innerHTML = "<strong>Are you offline?</strong> <br>Check your internet connection or update the BASE_URL in <a style=\"font-weight:bold\" href=\"/classif-ai/settings\">System Settings</a>";
+                document.getElementById("snapshot-narrative").innerHTML = "<strong>Are you offline?</strong> <br>Check your internet connection or update the BASE_URL in <a style=\"font-weight:bold\" href=\"/classif-ai/settings/\">System Settings</a>";
                 console.log(error);
                 });
 
