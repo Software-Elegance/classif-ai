@@ -13,7 +13,7 @@ services:
       - app-network
 
   frontend:
-    image: zeguru/classifai-frontend:0.1
+    image: zeguru/classifai-frontend:0.4
     container_name: classifai-frontend
     restart: unless-stopped
     depends_on:
