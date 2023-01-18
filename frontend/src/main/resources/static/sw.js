@@ -1,4 +1,4 @@
-const VERSION = 'v1.1';
+const VERSION = 'v1.2';
 const STRATEGY = 'STALE_WHILE_REVALIDATE';    //DEFAULT, STALE_WHILE_REVALIDATE,NETWORK_FIRST, CACHE_FIRST, CACHE_ONLY, NETWORK_ONLY
 
 var cacheName = 'classif-ai-pwa';
@@ -13,6 +13,7 @@ var filesToCache = [
 
   "/classif-ai/favicon.ico",
   "/classif-ai/assets/images/person_holding_monitor.png",
+  "/classif-ai/assets/images/network-error-icon-8.jpeg",
   "/classif-ai/assets/images/icons/hello-icon-128.png",
   "/classif-ai/assets/images/icons/hello-icon-144.png",
   "/classif-ai/assets/images/icons/hello-icon-152.png",
