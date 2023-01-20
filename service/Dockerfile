@@ -17,6 +17,9 @@ LABEL maintainer="itambo.ibrahim@gmail.com"
 # Add a volume pointing to /tmp
 VOLUME /tmp
 
+RUN apt-get -y update
+RUN apt-get install -y ffmpeg
+
 # Make port 8761 available to the world outside this container
 EXPOSE 8080
 
@@ -37,9 +40,9 @@ ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
 #Dockerize
 #cd service
-#docker build -t zeguru/classifai-service:0.1 .
+#docker build -t zeguru/classifai-service:0.2 .
 
 #Push
 #docker login
-#docker push zeguru/classifai-service:0.1
+#docker push zeguru/classifai-service:0.2
 
