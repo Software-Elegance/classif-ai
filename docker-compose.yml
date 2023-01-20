@@ -6,7 +6,7 @@ version: '3.9'
 services:
 
   backend:
-    image: zeguru/classifai-service:0.2
+    image: zeguru/classifai-service:0.5
     container_name: classifai-backend
     restart: unless-stopped
     networks:
