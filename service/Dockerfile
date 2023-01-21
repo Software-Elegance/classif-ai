@@ -1,19 +1,15 @@
 #Multistage build
 
 #####################################################################
-#Stage 1: update the os
-FROM openjdk:11-jre-slim AS updated
-#https://katalonsupport.force.com/katalonhelpcenter/s/article/How-to-install-FFMPEG-on-Docker-Image
-RUN apt-get -y update
+#Stage 1: update the os and install ffmpeg
+FROM openjdk:11-jre-slim AS ffmpeg_installed
+RUN apt-get update -y \
+    && apt-get install -y ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
 
 
 #####################################################################
-#Stage 2: Install ffmpeg
-FROM updated AS ffmpeg_installed
-RUN apt-get install -y ffmpeg
-
-#####################################################################
-#Stage 3: Install the fatJar
+#Stage 2: Install the fatJar
 FROM ffmpeg_installed AS fatjar_installed
 
 ARG DOCKER_SPRING_PROFILES_ACTIVE
@@ -49,9 +45,9 @@ ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
 #Dockerize
 #cd service
-#docker build -t zeguru/classifai-service:0.5 .
+#docker build -t zeguru/classifai-service:0.8 .
 
 #Push
 #docker login
-#docker push zeguru/classifai-service:0.5
+#docker push zeguru/classifai-service:0.8
 
