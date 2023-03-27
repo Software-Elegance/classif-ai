@@ -22,11 +22,15 @@ services:
       - app-network
 
   nginx:
-    image: zeguru/classifai-nginx:0.6
+    image: zeguru/classifai-nginx:0.7
+    # build:
+    #   context: ./nginx
+    #   dockerfile: Dockerfile
     container_name: classifai-nginx
     restart: unless-stopped
     ports:
-      - "80:80"
+      - 80:80
+      - 443:443
     depends_on:
       - frontend
     networks:
