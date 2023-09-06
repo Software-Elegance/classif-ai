@@ -58,6 +58,11 @@ a. Run
     ./gradlew :frontend:bootRun
     ```
 
+# Test Build
+```
+    ./gradlew test build sonarqube --info --no-daemon
+```
+
 # Gateway
   a. Build
 

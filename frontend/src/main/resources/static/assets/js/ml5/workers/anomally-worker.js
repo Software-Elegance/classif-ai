@@ -40,8 +40,11 @@ onmessage = (event) => {
     let delta = Math.abs(topLeft - (prevTopLeftMap.has(msg.payload.label)?prevTopLeftMap.get(msg.payload.label):0));        
     let timeDelta = Math.abs(new Date().getTime() - (prevTimeMap.has(msg.payload.label)?prevTimeMap.get(msg.payload.label):0));
 
-    if(['knife', 'fork', 'spoon', 'bottle', 'gun', 'scissors'].includes(msg.payload.label) && delta > deltaSensitivity && timeDelta > timeSensitivityMilliSeconds){
-        console.log('Found an anomaly ... ' + msg.payload.label);
+    //if(['Robbery', 'Stealing', 'Shoplifting'].includes(msg.payload.label) && delta > deltaSensitivity && timeDelta > timeSensitivityMilliSeconds){
+    if ( ['Robbery', 'Stealing', 'Shoplifting'].includes(msg.payload.label) 
+            && timeDelta > timeSensitivityMilliSeconds
+            && msg.payload.confidence > 0.3 ){
+        console.log('Found an anomaly ... ' + msg.payload.label + ', confidence = ' + msg.payload.confidence);
 
         let id = msg.payload.label + "-" +new Date().getTime();
         incidents =  "<div onclick='showImage(\"" + id + "\");' onmouseover=\"this.style.color='blue';\" onmouseout=\"this.style.color='black';\">" + incidentLabel + "</div>";
@@ -55,5 +58,6 @@ onmessage = (event) => {
 
     prevTimeMap.set(msg.payload.label,new Date().getTime());
     prevTopLeftMap.set(msg.payload.label,topLeft);
+
 }
 

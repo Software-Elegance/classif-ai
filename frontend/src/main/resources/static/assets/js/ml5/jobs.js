@@ -1,7 +1,8 @@
 
 class Job {
 
-    constructor(jobName, jsFile, ell, model, settings) {
+    constructor(jobType, jobName, jsFile, ell, model, settings) {
+        this.jobType = jobType;
         this.file = jsFile;
         this.name = jobName;
         this.elementName = ell;
@@ -27,6 +28,8 @@ class Job {
     start(detector) {
         this.isRunning = true;
 
+        console.log("JobType = " + this.jobType)
+
         this.detector = detector;
         let update = this.listen.bind(this);
         let log = this.log.bind(this);
@@ -41,8 +44,29 @@ class Job {
         this.detector.detect(video, gotDetections);
 
         this.poseNet = ml5.poseNet(poseNetLoaded);
+        }
 
-    }
+
+    startClassifier(classifier) {
+        this.isRunning = true;
+
+        console.log("JobType = " + this.jobType)
+
+        this.classifier = classifier;
+        let update = this.listen.bind(this);
+        let log = this.log.bind(this);
+        let poseNetLoaded = this.poseNetLoaded.bind(this);
+
+        //start a thread
+        this.worker = new Worker(this.file);
+        this.worker.onmessage = update;
+        this.worker.onerror = log;
+        
+        let gotDetections = this.gotDetections.bind(this);
+        this.classifier.classify(video, gotDetections);
+
+        //this.poseNet = ml5.poseNet(poseNetLoaded);
+        }
 
     //listen to messages from workers
     listen(event) {
@@ -143,8 +167,13 @@ class Job {
                     });
                 }
 
+        if(this.jobType === "CLASSIFICATION"){
+            this.classifier.classify(video, gotDetections);
 
-        this.detector.detect(video, gotDetections);
+            }
+        else{
+            this.detector.detect(video, gotDetections);
+            }
     }
 }
 

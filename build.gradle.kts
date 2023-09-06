@@ -55,6 +55,11 @@ tasks.jacocoTestReport {
         xml.isEnabled = false
         csv.isEnabled = false
         html.destination = file("$buildDir/jacocoHtml")
+
+        // html.required = true
+        // xml.required = false
+        // csv.required = false
+        // html.outputLocation = file("$buildDir/jacocoHtml")
     }
 
     finalizedBy("jacocoTestCoverageVerification")
