@@ -16,6 +16,19 @@ let playing = false;
 let myVideo;
 let myButton;
 
+// Classifier Variable
+let classifier;
+// Model URL
+const findITAntiTheftModelUrl = 'https://teachablemachine.withgoogle.com/models/CEWS_zFp8/';
+
+//const mobileNet = ml5.imageClassifier("MobileNet", onModelReady);
+
+// Load the model first
+function preload() {
+  // eslint-disable-next-line prefer-template
+  classifier = ml5.imageClassifier(findITAntiTheftModelUrl + 'model.json');
+  }
+
 function setup() {
 
   let canvas = createCanvas(640, 480);  //4:3
@@ -90,20 +103,32 @@ function setup() {
   //WORKERS aka DETECTORS
   
   jobList = [
-    // // Models available are 'cocossd', 'yolo'
-    new Job("All detections", "/classif-ai/assets/js/ml5/workers/incidents-worker.js", "incident-logs", "cocossd", settings),
-    new Job("Persons Detector", "/classif-ai/assets/js/ml5/workers/persons-worker.js", "person-logs","cocossd",settings),
-    new Job("Anomally detector", "/classif-ai/assets/js/ml5/workers/anomally-worker.js", "anomally-logs", "cocossd",settings),
+    // Inbuilt Object detection Models available are 'cocossd', 'yolo'
+    // Inbuilt Classificcation models avialble MobileNet, DarkNet, DoodleNet
+    //types INBUILT, OBJECT_DETECTION, CLASSIFICATION
+    new Job("INBUILT","All detections", "/classif-ai/assets/js/ml5/workers/incidents-worker.js", "incident-logs", "cocossd", settings),
+    new Job("INBUILT","Persons Detector", "/classif-ai/assets/js/ml5/workers/persons-worker.js", "person-logs","cocossd",settings),
+    new Job("CLASSIFICATION","Anomally detector", "/classif-ai/assets/js/ml5/workers/anomally-worker.js", "anomally-logs", classifier, settings),
     ];
   jobList.forEach((jb, i) => {
         console.log("Starting..." + jb.name);
-        let modelReady = jb.modelReady.bind(jb);
-        let poseNetLoaded = jb.poseNetLoaded.bind(jb);
 
-        //TODO: add ability to call backend api for detection using custom models
-        let det = ml5.objectDetector(jb.model, modelReady);
+        if(jb.jobType === "INBUILT"){
+          let modelReady = jb.modelReady.bind(jb);
+          let poseNetLoaded = jb.poseNetLoaded.bind(jb);
 
-        jb.start(det);
+          //TODO: add ability to call backend api for detection using custom models
+          let det = ml5.objectDetector(jb.model, modelReady);
+
+          jb.start(det);
+          }
+        else if(jb.jobType === "CLASSIFICATION"){
+          jb.startClassifier(classifier);
+          }
+        else{
+          console.log("UNKNOWN job type");
+          return;
+          }
       }
   );
 
